@@ -4,19 +4,19 @@ import { Badge } from "@/components/ui/badge";
 const skillCategories = [
   {
     title: "Web3 development",
-    skills: ["Solidity", "Smart Contract Architecture", "Ethereum Standards (ERC-20, ERC-721, ERC-1155, ERC-2981)", "OpenZeppelin", "Uniswap SDK", "Hardhat", "Foundry"],
+    skills: ["Solidity", "Smart Contract Architecture", "ERC Standards", "OpenZeppelin", "Uniswap SDK", "Hardhat", "Foundry", "GraphQL"],
   },
   {
     title: "Front-End & Integration",
-    skills: ["React", "Next.js", "TypeScript", "TailwindCSS", "Blockchain connection frameworks (Viem, Wagmi, RainbowKit)", "Wallet integration", "DApp deployment (Vercel)"],
+    skills: ["React", "TypeScript", "TailwindCSS", "Next.js", "Viem / Wagmi", "RainbowKit", "DApp deployment (Vercel)"],
   },
   {
     title: "Development practices",
-    skills: ["GitHub Actions", "Continuous Integration & Version Control (Git, GitHub, TFS)", "Test-Driven Development (TDD)", "TUI/UX awareness for decentralized apps"],
+    skills: ["GitHub Actions", "CI/CD & Version Control", "Test-Driven Development (TDD)", "UI/UX for DApps"],
   },
   {
     title: "Additionnal skills",
-    skills: ["C", "C++", "C#", "Embedded Linux", "Problem-solving", "OpenZeppelin", "Documentation", "Teamwork"],
+    skills: ["C", "C++", "C#", "Embedded Linux", "Problem Solving", "OpenZeppelin", "Documentation", "Teamwork"],
   },
 ];
 
@@ -29,10 +29,17 @@ const Skills = () => {
           {skillCategories.map((category, index) => (
             <Card key={index} className="p-6 shadow-card animate-scale-in">
               <h3 className="text-xl font-semibold mb-4 text-primary">{category.title}</h3>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 min-w-0">
                 {category.skills.map((skill, skillIndex) => (
-                  <Badge key={skillIndex} variant="secondary" className="text-sm">
-                    {skill}
+                  <Badge 
+                    key={skillIndex} 
+                    variant="secondary"
+                    title={skill} 
+                    className="max-w-[14rem] overflow-hidden"
+                  >
+                    <span className="block truncate whitespace-nowrap text-left text-sm">
+                      {skill}
+                    </span>
                   </Badge>
                 ))}
               </div>

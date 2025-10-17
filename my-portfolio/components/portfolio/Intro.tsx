@@ -1,7 +1,13 @@
-import { Mail, Linkedin, Github } from "lucide-react";
+import Image from 'next/image';
+
+import { Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const Hero = () => {
+import GithubLogo from "@/public/icons/github.svg";
+import LinkedInLogo from "@/public/icons/linkedin.svg";
+
+
+const Intro = () => {
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center gradient-hero px-4">
       <div className="container max-w-4xl mx-auto text-center animate-fade-in">
@@ -12,17 +18,35 @@ const Hero = () => {
           Fullstack Web3 Developer
         </p>
         <div className="flex gap-4 justify-center flex-wrap">
-          <Button variant="default" size="lg" className="gap-2">
-            <Mail className="w-5 h-5" />
-            Email Me
+          <Button asChild variant="default" size="lg" className="gap-2">
+            <a href="mailto:igor@danet.one">
+              <Mail className="w-5 h-5" />
+              Email Me
+            </a>
           </Button>
-          <Button variant="outline" size="lg" className="gap-2">
-            <Linkedin className="w-5 h-5" />
-            LinkedIn
+          <Button asChild variant="outline" size="lg" className="gap-2">
+            <a href="https://www.linkedin.com/in/igorbabic-99" target="_blank" rel="noopener noreferrer">
+              {/* <LinkedInLogo className="w-5 h-5" /> */}
+              <Image
+                priority
+                src={LinkedInLogo}
+                alt="LinkedIn Logo"
+                className="w-5 h-5"
+              />
+              LinkedIn
+            </a>
           </Button>
-          <Button variant="outline" size="lg" className="gap-2">
-            <Github className="w-5 h-5" />
-            GitHub
+          <Button asChild variant="outline" size="lg" className="gap-2">
+            <a href="https://github.com/BigWess57" target="_blank" rel="noopener noreferrer">
+              {/* <GithubLogo className="w-5 h-5" /> */}
+              <Image
+                priority
+                src={GithubLogo}
+                alt="Github Logo"
+                className="w-5 h-5"
+              />
+              GitHub
+            </a>
           </Button>
         </div>
       </div>
@@ -30,4 +54,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default Intro;

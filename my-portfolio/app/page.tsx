@@ -1,4 +1,4 @@
-import Hero from "@/components/portfolio/Intro";
+import Intro from "@/components/portfolio/Intro";
 import About from "@/components/portfolio/About";
 import WorkExperience from "@/components/portfolio/WorkExperience";
 import KeyExperiences from "@/components/portfolio/KeyExperiences";
@@ -11,7 +11,7 @@ import Vision from "@/components/portfolio/Vision";
 export default function Home() {
   return (
     <div className="min-h-screen">
-      <Hero />
+      <Intro />
       <About />
       <WorkExperience />
       <KeyExperiences />
