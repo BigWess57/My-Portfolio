@@ -26,7 +26,6 @@ const Intro = () => {
           </Button>
           <Button asChild variant="outline" size="lg" className="gap-2">
             <a href="https://www.linkedin.com/in/igorbabic-99" target="_blank" rel="noopener noreferrer">
-              {/* <LinkedInLogo className="w-5 h-5" /> */}
               <Image
                 priority
                 src={LinkedInLogo}
@@ -38,7 +37,6 @@ const Intro = () => {
           </Button>
           <Button asChild variant="outline" size="lg" className="gap-2">
             <a href="https://github.com/BigWess57" target="_blank" rel="noopener noreferrer">
-              {/* <GithubLogo className="w-5 h-5" /> */}
               <Image
                 priority
                 src={GithubLogo}
