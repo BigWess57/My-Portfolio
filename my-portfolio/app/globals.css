@@ -1,5 +1,126 @@
 @import "tailwindcss";
 
+
+
 @theme {
-  --color-background: hsl(0,0,90%);
+
+  --color-background-1: #181111;
+  --color-background-2: #1F1513;
+  --color-interactive-1: #391714;
+  --color-interactive-2: #4E1511;
+  --color-interactive-3: #5E1C16;
+  --color-border-1: #6E2920;
+  --color-border-2: #853A2D;
+  --color-border-3: #AC4D39;
+  --color-solid-1: #E54D2E;
+  --color-solid-2: #EC6142;
+  --color-text-1: #FF977D;
+  --color-text-2: #FBD3CB;
+
 }
+
+
+
+
+/* @theme {
+  --color-bg-bottom: hsl(0, 0%, 0%);
+  --color-bg-middle: hsl(0, 0%, 5%);
+  --color-bg-top: hsl(0, 0%, 10%);
+  --color-text-header: hsl(0, 0%, 95%);
+  --color-text-muted: hsl(0, 0%, 70%);
+
+  --color-highlight: oklch(0.5 0.2 47);
+  --color-border: oklch(0.4 0.2 47);
+  --color-border-muted: oklch(0.3 0.2 47);
+  --color-primary: oklch(0.5765 0.1973 45.53);
+  --color-secondary: oklch(0.5765 0.2368 25.41);
+  --color-complementary: oklch(0.5294 0.2689 268.94);
+
+  --color-tomato-1:  #fffcfc;
+  --color-tomato-2:  #fff8f7;
+  --color-tomato-3:  #fff0ee;
+  --color-tomato-4:  #ffe6e2;
+  --color-tomato-5:  #fdd8d3;
+  --color-tomato-6:  #fac7be;
+  --color-tomato-7:  #f3b0a2;
+  --color-tomato-8:  #ea9280;
+  --color-tomato-9:  #e54d2e;
+  --color-tomato-10: #db4324;
+  --color-tomato-11: #ca3214;
+  --color-tomato-12: #341711;
+
+} */
+
+/* Global base */
+/* :root {
+  background-color: var(--color-bg-bottom);
+  color: var(--color-text-header);
+  font-family: var(--font-sans, Arial, Helvetica, sans-serif);
+} */
+
+/* Example dark mode variant (optional) */
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    background-color: var(--color-bg-bottom);
+    color: var(--color-text-header);
+  }
+} */
+
+
+
+/* ------------------------------
+   Theme variables (Light = default)
+   ------------------------------ */
+/* :root {
+  background-color: var(--color-bg-bottom);
+  color: var(--color-text-header);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+
+  --color-bg-bottom: hsl(0 0% 100%);
+  --color-bg-middle: hsl(0 0% 98%);
+  --color-bg-top: hsl(0 0% 95%);
+
+  --color-text-header: hsl(0 0% 10%);  
+  --color-text-muted: hsl(0 0% 40%);   
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+} */
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg-bottom: hsl(0 0% 0%);
+    --color-bg-middle: hsl(0 0% 5%);
+    --color-bg-top: hsl(0 0% 10%);
+
+    --color-text-header: hsl(0 0% 95%);
+    --color-text-muted: hsl(0 0% 70%);
+  }
+}
+
+[data-theme="dark"] {
+  --color-bg-bottom: hsl(0 0% 0%);
+  --color-bg-middle: hsl(0 0% 5%);
+  --color-bg-top: hsl(0 0% 10%);
+
+  --color-text-header: hsl(0 0% 95%);
+  --color-text-muted: hsl(0 0% 70%);
+}
+
+body {
+  background: var(--color-bg-bottom);
+  color: var(--color-text-header);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+} */
+
+/* Example helpers (optional) */
+/* .header {
+  background: linear-gradient(180deg, var(--color-bg-top), var(--color-bg-middle));
+  color: var(--color-text-header);
+}
+.muted { color: var(--color-text-muted); }
+.btn-primary {
+  background-color: var(--color-tomato-9);
+  color: white;
+}  */

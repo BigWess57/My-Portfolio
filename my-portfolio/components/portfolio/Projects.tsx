@@ -48,12 +48,12 @@ const projects = [
 
 const Projects = () => {
   return (
-    <section id="projects" className="py-20 px-4 bg-background">
+    <section id="projects" className="py-20 px-4 bg-background-2">
       <div className="container max-w-6xl mx-auto">
-        <h2 className="text-4xl font-bold mb-12 text-center animate-fade-in-up">My Projects</h2>
+        <h2 className="text-4xl font-bold mb-12 text-center text-text-2">My Projects</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, index) => (
-            <Card key={index} className="shadow-card animate-scale-in hover:shadow-lg transition-smooth">
+            <Card key={index} className="text-text-1 border-(--color-border-3)">
               <CardHeader>
                 {project.image && 
                 <div>
@@ -74,7 +74,7 @@ const Projects = () => {
                     rel="noopener noreferrer" 
                     className="w-full"
                   >
-                    <Button variant="outline" className="gap-2 w-full">
+                    <Button variant="outline" className="gap-2 w-full bg-solid-1 hover:bg-solid-2 border-(--color-border-3) text-text-2">
                       View Project
                       <ExternalLink className="w-4 h-4" />
                     </Button>

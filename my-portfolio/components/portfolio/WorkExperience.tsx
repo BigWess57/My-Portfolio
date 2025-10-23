@@ -2,11 +2,11 @@ import { Card } from "@/components/ui/card";
 
 const WorkExperience = () => {
   return (
-    <section id="experience" className="py-20 px-4 bg-secondary/30">
+    <section id="experience" className="py-20 px-4 bg-background-1">
       <div className="container max-w-4xl mx-auto">
-        <h2 className="text-4xl font-bold mb-8 text-center animate-fade-in-up">Work Experience</h2>
+        <h2 className="text-4xl font-bold mb-8 text-center text-text-2">Work Experience</h2>
         <div className="space-y-6">
-          <Card className="p-8 shadow-card animate-fade-in-up">
+          <Card className="p-8 text-text-1 border-(--color-border-3)">
             {/* <div className="mb-4">
               <h3 className="text-2xl font-semibold mb-2">Previous Position Title</h3>
               <p className="text-muted-foreground">Another Company | 2017 - 2020</p>
