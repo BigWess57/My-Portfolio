@@ -19,7 +19,7 @@ const Intro = () => {
           Fullstack Web3 Developer
         </p>
 
-        <div className="flex gap-4 justify-center">
+        <div className="flex gap-4 justify-center text-text-2">
           <Button asChild variant="outline" size="lg" className="bg-solid-1 hover:bg-solid-2 border-(--color-border-1)">
             <a href="mailto:igor@danet.one" className="inline-flex items-center">
               <Mail className="w-5 h-5" />

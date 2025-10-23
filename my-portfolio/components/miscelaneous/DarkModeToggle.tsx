@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 const STORAGE_KEY = "theme"; // "dark" | "light"
 
 export default function DarkModeToggle() {
-  const [isDark, setIsDark] = useState<boolean>(false);
+  const [isDark, setIsDark] = useState<boolean>(true);
 
   // initialize from localStorage / prefers-color-scheme
   useEffect(() => {
@@ -55,7 +55,7 @@ export default function DarkModeToggle() {
       {/* track */}
       <span
         className={`absolute inset-0 rounded-full transition-colors ${
-          isDark ? "bg-primary-500/90" : "bg-neutral-200"
+          isDark ? "bg-neutral-700/80" : "bg-neutral-300/80"
         }`}
         aria-hidden
       />

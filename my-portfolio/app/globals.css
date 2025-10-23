@@ -1,25 +1,68 @@
 @import "tailwindcss";
 
-
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @theme {
 
-  --color-background-1: #181111;
-  --color-background-2: #1F1513;
-  --color-interactive-1: #391714;
-  --color-interactive-2: #4E1511;
-  --color-interactive-3: #5E1C16;
-  --color-border-1: #6E2920;
-  --color-border-2: #853A2D;
-  --color-border-3: #AC4D39;
-  --color-solid-1: #E54D2E;
-  --color-solid-2: #EC6142;
-  --color-text-1: #FF977D;
-  --color-text-2: #FBD3CB;
+  --color-neutral-50:  hsl(0, 0%, 98%);   /* almost white */
+  --color-neutral-100: hsl(0, 0%, 95%);
+  --color-neutral-200: hsl(0, 0%, 90%);
+  --color-neutral-300: hsl(0, 0%, 80%);
+  --color-neutral-400: hsl(0, 0%, 65%);
+  --color-neutral-500: hsl(0, 0%, 50%);
+  --color-neutral-600: hsl(0, 0%, 40%);
+  --color-neutral-700: hsl(0, 0%, 30%);
+  --color-neutral-800: hsl(0, 0%, 20%);
+  --color-neutral-900: hsl(0, 0%, 10%);
+  --color-neutral-950: hsl(0, 0%, 5%);    /* almost black */
+
+  --color-background-1: var(--background-1);
+  --color-background-2: var(--background-2);
+  --color-interactive-1: var(--interactive-1);
+  --color-interactive-2: var(--interactive-2);
+  --color-interactive-3: var(--interactive-3);
+  --color-border-1: var(--border-1);
+  --color-border-2: var(--border-2);
+  --color-border-3: var(--border-3);
+  --color-solid-1: var(--solid-1);
+  --color-solid-2: var(--solid-2);
+  --color-text-1: var(--text-1);
+  --color-text-2: var(--text-2);
 
 }
 
+:root {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  
+  --background-1: #f5ebe8;
+  --background-2: #e9ddd9;
+  --interactive-1: #d1877f;
+  --interactive-2: #c77a6f;
+  --interactive-3: #b96e63;
+  --border-1: #a66c60;
+  --border-2: #9c796f;
+  --border-3: #846a61;
+  --solid-1: #ef8b7a;
+  --solid-2: #f29c90;
+  --text-1: #4e342e;
+  --text-2: #5a473f;
+}
 
+.dark {
+  --background-1: #181111;
+  --background-2: #1F1513;
+  --interactive-1: #391714;
+  --interactive-2: #4E1511;
+  --interactive-3: #5E1C16;
+  --border-1: #6E2920;
+  --border-2: #853A2D;
+  --border-3: #AC4D39;
+  --solid-1: #E54D2E;
+  --solid-2: #EC6142;
+  --text-1: #FF977D;
+  --text-2: #FBD3CB;
+}
 
 
 /* @theme {

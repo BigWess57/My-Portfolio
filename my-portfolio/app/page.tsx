@@ -13,9 +13,9 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* fixed top-right toggle (z-50 so it's above content) */}
-      {/* <div className="fixed right-4 top-4 z-50">
+      <div className="fixed right-4 top-4 z-50">
         <DarkModeToggle />
-      </div> */}
+      </div>
       <Intro />
       <About />
       <WorkExperience />
