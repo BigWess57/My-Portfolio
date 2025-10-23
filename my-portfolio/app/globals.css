@@ -1,10 +1,7 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
-
-@theme {
-
-  --color-neutral-50:  hsl(0, 0%, 98%);   /* almost white */
+@theme inline {
+  --color-neutral-50:  hsl(0, 0%, 98%);
   --color-neutral-100: hsl(0, 0%, 95%);
   --color-neutral-200: hsl(0, 0%, 90%);
   --color-neutral-300: hsl(0, 0%, 80%);
@@ -14,7 +11,7 @@
   --color-neutral-700: hsl(0, 0%, 30%);
   --color-neutral-800: hsl(0, 0%, 20%);
   --color-neutral-900: hsl(0, 0%, 10%);
-  --color-neutral-950: hsl(0, 0%, 5%);    /* almost black */
+  --color-neutral-950: hsl(0, 0%, 5%); 
 
   --color-background-1: var(--background-1);
   --color-background-2: var(--background-2);
@@ -29,11 +26,15 @@
   --color-text-1: var(--text-1);
   --color-text-2: var(--text-2);
 
+  /* --font-sans: var(--font-roboto);
+  --font-serif: var(--font-playfair-display); */
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-merriweather);
 }
 
 :root {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* --font-sans: 'Roboto', system-ui, sans-serif;
+  --font-mono: 'Merriweather', monospace; */
   
   --background-1: #f5ebe8;
   --background-2: #e9ddd9;
@@ -64,6 +65,12 @@
   --text-2: #FBD3CB;
 }
 
+body {
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+h1, h2, h3 { 
+  font-family: var(--font-serif), serif;
+}
 
 /* @theme {
   --color-bg-bottom: hsl(0, 0%, 0%);
