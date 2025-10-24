@@ -32,10 +32,7 @@
   --font-serif: var(--font-merriweather);
 }
 
-:root {
-  /* --font-sans: 'Roboto', system-ui, sans-serif;
-  --font-mono: 'Merriweather', monospace; */
-  
+:root {  
   --background-1: #f5ebe8;
   --background-2: #e9ddd9;
   --interactive-1: #d1877f;
@@ -71,6 +68,17 @@ body {
 h1, h2, h3 { 
   font-family: var(--font-serif), serif;
 }
+
+@layer utilities {
+  .card-hover {
+    @apply transition-transform duration-300 ease-out transform hover:scale-[1.04] hover:shadow-xl focus-within:scale-[1.04] focus-within:shadow-xl;
+  }
+}
+/* @layer components {
+  .card {
+    @apply shadow-card transition-transform duration-300 ease-out transform hover:-translate-y-1 hover:scale-102 hover:shadow-lg focus-within:-translate-y-1 focus-within:scale-102 focus-within:shadow-lg
+  }
+} */
 
 /* @theme {
   --color-bg-bottom: hsl(0, 0%, 0%);

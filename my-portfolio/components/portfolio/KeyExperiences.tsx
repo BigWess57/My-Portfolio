@@ -14,7 +14,7 @@ const experiences = [
     logo: IMDSLogo,
     logoSize: "w-10 h-10",
     summary:
-      "Worked on complex, high-impact software projects, growing my technical competence, problem-solving abilities, and user-focused approach:",
+      "Worked on complex, high-impact software projects, growing my technical competence, problem-solving abilities, and user-focused approach. Here are my 2 main projects :",
     points: [
       "Maintained and enhanced a nationwide government application (License Plate Recognition System), implementing bug fixes and feature updates under tight deadlines.",
       "Worked on full-stack development of an internal monitoring tool (Production Monitoring Dashboard), improving functionality and preparing it for deployment.",
@@ -31,7 +31,7 @@ const experiences = [
     points: [
       "Developed a vision-based solution on embedded Linux to estimate the 3D position and orientation of industrial tools, improving precision from prototype to production-ready performance.",
       "Implemented algorithms to detect tools accurately and calculate angles, enabling real-time guidance for technicians during assembly tasks.",
-      "Built a simple web interface to visualize tool positions and guide operations, enhancing usability and bridging the gap between hardware, software, and end-users.",
+      "Built a simple web interface to visualize tool positions (with video streaming) and guide operations, enhancing usability and bridging the gap between hardware, software, and end-users.",
       "Strengthened my skills in C++, embedded Linux development, computer vision, and full-stack integration while leading the project from prototype to practical deployment.",
     ],
   },
@@ -55,14 +55,14 @@ const experiences = [
 
 const KeyExperiences = () => {
   return (
-    <section id="key-experiences" className="py-20 px-4 bg-background-2">
+    <section id="key-experiences" className="py-20 px-8 bg-background-2">
       <div className="flex flex-col gap-5 container max-w-4xl mx-auto">
         <h2 className="text-4xl font-bold mb-8 text-center text-text-2">
           My Key Experiences
         </h2>
 
         {experiences.map((exp, index) => (
-          <Card key={index} className="p-8 text-text-1 border-(--color-border-3)">
+          <Card key={index} className="p-8 text-text-1 border-(--color-border-3) card-hover">
             <div className="mb-4">
               <h3 className="text-2xl font-semibold mb-2">{exp.title}</h3>
               <div className="flex items-center gap-2 text-muted-foreground">
