@@ -13,6 +13,9 @@
   --color-neutral-900: hsl(0, 0%, 10%);
   --color-neutral-950: hsl(0, 0%, 5%); 
 
+  --color-secondary: oklch(62.793% 0.25768 29.223);
+  --color-secondary-bg: oklch(34.667% 0.14226 29.223);
+
   --color-background-1: var(--background-1);
   --color-background-2: var(--background-2);
   --color-interactive-1: var(--interactive-1);
@@ -26,14 +29,14 @@
   --color-text-1: var(--text-1);
   --color-text-2: var(--text-2);
 
-  /* --font-sans: var(--font-roboto);
-  --font-serif: var(--font-playfair-display); */
-  --font-sans: var(--font-inter);
-  --font-serif: var(--font-merriweather);
+  --font-sans: var(--font-roboto);
+  --font-serif: var(--font-playfair-display);
+  /* --font-sans: var(--font-inter);
+  --font-serif: var(--font-merriweather); */
 }
 
 :root {  
-  --background-1: #f5ebe8;
+  /* --background-1: #f5ebe8;
   --background-2: #e9ddd9;
   --interactive-1: #d1877f;
   --interactive-2: #c77a6f;
@@ -44,11 +47,25 @@
   --solid-1: #ef8b7a;
   --solid-2: #f29c90;
   --text-1: #4e342e;
-  --text-2: #5a473f;
+  --text-2: #5a473f; */
+
+  --background-1: oklch(98.563% 0.00826 55.879);
+  --background-2: oklch(95.864% 0.01927 60.013);
+  --interactive-1: #FFE3CC;
+  --interactive-2: #FFD1A3;
+  --interactive-3: #FFB870;
+  --border-1: #E6B58C;
+  --border-2: #D49360;
+  --border-3: #BF733E;
+  --solid-1: #F76B15; 
+  --solid-2: #FF801F; 
+  --text-1: oklch(35.587% 0.08098 52.922); 
+  --text-2: #7A3E14; 
+
 }
 
 .dark {
-  --background-1: #181111;
+  /* --background-1: #181111;
   --background-2: #1F1513;
   --interactive-1: #391714;
   --interactive-2: #4E1511;
@@ -59,7 +76,20 @@
   --solid-1: #E54D2E;
   --solid-2: #EC6142;
   --text-1: #FF977D;
-  --text-2: #FBD3CB;
+  --text-2: #FBD3CB; */
+
+  --background-1: oklch(18.694% 0.01143 60.633);
+  --background-2: oklch(22.782% 0.01849 62.69);
+  --interactive-1: #331E0B;
+  --interactive-2: #462100;
+  --interactive-3: #562800;
+  --border-1: #66350C;
+  --border-2: #7E451D;
+  --border-3: #A35829;
+  --solid-1: #F76B15;
+  --solid-2: #FF801F;
+  --text-1: oklch(82.875% 0.14331 56.197);
+  --text-2: #FFE0C2;
 }
 
 body {
@@ -69,16 +99,35 @@ h1, h2, h3 {
   font-family: var(--font-serif), serif;
 }
 
-@layer utilities {
-  .card-hover {
-    @apply transition-transform duration-300 ease-out transform hover:scale-[1.04] hover:shadow-xl focus-within:scale-[1.04] focus-within:shadow-xl;
+@layer base {
+  section {
+    @apply pt-15 pb-45 px-8;
+  }
+  section:nth-child(odd) {
+    @apply bg-linear-to-b from-background-1 from-70% to-background-2 to-100%;
+  }
+  section:nth-child(even) {
+    @apply bg-linear-to-b from-background-2 from-70% to-background-1 to-100%;
   }
 }
-/* @layer components {
-  .card {
-    @apply shadow-card transition-transform duration-300 ease-out transform hover:-translate-y-1 hover:scale-102 hover:shadow-lg focus-within:-translate-y-1 focus-within:scale-102 focus-within:shadow-lg
+
+@layer utilities {
+  .card-hover {
+    @apply text-text-1 border-2 border-(--color-border-1) border-t-(--color-border-3)  bg-interactive-1 transition-transform duration-300 ease-in-out transform;
   }
-} */
+  .card-hover:hover,
+  .card-hover:focus-within {
+    @apply scale-[1.04] shadow-xl bg-linear-to-b from-interactive-3 from-0% to-interactive-1 to-50%;
+  }
+
+  .button-hover {
+    @apply bg-solid-1 hover:bg-interactive-3 border-(--color-border-3) border-t-(--color-border-1) border-2 text-text-2 /*translate-z-0 backface-hidden antialiased perspective-[1px]*/;
+  }
+  .button-hover:hover,
+  .button-hover:focus-within {
+    @apply duration-300 scale-[1.05] shadow-lg bg-linear-to-b from-interactive-3 from-30% to-solid-1 to-90%;
+  }
+}
 
 /* @theme {
   --color-bg-bottom: hsl(0, 0%, 0%);
@@ -108,77 +157,3 @@ h1, h2, h3 {
   --color-tomato-12: #341711;
 
 } */
-
-/* Global base */
-/* :root {
-  background-color: var(--color-bg-bottom);
-  color: var(--color-text-header);
-  font-family: var(--font-sans, Arial, Helvetica, sans-serif);
-} */
-
-/* Example dark mode variant (optional) */
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    background-color: var(--color-bg-bottom);
-    color: var(--color-text-header);
-  }
-} */
-
-
-
-/* ------------------------------
-   Theme variables (Light = default)
-   ------------------------------ */
-/* :root {
-  background-color: var(--color-bg-bottom);
-  color: var(--color-text-header);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
-
-  --color-bg-bottom: hsl(0 0% 100%);
-  --color-bg-middle: hsl(0 0% 98%);
-  --color-bg-top: hsl(0 0% 95%);
-
-  --color-text-header: hsl(0 0% 10%);  
-  --color-text-muted: hsl(0 0% 40%);   
-
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-
-} */
-
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --color-bg-bottom: hsl(0 0% 0%);
-    --color-bg-middle: hsl(0 0% 5%);
-    --color-bg-top: hsl(0 0% 10%);
-
-    --color-text-header: hsl(0 0% 95%);
-    --color-text-muted: hsl(0 0% 70%);
-  }
-}
-
-[data-theme="dark"] {
-  --color-bg-bottom: hsl(0 0% 0%);
-  --color-bg-middle: hsl(0 0% 5%);
-  --color-bg-top: hsl(0 0% 10%);
-
-  --color-text-header: hsl(0 0% 95%);
-  --color-text-muted: hsl(0 0% 70%);
-}
-
-body {
-  background: var(--color-bg-bottom);
-  color: var(--color-text-header);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
-} */
-
-/* Example helpers (optional) */
-/* .header {
-  background: linear-gradient(180deg, var(--color-bg-top), var(--color-bg-middle));
-  color: var(--color-text-header);
-}
-.muted { color: var(--color-text-muted); }
-.btn-primary {
-  background-color: var(--color-tomato-9);
-  color: white;
-}  */

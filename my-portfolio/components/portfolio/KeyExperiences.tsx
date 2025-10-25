@@ -55,14 +55,14 @@ const experiences = [
 
 const KeyExperiences = () => {
   return (
-    <section id="key-experiences" className="py-20 px-8 bg-background-2">
+    <section id="key-experiences" className="bg-background-2">
       <div className="flex flex-col gap-5 container max-w-4xl mx-auto">
         <h2 className="text-4xl font-bold mb-8 text-center text-text-2">
           My Key Experiences
         </h2>
 
         {experiences.map((exp, index) => (
-          <Card key={index} className="p-8 text-text-1 border-(--color-border-3) card-hover">
+          <Card key={index} className="p-8 card-hover">
             <div className="mb-4">
               <h3 className="text-2xl font-semibold mb-2">{exp.title}</h3>
               <div className="flex items-center gap-2 text-muted-foreground">
