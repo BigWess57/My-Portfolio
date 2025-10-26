@@ -35,20 +35,7 @@
   --font-serif: var(--font-merriweather); */
 }
 
-:root {  
-  /* --background-1: #f5ebe8;
-  --background-2: #e9ddd9;
-  --interactive-1: #d1877f;
-  --interactive-2: #c77a6f;
-  --interactive-3: #b96e63;
-  --border-1: #a66c60;
-  --border-2: #9c796f;
-  --border-3: #846a61;
-  --solid-1: #ef8b7a;
-  --solid-2: #f29c90;
-  --text-1: #4e342e;
-  --text-2: #5a473f; */
-
+:root {
   --background-1: oklch(98.563% 0.00826 55.879);
   --background-2: oklch(95.864% 0.01927 60.013);
   --interactive-1: #FFE3CC;
@@ -57,27 +44,15 @@
   --border-1: #E6B58C;
   --border-2: #D49360;
   --border-3: #BF733E;
-  --solid-1: #F76B15; 
-  --solid-2: #FF801F; 
+  --solid-1: oklch(75.078% 0.19088 45.003);
+  --solid-2: oklch(69.078% 0.19088 45.003); 
+  --solid-3: #FF801F; 
   --text-1: oklch(35.587% 0.08098 52.922); 
   --text-2: #7A3E14; 
 
 }
 
 .dark {
-  /* --background-1: #181111;
-  --background-2: #1F1513;
-  --interactive-1: #391714;
-  --interactive-2: #4E1511;
-  --interactive-3: #5E1C16;
-  --border-1: #6E2920;
-  --border-2: #853A2D;
-  --border-3: #AC4D39;
-  --solid-1: #E54D2E;
-  --solid-2: #EC6142;
-  --text-1: #FF977D;
-  --text-2: #FBD3CB; */
-
   --background-1: oklch(18.694% 0.01143 60.633);
   --background-2: oklch(22.782% 0.01849 62.69);
   --interactive-1: #331E0B;
@@ -86,8 +61,9 @@
   --border-1: #66350C;
   --border-2: #7E451D;
   --border-3: #A35829;
-  --solid-1: #F76B15;
-  --solid-2: #FF801F;
+  --solid-1: oklch(60.078% 0.19088 45.003);
+  --solid-2: oklch(69.078% 0.19088 45.003);
+  --solid-3: #FF801F;
   --text-1: oklch(82.875% 0.14331 56.197);
   --text-2: #FFE0C2;
 }
@@ -115,17 +91,15 @@ h1, h2, h3 {
   .card-hover {
     @apply text-text-1 border-2 border-(--color-border-1) border-t-(--color-border-3)  bg-interactive-1 transition-transform duration-300 ease-in-out transform;
   }
-  .card-hover:hover,
-  .card-hover:focus-within {
+  .card-hover:hover {
     @apply scale-[1.04] shadow-xl bg-linear-to-b from-interactive-3 from-0% to-interactive-1 to-50%;
   }
 
   .button-hover {
-    @apply bg-solid-1 hover:bg-interactive-3 border-(--color-border-3) border-t-(--color-border-1) border-2 text-text-2 /*translate-z-0 backface-hidden antialiased perspective-[1px]*/;
+    @apply bg-solid-2 hover:bg-interactive-3 border-(--color-border-3) border-t-(--color-border-1) border-2 text-text-2 /*translate-z-0 backface-hidden antialiased perspective-[1px]*/;
   }
-  .button-hover:hover,
-  .button-hover:focus-within {
-    @apply duration-300 scale-[1.05] shadow-lg bg-linear-to-b from-interactive-3 from-30% to-solid-1 to-90%;
+  .button-hover:hover {
+    @apply duration-300 scale-[1.05] shadow-lg bg-linear-to-b from-interactive-3 from-30% to-solid-2 to-90%;
   }
 }
 
