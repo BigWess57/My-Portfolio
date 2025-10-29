@@ -3,8 +3,11 @@ import Image from 'next/image';
 import { Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-import GithubLogo from "@/public/icons/github-white.svg";
-import LinkedInLogo from "@/public/icons/linkedin-white.svg";
+import GithubLogoWhite from "@/public/icons/github-white.svg";
+import GithubLogoDark from "@/public/icons/github.svg";
+
+import LinkedInLogoWhite from "@/public/icons/linkedin-white.svg";
+import LinkedInLogoDark from "@/public/icons/linkedin.svg";
 
 
 const Intro = () => {
@@ -34,7 +37,18 @@ const Intro = () => {
               rel="noopener noreferrer"
               className="inline-flex items-center"
             >
-              <Image priority src={LinkedInLogo} alt="LinkedIn Logo" className="w-5 h-5" />
+              <Image 
+                priority 
+                src={LinkedInLogoDark} 
+                alt="LinkedIn Logo" 
+                className="w-5 h-5 dark:hidden"  // Show black in light mode
+              />
+              <Image 
+                priority 
+                src={LinkedInLogoWhite} 
+                alt="LinkedIn Logo" 
+                className="w-5 h-5 hidden dark:block"  // Show white in dark mode
+              />
               LinkedIn
             </a>
           </Button>
@@ -46,7 +60,18 @@ const Intro = () => {
               rel="noopener noreferrer"
               className="inline-flex items-center"
             >
-              <Image priority src={GithubLogo} alt="Github Logo" className="w-5 h-5" />
+              <Image 
+                priority 
+                src={GithubLogoDark} 
+                alt="Github Logo" 
+                className="w-5 h-5 dark:hidden" 
+              />
+              <Image 
+                priority 
+                src={GithubLogoWhite} 
+                alt="Github Logo" 
+                className="w-5 h-5 hidden dark:block" 
+              />
               GitHub
             </a>
           </Button>

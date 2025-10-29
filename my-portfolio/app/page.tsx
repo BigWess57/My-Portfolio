@@ -6,6 +6,7 @@ import Skills from "@/components/portfolio/Skills";
 import Projects from "@/components/portfolio/Projects";
 import Vision from "@/components/portfolio/Vision";
 import DarkModeToggle from "@/components/miscelaneous/DarkModeToggle";
+import Education from "@/components/portfolio/Education";
 
 
   
@@ -18,9 +19,10 @@ export default function Home() {
       <Intro />
       <About />
       <WorkExperience />
-      <KeyExperiences />
-      <Skills />
       <Projects />
+      <Skills />
+      <KeyExperiences />
+      <Education/>
       <Vision />
     </div>
   );

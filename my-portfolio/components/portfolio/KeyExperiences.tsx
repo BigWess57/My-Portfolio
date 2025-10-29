@@ -12,13 +12,15 @@ const experiences = [
     company: "IMDS Software",
     period: "Feb 2023 - June 2024",
     logo: IMDSLogo,
-    logoSize: "w-10 h-10",
+    logoSize: "w-15 h-10",
     summary:
-      "Worked on complex, high-impact software projects, growing my technical competence, problem-solving abilities, and user-focused approach. Here are my 2 main projects :",
-    points: [
-      "Maintained and enhanced a nationwide government application (License Plate Recognition System), implementing bug fixes and feature updates under tight deadlines.",
-      "Worked on full-stack development of an internal monitoring tool (Production Monitoring Dashboard), improving functionality and preparing it for deployment.",
-    ],
+      "My time at IMDS Software was a period of intense professional growth, where I contributed to high-value software solutions and solidified my foundational skills as a developer. I thrived in both maintaining critical systems and building customer-oriented products",
+    points: {
+      "Full-Stack Proficiency & Adaptability": "I successfully worked across the entire technology stack, from back-end bug fixing and logic on the SRPI project to front-end feature development and user interface design on the Ad'doc Dashboard. This has made me a versatile and adaptable developer.",
+      "Thriving Under Pressure in Production Environments": "Maintaining the government-used SRPI system taught me how to diagnose, prioritize, and resolve issues in a live environment where stability is paramount. I learned to remain structured and calm under tight deadlines.",
+      "From Code to Customer: The Importance of Communication": "While developing the Ad'doc Dashboard, I learned that technical skill must be paired with clear communication. Direct interaction with end-users taught me to listen actively and translate business needs into technical specifications, ensuring the final product truly delivered value.",
+      "End-to-End Product Understanding": "I have experience across the entire software lifecycle—from maintaining and improving a mature product (SRPI) to developing and launching a new tool for internal use (Ad'doc Dashboard). This gives me a practical understanding of what it takes for a product to succeed.",
+    },
   },
   {
     title: "C++ Developer",
@@ -28,12 +30,12 @@ const experiences = [
     logoSize: "w-8 h-8",
     summary:
       "Completed a 6-month internship developing an industrial tool positioning system, growing my expertise in embedded systems, computer vision, and full-stack integration:",
-    points: [
-      "Developed a vision-based solution on embedded Linux to estimate the 3D position and orientation of industrial tools, improving precision from prototype to production-ready performance.",
-      "Implemented algorithms to detect tools accurately and calculate angles, enabling real-time guidance for technicians during assembly tasks.",
-      "Built a simple web interface to visualize tool positions (with video streaming) and guide operations, enhancing usability and bridging the gap between hardware, software, and end-users.",
-      "Strengthened my skills in C++, embedded Linux development, computer vision, and full-stack integration while leading the project from prototype to practical deployment.",
-    ],
+    points: {
+      "Computer Vision & Embedded Systems Development": "Developed a vision-based solution on embedded Linux to estimate the 3D position and orientation of industrial tools, improving precision from prototype to production-ready performance.",
+      "Real-time Algorithm Implementation": "Implemented algorithms to detect tools accurately and calculate angles, enabling real-time guidance for technicians during assembly tasks.",
+      "Full-Stack Integration & User Interface": "Built a simple web interface to visualize tool positions (with video streaming) and guide operations, enhancing usability and bridging the gap between hardware, software, and end-users.",
+      "End-to-End Project Leadership": "Strengthened my skills in C++, embedded Linux development, computer vision, and full-stack integration while leading the project from prototype to practical deployment.",
+    },
   },
   {
     title: "Test Engineer",
@@ -43,12 +45,12 @@ const experiences = [
     logoSize: "w-25 h-10",
     summary:
       "Developed image-processing tools to automate product testing, enhancing efficiency and precision in the test lab:",
-    points: [
-      "Created a system to evaluate electric clipper cutting quality — still in use by engineers.",
-      "Developed a tool to assess hair curler performance using image processing.",
-      "Built a solution to evaluate hair straightener temperature distribution from infrared images.",
-      "Packaged each tool as a MATLAB interface (EXE), strengthening skills in automation and experimental design.",
-    ],
+    points: {
+      "Automated Electric Clipper Quality Assessment": "Created a system to evaluate electric clipper cutting quality — still in use by engineers.",
+      "Hair Curler Performance Analysis System": "Developed a tool to assess hair curler performance using image processing.",
+      "Infrared Thermal Distribution Evaluation": "Built a solution to evaluate hair straightener temperature distribution from infrared images.",
+      "End-to-End Tool Packaging & Deployment": "Packaged each tool as a MATLAB interface (EXE), strengthening skills in automation and experimental design.",
+    },
   },
 ];
 
@@ -78,8 +80,10 @@ const KeyExperiences = () => {
             </div>
             <p className="text-lg leading-relaxed">{exp.summary}</p>
             <ul className="text-lg leading-relaxed list-disc list-inside space-y-2 mt-2">
-              {exp.points.map((point, i) => (
-                <li key={i}>{point}</li>
+              {Object.entries(exp.points).map(([header, description], i) => (
+                <li key={i}>
+                  <strong>{header}:</strong> {description}
+                </li>
               ))}
             </ul>
           </Card>

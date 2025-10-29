@@ -7,7 +7,7 @@ const About = () => {
         <h2 className="text-4xl font-bold mb-8 text-center text-text-2">About Me</h2>
         <Card className="p-8 card-hover">
           <p className="text-lg leading-relaxed text-muted-foreground">
-            Hi, I’m Igor — a full-stack Web3 developer with a background in embedded systems and software engineering. I’m passionate about blockchain’s potential to transform the way we build digital systems, and I love creating decentralized applications that are precise, purposeful, and impactful.
+            Hi, I’m a full-stack Web3 developer with a background in embedded systems and software engineering. I’m passionate about blockchain’s potential to transform the way we build digital systems, and I love creating decentralized applications that are precise, purposeful, and impactful.
           </p>
         </Card>
       </div>

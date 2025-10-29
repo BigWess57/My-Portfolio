@@ -7,42 +7,64 @@ import { ExternalLink } from "lucide-react";
 import DareWinThumbnail from "@/public/images/DareWin-thumbnail.png";
 import DashboardThumbnail from "@/public/images/Dashboard.png";
 import DogaThumbnail from "@/public/images/Projet Doga.png";
+import SRPIThumbnail from "@/public/images/LPR.jpg";
+
+import DareWinLogo from "@/public/icons/DareWin-Logo-bleu.png";
 
 const projects = [
   {
     title: "DareWin — Decentralized Challenge Platform",
-    description: "A Web3 application that lets friends create and join challenges on Ethereum, with smart-contract–secured rewards.",
-    details: "Built with Solidity, React, Next.js, Wagmi, and Hardhat, it connects seamlessly to wallets via RainbowKit. Designed and developed from scratch — from contract architecture to frontend integration and deployment.",
-    highlights: [
-      "Designed and deployed Solidity contracts securing challenge rewards.",
-      "Integrated seamless wallet onboarding and UX with RainbowKit and Wagmi.",
-      "End-to-end delivery: contract tests, frontend, and deployment."
-    ],
+    description: "A fully decentralized Web3 application that enables friends to create and join challenges on Ethereum. Players bid ETH, and after time elapses, the community-voted winner receives the entire prize pool via smart contracts.",
+    technologies: ["React", "Next.js", "Solidity", "Hardhat", "Wagmi", "RainbowKit", "GraphQL", "IPFS", "Merkle Proofs", "ERC Standards"],
+    highlights: {
+      "End-to-End Web3 Architecture": "Designed and implemented the complete dApp architecture from smart contracts to frontend, showcasing full-stack blockchain development capabilities.",
+      "Utility Token": "Created the DARE ERC20 token, used for participating to challenges, and get discounts on usage fees",
+      "Secure Smart Contract Development": "Built secure Solidity smart contracts that handle ETH deposits, voting mechanisms, and automated prize distribution with secure withdrawal patterns.",
+      "Decentralized Access Control": "Implemented Merkle proof whitelisting with IPFS storage for player verification, demonstrating advanced Web3 identity and access management solutions.",
+      "Optimized Frontend Integration": "Leveraged Wagmi and RainbowKit for seamless Ethereum wallet connectivity and interactions, creating smooth user experience for blockchain operations.",
+      "Decentralized Event Indexing": "Utilized GraphQL for efficient blockchain event indexing and querying, ensuring fast and reliable data retrieval from Ethereum.",
+      "Solo Full-Stack Delivery": "Successfully architected, developed, tested, and deployed the entire application independently, demonstrating strong project ownership and technical versatility.",
+    },
+    learned: "Building DareWin from scratch provided deep hands-on experience in the entire Web3 development stack. I mastered smart contract security patterns, decentralized frontend integration, and the importance of gas optimization and user experience in blockchain applications. This project solidified my passion for building decentralized solutions that combine technical innovation with practical user value.",
     image: DareWinThumbnail,
-    link: true,
+    logo: DareWinLogo,
+    link: "https://github.com/BigWess57/Projet-DareWin",
+    demoLink: "https://projet-dare-win.vercel.app/",
   },
   {
-    title: "Production Monitoring System (IMDS Software)",
-    description: "Data analytics dashboard with advanced visualization",
-    details: "Designed and maintained a full-stack monitoring tool using ReactJS, C#, and Java",
-    highlights: [
-      "Led development of key visualizations and alerting hooks for production anomalies.",
-      "Improved tooling stability and prepared the app for internal deployment."
-    ],
+    title: "AD'DOC Dashboard - Production Monitoring System (IMDS Software)",
+    description: "Dashboard designed to provide real-time monitoring and analytics for document production flows from the company's flagship product, AD'DOC Capture Pro",
+    technologies: ["React", "Java", "Spring + Maven", "SQL Server" ],
+    highlights: {
+      "Full-Stack Development & Product Maturation": "Led the full-stack development of new features and significant improvements, taking the dashboard from a pre-production state to a viable tool ready for internal deployment.",
+      "User-Centric Development & Communication": "Collaborated closely with future users to gather requirements, translating their specific needs into functional and intuitive software features.",
+    },
+    learned: "This project underscored a crucial lesson: great software isn't just about code, it's about solving the right problems. By actively listening to users, I ensured the features I built directly addressed their workflow challenges, highlighting the vital link between development and user-centric design.",
     image: DashboardThumbnail,
-    link: false,
+  },
+  {
+    title: "SRPI - License Plate Recognition System (IMDS Software)",
+    description: "A critical license plate recognition system deployed and in active use by the Canadian government. I was responsible for maintaining and improving the system in a high-stakes production environment.",
+    technologies: ["C#", ".NET Framework", "Windows Services & Automation", "SQL Server" ],
+    highlights: {
+      "Production System Stability & Reliability": "Addressed and resolved critical bugs in a live production system, contributing directly to its stability and reliability for a government client.",
+      "Legacy Code Maintenance & Complex Problem-Solving": "Learned to navigate and improve a large, complex codebase under pressure.",
+      "Structured Work Under Pressure": "Successfully managed tight deadlines and high-stress situations, developing a structured and methodical approach to problem-solving to prioritize and resolve issues effectively.",
+    },
+    learned: "This project was a masterclass in production-level software maintenance. It taught me the importance of writing clean, maintainable code and honed my ability to perform effectively under the pressure of a high-visibility, mission-critical application.",
+    image: SRPIThumbnail,
   },
   {
     title: "3D Tool Positioning System (DOGA)",
-    description: "Vision-based solution for estimating tool positions in 3D",
-    details: "Built using C++, OpenGL, and embedded Linux. Focused on real-time processing, hardware integration, and precision estimation.",
-    highlights: [
-      "Implemented robust detection and angle estimation for 3D positioning on embedded hardware.",
-      "Built a lightweight web interface to display positions and guide technicians during assembly.",
-      "Moved prototype towards production-ready system within 6 months."
-    ],
+    description: "A vision-based industrial system that estimates the 3D position and orientation of tools in real-time, providing visual guidance to technicians during assembly operations.",
+    technologies: ["C++", "Embedded Linux", "Computer Vision", "Html/CSS", "Javascript", "Real-time Systems"],
+    highlights: {
+      "Embedded Computer Vision Solution": "Developed and deployed a vision-based system on embedded Linux that accurately estimates 3D position and orientation of industrial tools, advancing from prototype towards production-ready performance.",
+      "Real-time Precision Algorithms": "Implemented detection algorithms that calculate tool angles and positions in real-time, providing immediate visual feedback to guide technicians during complex assembly tasks.",
+      "Full-Stack System Integration": "Built a web interface with live video streaming to visualize tool positions, creating a complete hardware-software solution that bridges embedded systems with user-facing applications.",
+    },
+    learned: "This internship taught me how to bridge the gap between theoretical algorithms and practical industrial applications. I learned to develop complete systems that integrate embedded hardware, computer vision, and user interfaces to solve real-world manufacturing challenges.",
     image: DogaThumbnail,
-    link: false,
   },
 ];
 
@@ -51,34 +73,56 @@ const Projects = () => {
     <section id="projects" className="bg-background-2">
       <div className="container max-w-6xl mx-auto">
         <h2 className="text-4xl font-bold mb-12 text-center text-text-2">My Projects</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-6">
           {projects.map((project, index) => (
             <Card key={index} className="card-hover">
               <CardHeader>
                 {project.image && 
                 <div>
-                  <Image src={project.image} alt={project.title + " screenshot"} className="w-full h-48 object-cover rounded-md mb-4"/>
+                  <Image src={project.image} alt={project.title + " screenshot"} className="w-full h-70 object-cover rounded-md mb-4"/>
                 </div>}
-                <CardTitle className="text-xl">{project.title}</CardTitle>
+                <CardTitle className="text-xl flex-center gap-2">
+                  {project.logo && <Image src={project.logo} alt={project.title + " logo"} className="w-10 h-10"/>}
+                  {project.title}
+                </CardTitle>
                 <CardDescription>{project.description}</CardDescription>
               </CardHeader>
               <CardContent>
                 {/* <p className="text-muted-foreground mb-4">{project.details}</p> */}
-                <ul className="space-y-1 mb-4">
-                  {project.highlights && project.highlights.map((h, i) => <li key={i}>• {h}</li>)}
+                <ul className="space-y-2 mb-4 list-disc list-inside mt-2">
+                  {project.highlights && Object.entries(project.highlights).map(([header, description], i) => (
+                    <li key={i}>
+                      <strong>{header}:</strong> {description}
+                    </li>
+                  ))}
                 </ul>
-                {project.link && 
-                  <a 
-                    href="https://github.com/BigWess57/Projet-DareWin" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="w-full"
-                  >
-                    <Button variant="outline" className="gap-2 w-full button-hover">
-                      View Project
-                      <ExternalLink className="w-4 h-4" />
-                    </Button>
-                  </a>}
+                <div className="flex-center gap-2">
+                  {project.demoLink && 
+                    <a 
+                      href={project.demoLink}
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="w-full"
+                    >
+                      <Button variant="outline" className="gap-2 w-full button-hover">
+                        View Project
+                        <ExternalLink className="w-4 h-4" />
+                      </Button>
+                    </a>}
+                  {project.link && 
+                    <a 
+                      href={project.link}
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="w-full"
+                    >
+                      <Button variant="outline" className="gap-2 w-full button-hover">
+                        View Code
+                        <ExternalLink className="w-4 h-4" />
+                      </Button>
+                    </a>}
+                </div>
+                
               </CardContent>
             </Card>
           ))}

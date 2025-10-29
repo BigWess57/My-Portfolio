@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme inline {
   --color-neutral-50:  hsl(0, 0%, 98%);
   --color-neutral-100: hsl(0, 0%, 95%);
@@ -100,6 +102,10 @@ h1, h2, h3 {
   }
   .button-hover:hover {
     @apply duration-300 scale-[1.05] shadow-lg bg-linear-to-b from-interactive-3 from-30% to-solid-2 to-90%;
+  }
+
+  .flex-center {
+    @apply flex justify-center items-center;
   }
 }
 

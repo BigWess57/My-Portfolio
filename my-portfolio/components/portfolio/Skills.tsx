@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 const skillCategories = [
   {
     title: "Web3 development",
-    skills: ["Solidity", "Smart Contract Architecture", "ERC Standards", "OpenZeppelin", "Uniswap SDK", "Hardhat", "Foundry", "GraphQL"],
+    skills: ["Solidity", "Smart Contract Architecture", "ERC Standards", "OpenZeppelin", "Uniswap SDK", "Hardhat", "Foundry", "GraphQL", "IPFS", "Merkle Proofs"],
   },
   {
     title: "Front-End & Integration",
