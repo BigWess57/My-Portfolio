@@ -96,7 +96,7 @@ h1, h2, h3 {
   }
 
   .button-hover {
-    @apply bg-solid-2 hover:bg-interactive-3 border-(--color-border-3) border-t-(--color-border-1) border-2 text-text-2 /*translate-z-0 backface-hidden antialiased perspective-[1px]*/;
+    @apply px-3 py-1.5 text-sm sm:px-6 sm:py-3 sm:text-base bg-solid-2 hover:bg-interactive-3 border-(--color-border-3) border-t-(--color-border-1) border-2 text-text-2 /*translate-z-0 backface-hidden antialiased perspective-[1px]*/;
   }
   .button-hover:hover {
     @apply duration-300 scale-[1.05] shadow-lg bg-linear-to-b from-interactive-3 from-30% to-solid-2 to-90%;
