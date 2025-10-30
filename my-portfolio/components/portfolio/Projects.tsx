@@ -1,8 +1,13 @@
+'use client'
+
 import Image from "next/image";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ExternalLink } from "lucide-react";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
+
+import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 
 import DareWinThumbnail from "@/public/images/DareWin-thumbnail.png";
 import DashboardThumbnail from "@/public/images/Dashboard.png";
@@ -10,16 +15,23 @@ import DogaThumbnail from "@/public/images/Projet Doga.png";
 import SRPIThumbnail from "@/public/images/LPR.jpg";
 
 import DareWinLogo from "@/public/icons/DareWin-Logo-bleu.png";
+import { useState } from "react";
 
-const projects = [
+export const projects = [
   {
     title: "DareWin — Decentralized Challenge Platform",
-    description: "A fully decentralized Web3 application that enables friends to create and join challenges on Ethereum. Players bid ETH, and after time elapses, the community-voted winner receives the entire prize pool via smart contracts.",
+    shortDescription: "this is my first project description",
+    description: "A fully decentralized Web3 application that enables friends to create and join challenges on Base. Players bid DARE Tokens, and after time elapses, the community-voted winner receives the entire prize pool via smart contracts.",
     technologies: ["React", "Next.js", "Solidity", "Hardhat", "Wagmi", "RainbowKit", "GraphQL", "IPFS", "Merkle Proofs", "ERC Standards"],
+    keyHighlights: {
+      "End-to-End Web3 Architecture": "Develop cotntract very secure",
+      "Utility Token": "Token ERC20 DARE, utility for dfees",
+      "Secure Smart Contract Development": "Build secure and optimized smart contracts avoiding common security issues (reentrancy, DoS, Front running...)"
+    },
     highlights: {
       "End-to-End Web3 Architecture": "Designed and implemented the complete dApp architecture from smart contracts to frontend, showcasing full-stack blockchain development capabilities.",
       "Utility Token": "Created the DARE ERC20 token, used for participating to challenges, and get discounts on usage fees",
-      "Secure Smart Contract Development": "Built secure Solidity smart contracts that handle ETH deposits, voting mechanisms, and automated prize distribution with secure withdrawal patterns.",
+      "Secure Smart Contract Development": "Built secure Solidity smart contracts that handle DARE deposits, voting mechanisms, and automated prize distribution with secure withdrawal patterns.",
       "Decentralized Access Control": "Implemented Merkle proof whitelisting with IPFS storage for player verification, demonstrating advanced Web3 identity and access management solutions.",
       "Optimized Frontend Integration": "Leveraged Wagmi and RainbowKit for seamless Ethereum wallet connectivity and interactions, creating smooth user experience for blockchain operations.",
       "Decentralized Event Indexing": "Utilized GraphQL for efficient blockchain event indexing and querying, ensuring fast and reliable data retrieval from Ethereum.",
@@ -69,6 +81,8 @@ const projects = [
 ];
 
 const Projects = () => {
+  const [openDialogId, setOpenDialogId] = useState<number | null>(null);
+  
   return (
     <section id="projects" className="bg-background-2">
       <div className="container max-w-6xl mx-auto">
@@ -85,17 +99,123 @@ const Projects = () => {
                   {project.logo && <Image src={project.logo} alt={project.title + " logo"} className="w-10 h-10"/>}
                   {project.title}
                 </CardTitle>
-                <CardDescription>{project.description}</CardDescription>
+                <CardDescription>{project.shortDescription}</CardDescription>
               </CardHeader>
               <CardContent>
+                <div className="flex flex-wrap gap-2 mb-7">
+                  {project.technologies?.slice(0, 4).map((tech, i) => ( // Show only first 4 technologies
+                    <span key={i} className="bg-solid-2/70 text-text-2 text-sm px-2 py-1 rounded">
+                      {tech}
+                    </span>
+                  ))}
+                  {project.technologies?.length > 4 && (
+                    <span className="bg-muted text-muted-text-1 text-sm px-2 py-1 rounded">
+                      +{project.technologies.length - 4} more...
+                    </span>
+                  )}
+                </div>
                 {/* <p className="text-muted-foreground mb-4">{project.details}</p> */}
-                <ul className="space-y-2 mb-4 list-disc list-inside mt-2">
-                  {project.highlights && Object.entries(project.highlights).map(([header, description], i) => (
+                <ul className="space-y-2 mb-5 list-disc list-inside mt-2">
+                  {project.keyHighlights && Object.entries(project.keyHighlights).map(([header, description], i) => (
                     <li key={i}>
                       <strong>{header}:</strong> {description}
                     </li>
                   ))}
                 </ul>
+
+
+                {/* Dialog for more details */}
+                <Dialog open={openDialogId === index} onOpenChange={(isOpen) => setOpenDialogId(isOpen ? index : null)}>
+                  <DialogTrigger asChild>
+                    {
+                      <Button 
+                        variant="ghost" 
+                        className="w-full gap-2 text-muted-text-1 hover:text-text-2 mb-2"
+                      >
+                        <ChevronRight className="w-4 h-4" />
+                        More Details
+                        <ChevronLeft className="w-4 h-4" />
+                      </Button>
+                    }
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto bg-interactive-2 text-text-2 border-border-1 rounded-2xl">
+                    <DialogHeader>
+                      <DialogTitle>{project.title}</DialogTitle>
+                      <DialogDescription>{project.description}</DialogDescription>
+                    </DialogHeader>
+                    
+                    <ScrollArea className="grow pr-4">
+                      <div className="space-y-4">
+                        {/* Full project image */}
+                        {project.image && (
+                          <Image
+                            src={project.image}
+                            alt={project.title + " screenshot"}
+                            className="w-full h-48 object-cover rounded-md"
+                          />
+                        )}
+
+                        {/* All technologies */}
+                        <div>
+                          <h4 className="font-semibold mb-2">Technologies Used:</h4>
+                          <div className="flex flex-wrap gap-2">
+                            {project.technologies?.map((tech, i) => (
+                              <span key={i} className="bg-solid-2/70 text-text-2 text-sm px-3 py-1 rounded-full">
+                                {tech}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* All highlights */}
+                        <div>
+                          <h4 className="font-semibold mb-2">Key Achievements:</h4>
+                          <ul className="space-y-3 list-disc list-inside">
+                            {Object.entries(project.highlights).map(([header, description], i) => (
+                              <li key={i}>
+                                <strong>{header}:</strong> {description}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        {/* Lessons learned */}
+                        {project.learned && (
+                          <div>
+                            <h4 className="font-semibold mb-2">What I Learned:</h4>
+                            <p className="italic">{project.learned}</p>
+                          </div>
+                        )}
+                      </div>
+
+                      <ScrollBar className="bg-background-2"/>
+
+                    </ScrollArea>
+
+                    {/* Project links in dialog */} ,
+                    <div className="flex gap-2 mt-6">
+                      {project.demoLink && (
+                        <a href={project.demoLink} target="_blank" rel="noopener noreferrer" className="flex-1">
+                          <Button variant="outline" className="button-hover gap-2 w-full">
+                            Live Demo
+                            <ExternalLink className="w-4 h-4" />
+                          </Button>
+                        </a>
+                      )}
+                      {project.link && (
+                        <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex-1">
+                          <Button variant="outline" className="button-hover gap-2 w-full">
+                            View Code
+                            <ExternalLink className="w-4 h-4" />
+                          </Button>
+                        </a>
+                      )}
+                    </div>
+                  </DialogContent>
+                </Dialog>
+
+
+
                 <div className="flex-center gap-2">
                   {project.demoLink && 
                     <a 

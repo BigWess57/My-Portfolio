@@ -10,7 +10,7 @@ const education = [
     company: "Alyra Blockchain School",
     period: "April 2025 - July 2025",
     logo: AlyraLogo,
-    logoSize: "w-13 h-13",
+    logoSize: "w-12 h-12",
     summary:
       "Intensive 120-hour remote program focused on developing decentralized applications on the Ethereum Virtual Machine (EVM) from scratch, building comprehensive Web3 development skills.",
     points: {
@@ -25,7 +25,7 @@ const education = [
     company: "Polytech Paris-Saclay",
     period: "September 2017 - May 2022",
     logo: PolytechLogo,
-    logoSize: "w-30 h-13",
+    logoSize: "w-27 h-12",
     summary:
       "Five-year engineering program specializing in embedded systems, electronics, and robotics, building strong foundations in low-level programming and hardware-software integration.",
     points: {
