@@ -4,7 +4,7 @@ import Image from "next/image";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 
 import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
@@ -16,17 +16,19 @@ import SRPIThumbnail from "@/public/images/LPR.jpg";
 
 import DareWinLogo from "@/public/icons/DareWin-Logo-bleu.png";
 import { useState } from "react";
+import { Separator } from "../ui/separator";
 
 export const projects = [
   {
     title: "DareWin — Decentralized Challenge Platform",
-    shortDescription: "this is my first project description",
+    shortDescription: "Decentralized challenge platform on Base where friends create challenges, bid DARE tokens, and vote to determine winners who receive the full prize pool.",
     description: "A fully decentralized Web3 application that enables friends to create and join challenges on Base. Players bid DARE Tokens, and after time elapses, the community-voted winner receives the entire prize pool via smart contracts.",
     technologies: ["React", "Next.js", "Solidity", "Hardhat", "Wagmi", "RainbowKit", "GraphQL", "IPFS", "Merkle Proofs", "ERC Standards"],
     keyHighlights: {
-      "End-to-End Web3 Architecture": "Develop cotntract very secure",
-      "Utility Token": "Token ERC20 DARE, utility for dfees",
-      "Secure Smart Contract Development": "Build secure and optimized smart contracts avoiding common security issues (reentrancy, DoS, Front running...)"
+      "Full-Stack dApp": "Solidity smart contracts with custom ERC20 token + React frontend",
+      "Secure Blockchain System": "Merkle proof whitelisting, voting mechanism & automated prize distribution",
+      "Optimized Web3 UX": "Wallet integration & GraphQL event indexing",
+      "End-to-end delivery": "Development, testing & deployment",
     },
     highlights: {
       "End-to-End Web3 Architecture": "Designed and implemented the complete dApp architecture from smart contracts to frontend, showcasing full-stack blockchain development capabilities.",
@@ -45,8 +47,13 @@ export const projects = [
   },
   {
     title: "AD'DOC Dashboard - Production Monitoring System (IMDS Software)",
+    shortDescription: "Dashboard designed to provide real-time monitoring and analytics for document production flows from the company's flagship product, AD'DOC Capture Pro",
     description: "Dashboard designed to provide real-time monitoring and analytics for document production flows from the company's flagship product, AD'DOC Capture Pro",
     technologies: ["React", "Java", "Spring + Maven", "SQL Server" ],
+    keyHighlights: {
+      "Full-Stack Development": "Led dashboard from pre-production towards internal deployment with new features and improvements",
+      "User-Centric Approach": "Collaborated with users to translate needs into functional, intuitive features",
+    },
     highlights: {
       "Full-Stack Development & Product Maturation": "Led the full-stack development of new features and significant improvements, taking the dashboard from a pre-production state to a viable tool ready for internal deployment.",
       "User-Centric Development & Communication": "Collaborated closely with future users to gather requirements, translating their specific needs into functional and intuitive software features.",
@@ -56,20 +63,32 @@ export const projects = [
   },
   {
     title: "SRPI - License Plate Recognition System (IMDS Software)",
+    shortDescription: "A critical license plate recognition system deployed and in active use by the Canadian government. I was responsible for maintaining and improving the system in a high-stakes production environment.",
     description: "A critical license plate recognition system deployed and in active use by the Canadian government. I was responsible for maintaining and improving the system in a high-stakes production environment.",
     technologies: ["C#", ".NET Framework", "Windows Services & Automation", "SQL Server" ],
+    keyHighlights: {
+      "Production System Stability": "Resolved critical bugs in live government system, ensuring reliability",
+      "Legacy Code Expertise": "Navigated and improved complex codebase under pressure",
+      "Structured Problem-Solving": "Managed tight deadlines with methodical issue resolution",
+    },
     highlights: {
       "Production System Stability & Reliability": "Addressed and resolved critical bugs in a live production system, contributing directly to its stability and reliability for a government client.",
       "Legacy Code Maintenance & Complex Problem-Solving": "Learned to navigate and improve a large, complex codebase under pressure.",
       "Structured Work Under Pressure": "Successfully managed tight deadlines and high-stress situations, developing a structured and methodical approach to problem-solving to prioritize and resolve issues effectively.",
     },
-    learned: "This project was a masterclass in production-level software maintenance. It taught me the importance of writing clean, maintainable code and honed my ability to perform effectively under the pressure of a high-visibility, mission-critical application.",
+    learned: "This project was a masterclass in production software maintenance. I learned the critical importance of clean, maintainable code, comprehensive logging for traceability, and performing effectively under pressure in mission-critical environments.",
     image: SRPIThumbnail,
   },
   {
     title: "3D Tool Positioning System (DOGA)",
+    shortDescription: "A vision-based industrial system that estimates the 3D position and orientation of tools in real-time, providing visual guidance to technicians during assembly operations.",
     description: "A vision-based industrial system that estimates the 3D position and orientation of tools in real-time, providing visual guidance to technicians during assembly operations.",
     technologies: ["C++", "Embedded Linux", "Computer Vision", "Html/CSS", "Javascript", "Real-time Systems"],
+    keyHighlights: {
+      "Embedded Vision System": "Developed Linux-based 3D positioning system from prototype to production",
+      "Real-time Algorithms": "Implemented detection for real-time tool tracking and technician guidance",
+      "Full-Stack Integration": "Built web interface with live streaming to bridge hardware and software",
+    },
     highlights: {
       "Embedded Computer Vision Solution": "Developed and deployed a vision-based system on embedded Linux that accurately estimates 3D position and orientation of industrial tools, advancing from prototype towards production-ready performance.",
       "Real-time Precision Algorithms": "Implemented detection algorithms that calculate tool angles and positions in real-time, providing immediate visual feedback to guide technicians during complex assembly tasks.",
@@ -138,20 +157,23 @@ const Projects = () => {
                       </Button>
                     }
                   </DialogTrigger>
-                  <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto bg-interactive-2 text-text-2 border-border-1 rounded-2xl">
-                    <DialogHeader>
+                  <DialogContent className="max-w-[calc(100%-16px)] sm:max-w-[calc(100%-32px)] md:max-w-[calc(100%-48px)] lg:max-w-[976px] mx-auto max-h-[90vh] bg-interactive-2 text-text-2 border-border-1 rounded-2xl flex flex-col">
+                    
+                    <DialogHeader className="flex-center shrink-0">
                       <DialogTitle>{project.title}</DialogTitle>
                       <DialogDescription>{project.description}</DialogDescription>
                     </DialogHeader>
                     
-                    <ScrollArea className="grow pr-4">
-                      <div className="space-y-4">
+                    <Separator className="bg-border-3 shrink-0"/>
+
+                    <ScrollArea className="flex-1 min-h-0 **:data-radix-scroll-area-viewport:max-h-[60vh] overflow-hidden w-full p-3">
+                      <div className="space-y-4 p-1">
                         {/* Full project image */}
                         {project.image && (
                           <Image
                             src={project.image}
                             alt={project.title + " screenshot"}
-                            className="w-full h-48 object-cover rounded-md"
+                            className="flex-center w-full h-70 object-contain rounded-md"
                           />
                         )}
 
@@ -188,29 +210,32 @@ const Projects = () => {
                         )}
                       </div>
 
-                      <ScrollBar className="bg-background-2"/>
-
                     </ScrollArea>
 
-                    {/* Project links in dialog */} ,
-                    <div className="flex gap-2 mt-6">
-                      {project.demoLink && (
-                        <a href={project.demoLink} target="_blank" rel="noopener noreferrer" className="flex-1">
-                          <Button variant="outline" className="button-hover gap-2 w-full">
-                            Live Demo
-                            <ExternalLink className="w-4 h-4" />
-                          </Button>
-                        </a>
-                      )}
-                      {project.link && (
-                        <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex-1">
-                          <Button variant="outline" className="button-hover gap-2 w-full">
-                            View Code
-                            <ExternalLink className="w-4 h-4" />
-                          </Button>
-                        </a>
-                      )}
-                    </div>
+                    <Separator className="bg-border-3 shrink-0"/>
+
+                    <DialogFooter>
+                      {/* Project links in dialog */}
+                      {(project.link || project.demoLink) &&
+                        <div className="w-full flex gap-2 shrink-0">
+                          {project.demoLink && (
+                            <a href={project.demoLink} target="_blank" rel="noopener noreferrer" className="flex-1">
+                              <Button variant="outline" className="button-hover gap-2 w-full">
+                                Live Demo
+                                <ExternalLink className="w-4 h-4" />
+                              </Button>
+                            </a>
+                          )}
+                          {project.link && (
+                            <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex-1">
+                              <Button variant="outline" className="button-hover gap-2 w-full">
+                                View Code
+                                <ExternalLink className="w-4 h-4" />
+                              </Button>
+                            </a>
+                          )}
+                        </div>}
+                    </DialogFooter>                    
                   </DialogContent>
                 </Dialog>
 
