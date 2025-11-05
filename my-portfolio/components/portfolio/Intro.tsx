@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+
 import Image from 'next/image';
 
 import { Mail } from "lucide-react";
@@ -11,10 +15,45 @@ import LinkedInLogoDark from "@/public/icons/linkedin.svg";
 
 
 const Intro = () => {
+
+  const divRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  //For appearing
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      {
+        threshold: 0.3,
+      }
+    );
+
+    if (divRef.current) {
+      observer.observe(divRef.current);
+    }
+
+    return () => {
+      if (divRef.current) {
+        observer.unobserve(divRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center px-4 bg-background-1">
-      <div className="container max-w-5xl mx-auto text-center">
-        <h1 className="text-6xl md:text-8xl font-bold mb-6 text-text-2">
+    <section id="hero" className="pt-30 md:pt-60 min-h-screen flex items-center justify-center px-4">
+      <div 
+        ref={divRef}
+        className={`container max-w-5xl mx-auto text-center transition-all duration-1000 ease-out ${
+          isVisible 
+            ? "opacity-100 scale-120" 
+            : "opacity-0 scale-70"
+        }`}
+      >
+        <h1 className="py-3 text-6xl md:text-8xl font-bold mb-6 bg-linear-to-r/oklch from-primary-300 from-0% to-secondary-800 to-100% text-transparent bg-clip-text">
           Igor Babic
         </h1>
 

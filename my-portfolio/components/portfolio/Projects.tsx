@@ -5,9 +5,11 @@ import Image from "next/image";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 
-import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
+import * as ScrollAreaRadix from '@radix-ui/react-scroll-area';
+
+import { ArrowRight, ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 
 import DareWinThumbnail from "@/public/images/DareWin-thumbnail.png";
 import DashboardThumbnail from "@/public/images/Dashboard.png";
@@ -15,8 +17,9 @@ import DogaThumbnail from "@/public/images/Projet Doga.png";
 import SRPIThumbnail from "@/public/images/LPR.jpg";
 
 import DareWinLogo from "@/public/icons/DareWin-Logo-bleu.png";
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Separator } from "../ui/separator";
+import { Badge } from "../ui/badge";
 
 export const projects = [
   {
@@ -102,177 +105,317 @@ export const projects = [
 const Projects = () => {
   const [openDialogId, setOpenDialogId] = useState<number | null>(null);
   
+  const viewportRef = useRef<HTMLDivElement | null>(null);
+  const scrollAnimationRef = useRef<number | null>(null);
+  const accumulatedDeltaRef = useRef(0);
+  const currentScrollRef = useRef(0);
+
+  const onWheel = useCallback((e: React.WheelEvent<HTMLDivElement>) => {
+    // Check if any modal is open and prevent horizontal scroll if true
+    if (openDialogId !== null) {
+      return;
+    }
+
+    if (
+      !viewportRef.current ||
+      e.deltaY === 0 ||
+      e.deltaX !== 0 
+    ) {
+      return;
+    }
+
+    const container = viewportRef.current;
+
+    const isAtLeft = container.scrollLeft <= 0;
+    const isAtRight = container.scrollLeft >= container.scrollWidth - container.clientWidth;
+    
+    const shouldScrollHorizontally = 
+      (e.deltaY > 0 && !isAtRight) || 
+      (e.deltaY < 0 && !isAtLeft);
+
+    if(!shouldScrollHorizontally){
+      return
+    }
+
+    e.preventDefault();
+    e.stopPropagation();
+    
+
+    // Accumulate the delta for smooth continuous motion
+    accumulatedDeltaRef.current += e.deltaY * 2;
+  
+    if (!scrollAnimationRef.current) {
+      const container = viewportRef.current;
+      currentScrollRef.current = container.scrollLeft;
+      
+      const animate = () => {
+        if (Math.abs(accumulatedDeltaRef.current) > 0.1) {
+          // Apply easing to the accumulated delta
+          const deltaToApply = accumulatedDeltaRef.current * 0.2;
+          accumulatedDeltaRef.current -= deltaToApply;
+          
+          currentScrollRef.current += deltaToApply;
+          container.scrollLeft = currentScrollRef.current;
+          
+          scrollAnimationRef.current = requestAnimationFrame(animate);
+        } else {
+          accumulatedDeltaRef.current = 0;
+          scrollAnimationRef.current = null;
+        }
+      };
+      scrollAnimationRef.current = requestAnimationFrame(animate);
+    }
+  }, [openDialogId]);
+
+  //For appearing
+  const divRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+/*********** Use Effects  **************/
+  //For horizontal scrolling
+  useEffect(() => {
+    viewportRef.current?.addEventListener('wheel', (e: WheelEvent) => {
+      onWheel(e as unknown as React.WheelEvent<HTMLDivElement>);
+    });
+  }, [onWheel]);
+
+  //For appearing
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      {
+        threshold: 0.3,
+      }
+    );
+
+    if (divRef.current) {
+      observer.observe(divRef.current);
+    }
+
+    return () => {
+      if (divRef.current) {
+        observer.unobserve(divRef.current);
+      }
+    };
+  }, []);
+  
   return (
-    <section id="projects" className="bg-background-2">
-      <div className="container max-w-6xl mx-auto">
-        <h2 className="text-4xl font-bold mb-12 text-center text-text-2">My Projects</h2>
-        <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-6">
-          {projects.map((project, index) => (
-            <Card key={index} className="card-hover">
-              <CardHeader>
-                {project.image && 
-                <div>
-                  <Image src={project.image} alt={project.title + " screenshot"} className="w-full h-70 object-cover rounded-md mb-4"/>
-                </div>}
-                <CardTitle className="text-xl flex-center gap-2">
-                  {project.logo && <Image src={project.logo} alt={project.title + " logo"} className="w-10 h-10"/>}
-                  {project.title}
-                </CardTitle>
-                <CardDescription>{project.shortDescription}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap gap-2 mb-7">
-                  {project.technologies?.slice(0, 4).map((tech, i) => ( // Show only first 4 technologies
-                    <span key={i} className="bg-solid-2/70 text-text-2 text-sm px-2 py-1 rounded">
-                      {tech}
-                    </span>
-                  ))}
-                  {project.technologies?.length > 4 && (
-                    <span className="bg-muted text-muted-text-1 text-sm px-2 py-1 rounded">
-                      +{project.technologies.length - 4} more...
-                    </span>
-                  )}
+    <section id="projects" className="px-0 overflow-x-hidden">
+      <div 
+        ref={divRef}
+        className={`w-full transition-all duration-600 ease-out ${
+          isVisible 
+            ? "opacity-100 scale-100" 
+            : "opacity-0 scale-80"
+        }`}
+      >
+        <h2 className="mb-12">My Projects</h2>
+          <ScrollAreaRadix.Root onWheel={onWheel} className="overflow-x-hidden">
+            <ScrollAreaRadix.Viewport ref={viewportRef} className="overflow-x-hidden">
+            <div 
+              className="flex w-max space-x-16 ml-20 p-8"
+            >
+              {projects.map((project, index) => (
+              <Card key={index} className="card-hover max-w-xl mx-auto">
+                <div className="px-5">
+                  {project.image && 
+                  <div>
+                    <Image src={project.image} alt={project.title + " screenshot"} className="w-full h-70 object-cover rounded-md mb-4"/>
+                  </div>}
+                  <div className="text-xl font-bold flex-center gap-2 mb-2">
+                    {project.logo && <Image src={project.logo} alt={project.title + " logo"} className="w-10 h-10"/>}
+                    {project.title}
+                  </div>
+                  <div>{project.shortDescription}</div>
                 </div>
-                {/* <p className="text-muted-foreground mb-4">{project.details}</p> */}
-                <ul className="space-y-2 mb-5 list-disc list-inside mt-2">
-                  {project.keyHighlights && Object.entries(project.keyHighlights).map(([header, description], i) => (
-                    <li key={i}>
-                      <strong>{header}:</strong> {description}
-                    </li>
-                  ))}
-                </ul>
-
-
-                {/* Dialog for more details */}
-                <Dialog open={openDialogId === index} onOpenChange={(isOpen) => setOpenDialogId(isOpen ? index : null)}>
-                  <DialogTrigger asChild>
-                    {
-                      <Button 
-                        variant="ghost" 
-                        className="w-full gap-2 text-muted-text-1 hover:text-text-2 mb-2"
+                <CardContent>
+                  <div className="flex flex-wrap gap-2 mb-7">
+                    {project.technologies?.slice(0, 4).map((tech, i) => ( // Show only first 4 technologies
+                      <Badge 
+                        key={i} 
+                        variant="secondary"
+                        title={tech} 
+                        className="max-w-56 overflow-hidden bg-secondary-500 text-text-2"
                       >
-                        <ChevronRight className="w-4 h-4" />
-                        More Details
-                        <ChevronLeft className="w-4 h-4" />
-                      </Button>
-                    }
-                  </DialogTrigger>
-                  <DialogContent className="max-w-[calc(100%-16px)] sm:max-w-[calc(100%-32px)] md:max-w-[calc(100%-48px)] lg:max-w-[976px] mx-auto max-h-[90vh] bg-interactive-2 text-text-2 border-border-1 rounded-2xl flex flex-col">
-                    
-                    <DialogHeader className="flex-center shrink-0">
-                      <DialogTitle>{project.title}</DialogTitle>
-                      <DialogDescription>{project.description}</DialogDescription>
-                    </DialogHeader>
-                    
-                    <Separator className="bg-border-3 shrink-0"/>
-
-                    <ScrollArea className="flex-1 min-h-0 **:data-radix-scroll-area-viewport:max-h-[60vh] overflow-hidden w-full p-3">
-                      <div className="space-y-4 p-1">
-                        {/* Full project image */}
-                        {project.image && (
-                          <Image
-                            src={project.image}
-                            alt={project.title + " screenshot"}
-                            className="flex-center w-full h-70 object-contain rounded-md"
-                          />
-                        )}
-
-                        {/* All technologies */}
+                        <span className="block truncate whitespace-nowrap text-left text-sm">
+                          {tech}
+                        </span>
+                      </Badge>
+                    ))}
+                    {project.technologies?.length > 4 && (
+                      <Badge 
+                        variant="secondary"
+                        title="more" 
+                        className="max-w-56 overflow-hidden bg-secondary-500/60 text-text-2"
+                      >
+                        <span className="block truncate whitespace-nowrap text-left text-sm">
+                          +{project.technologies.length - 4} more...
+                        </span>
+                      </Badge>
+                    )}
+                  </div>
+                  {/* <p className="text-muted-foreground mb-4">{project.details}</p> */}
+                  <ul className="space-y-2 mb-5 list-inside mt-2">
+                    {project.keyHighlights && Object.entries(project.keyHighlights).map(([header, description], i) => (
+                      <li key={i} className="flex">
+                        <ArrowRight className="w-4 h-4 mr-2 mt-1 shrink-0" />
                         <div>
-                          <h4 className="font-semibold mb-2">Technologies Used:</h4>
-                          <div className="flex flex-wrap gap-2">
-                            {project.technologies?.map((tech, i) => (
-                              <span key={i} className="bg-solid-2/70 text-text-2 text-sm px-3 py-1 rounded-full">
-                                {tech}
-                              </span>
-                            ))}
-                          </div>
+                          <strong>{header}:</strong> {description}
                         </div>
+                      </li>
+                    ))}
+                  </ul>
 
-                        {/* All highlights */}
-                        <div>
-                          <h4 className="font-semibold mb-2">Key Achievements:</h4>
-                          <ul className="space-y-3 list-disc list-inside">
-                            {Object.entries(project.highlights).map(([header, description], i) => (
-                              <li key={i}>
-                                <strong>{header}:</strong> {description}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
 
-                        {/* Lessons learned */}
-                        {project.learned && (
-                          <div>
-                            <h4 className="font-semibold mb-2">What I Learned:</h4>
-                            <p className="italic">{project.learned}</p>
+                  {/* Dialog for more details */}
+                  <Dialog open={openDialogId === index} onOpenChange={(isOpen) => setOpenDialogId(isOpen ? index : null)}>
+                    <DialogTrigger asChild>
+                      {
+                        <Button 
+                          variant="ghost" 
+                          className="w-full gap-2 text-muted-text-1 hover:text-text-2 mb-2"
+                        >
+                          <ChevronRight className="w-4 h-4" />
+                          More Details
+                          <ChevronLeft className="w-4 h-4" />
+                        </Button>
+                      }
+                    </DialogTrigger>
+                    <DialogContent 
+                      className="max-w-[calc(100%-16px)] sm:max-w-[calc(100%-32px)] md:max-w-[calc(100%-48px)] lg:max-w-[976px] mx-auto h-[90vh] bg-primary-900/90 text-text-2 border-0 rounded-2xl flex flex-col"
+                    >
+                      
+                      <DialogHeader className="flex-center shrink-0">
+                        <DialogTitle className="text-2xl mb-4">{project.title}</DialogTitle>
+                        <DialogDescription>{project.description}</DialogDescription>
+                      </DialogHeader>
+                      
+                      <Separator className="bg-background-500 shrink-0"/>
+                      
+                      <div className="flex-1 min-h-0">
+                        <ScrollArea className="h-full w-full pr-8">
+                          <div className="space-y-4 p-1">
+                            {project.image && (
+                              <Image
+                                src={project.image}
+                                alt={project.title + " screenshot"}
+                                className="flex-center w-full h-70 object-contain rounded-md"
+                              />
+                            )}
+
+                            <div>
+                              <h4 className="font-semibold mb-2">Technologies Used:</h4>
+                              <div className="flex flex-wrap gap-2">
+                                {project.technologies?.map((tech, i) => (
+                                  <Badge 
+                                    key={i} 
+                                    variant="secondary"
+                                    title={tech} 
+                                    className="max-w-56 overflow-hidden bg-accent-800 text-text-2"
+                                  >
+                                    <span className="block truncate whitespace-nowrap text-left text-sm">
+                                      {tech}
+                                    </span>
+                                  </Badge>
+                                ))}
+                              </div>
+                            </div>
+
+                            <div>
+                              <h4 className="font-semibold mb-2">Key Achievements:</h4>
+                              <ul className="space-y-3 list-inside">
+                                {Object.entries(project.highlights).map(([header, description], i) => (
+                                  <li key={i} className="flex">
+                                    <ArrowRight className="w-4 h-4 mr-2 mt-1 shrink-0" />
+                                    <div>
+                                      <strong>{header}:</strong> {description}
+                                    </div>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+
+                            {project.learned && (
+                              <div>
+                                <h4 className="font-semibold mb-2">What I Learned:</h4>
+                                <p className="italic">{project.learned}</p>
+                              </div>
+                            )}
                           </div>
-                        )}
+
+                        </ScrollArea>
                       </div>
 
-                    </ScrollArea>
+                      <Separator className="bg-background-500 shrink-0"/>
 
-                    <Separator className="bg-border-3 shrink-0"/>
-
-                    <DialogFooter>
-                      {/* Project links in dialog */}
-                      {(project.link || project.demoLink) &&
-                        <div className="w-full flex gap-2 shrink-0">
-                          {project.demoLink && (
-                            <a href={project.demoLink} target="_blank" rel="noopener noreferrer" className="flex-1">
-                              <Button variant="outline" className="button-hover gap-2 w-full">
-                                Live Demo
-                                <ExternalLink className="w-4 h-4" />
-                              </Button>
-                            </a>
-                          )}
-                          {project.link && (
-                            <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex-1">
-                              <Button variant="outline" className="button-hover gap-2 w-full">
-                                View Code
-                                <ExternalLink className="w-4 h-4" />
-                              </Button>
-                            </a>
-                          )}
-                        </div>}
-                    </DialogFooter>                    
-                  </DialogContent>
-                </Dialog>
+                      <DialogFooter>
+                        {/* Project links in dialog */}
+                        {(project.link || project.demoLink) &&
+                          <div className="w-full flex gap-4 shrink-0">
+                            {project.demoLink && (
+                              <a href={project.demoLink} target="_blank" rel="noopener noreferrer" className="flex-1">
+                                <Button variant="outline" className="button-hover w-full">
+                                  Live Demo
+                                  <ExternalLink className="w-4 h-4" />
+                                </Button>
+                              </a>
+                            )}
+                            {project.link && (
+                              <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex-1">
+                                <Button variant="outline" className="button-hover w-full">
+                                  View Code
+                                  <ExternalLink className="w-4 h-4" />
+                                </Button>
+                              </a>
+                            )}
+                          </div>}
+                      </DialogFooter>                    
+                    </DialogContent>
+                  </Dialog>
 
 
 
-                <div className="flex-center gap-2">
-                  {project.demoLink && 
-                    <a 
-                      href={project.demoLink}
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="w-full"
-                    >
-                      <Button variant="outline" className="gap-2 w-full button-hover">
-                        View Project
-                        <ExternalLink className="w-4 h-4" />
-                      </Button>
-                    </a>}
-                  {project.link && 
-                    <a 
-                      href={project.link}
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="w-full"
-                    >
-                      <Button variant="outline" className="gap-2 w-full button-hover">
-                        View Code
-                        <ExternalLink className="w-4 h-4" />
-                      </Button>
-                    </a>}
-                </div>
-                
-              </CardContent>
-            </Card>
-          ))}
+                  <div className="flex-center gap-2">
+                    {project.demoLink && 
+                      <a 
+                        href={project.demoLink}
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="w-full"
+                      >
+                        <Button variant="outline" className="gap-2 w-full button-hover">
+                          View Project
+                          <ExternalLink className="w-4 h-4" />
+                        </Button>
+                      </a>}
+                    {project.link && 
+                      <a 
+                        href={project.link}
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="w-full"
+                      >
+                        <Button variant="outline" className="gap-2 w-full button-hover">
+                          View Code
+                          <ExternalLink className="w-4 h-4" />
+                        </Button>
+                      </a>}
+                  </div>
+                  
+                </CardContent>
+              </Card>
+              ))}
+            </div>
+            </ScrollAreaRadix.Viewport>
+            <ScrollAreaRadix.Scrollbar orientation="horizontal">
+              <ScrollAreaRadix.Thumb />
+            </ScrollAreaRadix.Scrollbar>
+          </ScrollAreaRadix.Root>
         </div>
-      </div>
     </section>
   );
 };

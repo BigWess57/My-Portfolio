@@ -1,8 +1,13 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+
 import { Card } from "@/components/ui/card";
 import Image from "next/image";
 
 import AlyraLogo from "@/public/icons/alyra-logo.jpg";
 import PolytechLogo from "@/public/icons/polytech-logo.png";
+import { ArrowRight } from "lucide-react";
 
 const education = [
   {
@@ -37,11 +42,45 @@ const education = [
   },
 ];
 
-const Education = () => {
+const Education = () => {  
+  
+  const divRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      {
+        threshold: 0.3,
+      }
+    );
+
+    if (divRef.current) {
+      observer.observe(divRef.current);
+    }
+
+    return () => {
+      if (divRef.current) {
+        observer.unobserve(divRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <section id="education" className="bg-background-1">
-      <div className="flex flex-col gap-5 container max-w-4xl mx-auto">
-        <h2 className="text-4xl font-bold mb-8 text-center text-text-1">
+    <section id="education" className="">
+      <div
+        ref={divRef} 
+        className={`flex flex-col gap-5 container max-w-4xl transition-all duration-600 ease-out ${
+          isVisible 
+            ? "opacity-100 translate-x-0" 
+            : "opacity-0 -translate-x-32"
+          }`}
+      >
+        <h2 className="">
           Education & Specialized Training
         </h2>
 
@@ -61,10 +100,13 @@ const Education = () => {
               </div>
             </div>
             <p className="text-lg leading-relaxed">{edu.summary}</p>
-            <ul className="text-lg leading-relaxed list-disc list-inside space-y-2 mt-2">
+            <ul className="text-lg leading-relaxed list-inside space-y-2 mt-2">
               {Object.entries(edu.points).map(([header, description], i) => (
-                <li key={i}>
-                  <strong>{header}:</strong> {description}
+                <li key={i} className="flex">
+                  <ArrowRight className="w-4 h-4 mr-2 mt-1 shrink-0" />
+                  <div>
+                    <strong>{header}:</strong> {description}
+                  </div>
                 </li>
               ))}
             </ul>
