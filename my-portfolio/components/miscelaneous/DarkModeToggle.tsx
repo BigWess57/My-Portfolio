@@ -53,7 +53,7 @@ export default function DarkModeToggle() {
     >
       {/* track */}
       <span
-        className={`absolute inset-0 rounded-full transition-colors bg-neutral-800`}
+        className={`absolute inset-0 rounded-full transition-colors bg-neutral-700`}
         aria-hidden
       />
       {/* thumb */}
