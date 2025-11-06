@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { motion, Variants } from 'framer-motion';
 
 import Image from 'next/image';
 
@@ -13,6 +14,25 @@ import GithubLogoDark from "@/public/icons/github.svg";
 import LinkedInLogoWhite from "@/public/icons/linkedin-white.svg";
 import LinkedInLogoDark from "@/public/icons/linkedin.svg";
 
+// Define your animation "variants"
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2, // This is the magic!
+    },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 20 }, // Start hidden and 20px down
+  visible: {
+    opacity: 1,
+    y: 0, // Animate to visible and original position
+    transition: { type: 'spring', stiffness: 100 },
+  },
+};
 
 const Intro = () => {
 
@@ -45,23 +65,36 @@ const Intro = () => {
 
   return (
     <section id="hero" className="pt-30 md:pt-60 min-h-screen flex items-center justify-center px-4">
-      <div 
+      <motion.div
         ref={divRef}
-        className={`container max-w-5xl mx-auto text-center transition-all duration-1000 ease-out ${
-          isVisible 
-            ? "opacity-100 scale-120" 
-            : "opacity-0 scale-70"
-        }`}
+        className="container max-w-6xl mx-auto text-center"
+        // {`container max-w-5xl mx-auto text-center transition-all duration-1000 ease-out ${
+        //   isVisible 
+        //     ? "opacity-100 scale-100" 
+        //     : "opacity-0 scale-70"
+        // }`}
+        variants={containerVariants}
+        initial="hidden"
+        animate={isVisible ? 'visible' : 'hidden'}
       >
-        <h1 className="py-3 text-6xl md:text-8xl font-bold mb-6 bg-linear-to-r/oklch from-primary-300 from-0% to-secondary-800 to-100% text-transparent bg-clip-text">
+        <motion.h1
+          className="py-3 text-6xl md:text-8xl font-bold mb-6 bg-linear-to-r/oklch from-primary-400 from-20% to-secondary-600 to-100% text-transparent bg-clip-text"
+          variants={itemVariants} // Apply the child variant
+        >
           Igor Babic
-        </h1>
+        </motion.h1>
 
-        <p className="text-xl md:text-2xl mb-8 text-text-muted text-text-1">
+        <motion.p
+          className="text-xl md:text-2xl mb-8"
+          variants={itemVariants} // Apply the child variant
+        >
           Fullstack Web3 Developer
-        </p>
+        </motion.p>
 
-        <div className="flex gap-4 justify-center text-text-2">
+        <motion.div
+          className="flex gap-4 justify-center"
+          variants={itemVariants} // Apply the child variant
+        >
           <Button asChild variant="outline" size="lg" className="button-hover">
             <a href="mailto:igor@danet.one" className="inline-flex items-center">
               <Mail className="w-5 h-5" />
@@ -114,8 +147,8 @@ const Intro = () => {
               GitHub
             </a>
           </Button>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

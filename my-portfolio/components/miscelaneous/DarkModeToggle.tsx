@@ -49,17 +49,16 @@ export default function DarkModeToggle() {
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       onClick={toggle}
       className="relative inline-flex items-center h-8 w-14 rounded-full p-1 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-text-100"
-      // color background: light -> neutral-200, dark -> primary-500 (example)
       style={{ backgroundColor: isDark ? undefined : undefined }}
     >
       {/* track */}
       <span
-        className={`absolute inset-0 rounded-full transition-colors bg-background-600`}
+        className={`absolute inset-0 rounded-full transition-colors bg-neutral-800`}
         aria-hidden
       />
       {/* thumb */}
       <span
-        className={`relative inline-block h-6 w-6 transform rounded-full bg-background-950 shadow-md transition-transform ${
+        className={`relative inline-block h-6 w-6 transform rounded-full bg-neutral-950 shadow-md transition-transform ${
           isDark ? "translate-x-6" : "translate-x-0"
         }`}
       >

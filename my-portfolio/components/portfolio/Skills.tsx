@@ -84,7 +84,7 @@ const Skills = () => {
                       key={skillIndex} 
                       variant="secondary"
                       title={skill} 
-                      className="max-w-56 overflow-hidden bg-accent-800 text-text-2"
+                      className="badge-skills"
                     >
                       <span className="block truncate whitespace-nowrap text-left text-sm">
                         {skill}

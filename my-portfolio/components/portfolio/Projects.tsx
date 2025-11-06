@@ -226,11 +226,11 @@ const Projects = () => {
                   <div>
                     <Image src={project.image} alt={project.title + " screenshot"} className="w-full h-70 object-cover rounded-md mb-4"/>
                   </div>}
-                  <div className="text-xl font-bold flex-center gap-2 mb-2">
+                  <h3 className="flex-center gap-2 mb-2">
                     {project.logo && <Image src={project.logo} alt={project.title + " logo"} className="w-10 h-10"/>}
-                    {project.title}
-                  </div>
-                  <div>{project.shortDescription}</div>
+                    <span className="text-accent-400">{project.title}</span>
+                  </h3>
+                  <div className="text-neutral-200">{project.shortDescription}</div>
                 </div>
                 <CardContent>
                   <div className="flex flex-wrap gap-2 mb-7">
@@ -239,7 +239,7 @@ const Projects = () => {
                         key={i} 
                         variant="secondary"
                         title={tech} 
-                        className="max-w-56 overflow-hidden bg-secondary-500 text-text-2"
+                        className="badge-skills"
                       >
                         <span className="block truncate whitespace-nowrap text-left text-sm">
                           {tech}
@@ -250,7 +250,7 @@ const Projects = () => {
                       <Badge 
                         variant="secondary"
                         title="more" 
-                        className="max-w-56 overflow-hidden bg-secondary-500/60 text-text-2"
+                        className="badge-skills opacity-70"
                       >
                         <span className="block truncate whitespace-nowrap text-left text-sm">
                           +{project.technologies.length - 4} more...
@@ -262,9 +262,9 @@ const Projects = () => {
                   <ul className="space-y-2 mb-5 list-inside mt-2">
                     {project.keyHighlights && Object.entries(project.keyHighlights).map(([header, description], i) => (
                       <li key={i} className="flex">
-                        <ArrowRight className="w-4 h-4 mr-2 mt-1 shrink-0" />
-                        <div>
-                          <strong>{header}:</strong> {description}
+                        <ArrowRight className="text-secondary-400 w-4 h-4 mr-2 mt-1 shrink-0" />
+                        <div className="text-neutral-200">
+                          <strong className="text-secondary-400">{header}:</strong> {description}
                         </div>
                       </li>
                     ))}
@@ -275,18 +275,20 @@ const Projects = () => {
                   <Dialog open={openDialogId === index} onOpenChange={(isOpen) => setOpenDialogId(isOpen ? index : null)}>
                     <DialogTrigger asChild>
                       {
-                        <Button 
-                          variant="ghost" 
-                          className="w-full gap-2 text-muted-text-1 hover:text-text-2 mb-2"
-                        >
-                          <ChevronRight className="w-4 h-4" />
-                          More Details
-                          <ChevronLeft className="w-4 h-4" />
-                        </Button>
+                        <div className="flex-center">
+                          <Button 
+                            variant="ghost" 
+                            className="text-secondary-300 border border-secondary-500 hover:bg-secondary-800 hover:text-secondary-100 mb-2"
+                          >
+                            <ChevronRight className="w-4 h-4" />
+                              More Details
+                            <ChevronLeft className="w-4 h-4" />
+                          </Button>
+                        </div>
                       }
                     </DialogTrigger>
                     <DialogContent 
-                      className="max-w-[calc(100%-16px)] sm:max-w-[calc(100%-32px)] md:max-w-[calc(100%-48px)] lg:max-w-[976px] mx-auto h-[90vh] bg-primary-900/90 text-text-2 border-0 rounded-2xl flex flex-col"
+                      className="max-w-[calc(100%-16px)] sm:max-w-[calc(100%-32px)] md:max-w-[calc(100%-48px)] lg:max-w-[976px] mx-auto h-[90vh] bg-neutral-900/90 border-0 rounded-2xl flex flex-col"
                     >
                       
                       <DialogHeader className="flex-center shrink-0">
@@ -294,7 +296,7 @@ const Projects = () => {
                         <DialogDescription>{project.description}</DialogDescription>
                       </DialogHeader>
                       
-                      <Separator className="bg-background-500 shrink-0"/>
+                      <Separator className="bg-neutral-500 shrink-0"/>
                       
                       <div className="flex-1 min-h-0">
                         <ScrollArea className="h-full w-full pr-8">
@@ -315,7 +317,7 @@ const Projects = () => {
                                     key={i} 
                                     variant="secondary"
                                     title={tech} 
-                                    className="max-w-56 overflow-hidden bg-accent-800 text-text-2"
+                                    className="badge-skills"
                                   >
                                     <span className="block truncate whitespace-nowrap text-left text-sm">
                                       {tech}
@@ -350,7 +352,7 @@ const Projects = () => {
                         </ScrollArea>
                       </div>
 
-                      <Separator className="bg-background-500 shrink-0"/>
+                      <Separator className="bg-neutral-500 shrink-0"/>
 
                       <DialogFooter>
                         {/* Project links in dialog */}

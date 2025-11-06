@@ -86,26 +86,26 @@ const Education = () => {
 
         {education.map((edu, index) => (
           <Card key={index} className="p-8 card-hover">
-            <div className="mb-4">
-              <h3 className="text-2xl font-semibold mb-2">{edu.title}</h3>
-              <div className="flex items-center gap-2 text-muted-foreground">
+            <div className="">
+              <h3 className="text-3xl font-semibold mb-8">{edu.title}</h3>
+              <div className="text-xl text-neutral-200 font-semibold flex items-center gap-2 text-muted-foreground">
                 <Image
                   src={edu.logo}
                   alt={`${edu.company} logo`}
                   className={`${edu.logoSize} object-contain`}
                 />
                 <p>
-                  {edu.company} | {edu.period}
+                  <span className="text-primary-300">{edu.company}</span> | <span className="text-neutral-400">{edu.period}</span>
                 </p>
               </div>
             </div>
-            <p className="text-lg leading-relaxed">{edu.summary}</p>
-            <ul className="text-lg leading-relaxed list-inside space-y-2 mt-2">
+            <p className="text-lg text-neutral-200 leading-relaxed">{edu.summary}</p>
+            <ul className="text-lg text-neutral-200 leading-relaxed list-inside space-y-2 mt-2">
               {Object.entries(edu.points).map(([header, description], i) => (
                 <li key={i} className="flex">
-                  <ArrowRight className="w-4 h-4 mr-2 mt-1 shrink-0" />
+                  <ArrowRight className="text-secondary-400 w-4 h-4 mr-2 mt-1 shrink-0" />
                   <div>
-                    <strong>{header}:</strong> {description}
+                    <strong className="text-secondary-400">{header}:</strong> {description}
                   </div>
                 </li>
               ))}
