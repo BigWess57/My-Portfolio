@@ -53,8 +53,8 @@ const Skills = () => {
 
 
   return (
-    <section id="skills" className="justify-center">
-      <div className="container max-w-8xl">
+    <section id="skills" className="flex justify-center"> 
+      <div className="container max-w-8xl ">
         <h2
           ref={divRef}
           className={`transition-all duration-600 ease-out ${

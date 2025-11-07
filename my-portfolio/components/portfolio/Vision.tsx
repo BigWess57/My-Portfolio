@@ -34,7 +34,7 @@ const Vision = () => {
   }, []);
 
   return (
-    <section id="vision" className="">
+    <section id="vision" className="section-to-right">
       <div 
         ref={divRef} 
         className={`container max-w-4xl transition-all duration-600 ease-out ${

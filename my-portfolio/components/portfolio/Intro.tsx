@@ -5,7 +5,7 @@ import { motion, Variants } from 'framer-motion';
 
 import Image from 'next/image';
 
-import { Mail } from "lucide-react";
+import { ArrowDown, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 import GithubLogoWhite from "@/public/icons/github-white.svg";
@@ -64,7 +64,7 @@ const Intro = () => {
   }, []);
 
   return (
-    <section id="hero" className="pt-30 md:pt-60 min-h-screen flex items-center justify-center px-4">
+    <section id="hero" className="relative pt-30 md:pt-60 min-h-screen flex items-center justify-center px-4">
       <motion.div
         ref={divRef}
         className="container max-w-6xl mx-auto text-center"
@@ -78,31 +78,31 @@ const Intro = () => {
         animate={isVisible ? 'visible' : 'hidden'}
       >
         <motion.h1
-          className="py-3 text-6xl md:text-8xl font-bold mb-6 bg-linear-to-r/oklch from-primary-400 from-20% to-secondary-600 to-100% text-transparent bg-clip-text"
-          variants={itemVariants} // Apply the child variant
+          className="py-3 text-6xl md:text-8xl font-bold mb-6 bg-linear-120/oklch from-primary-500 from-30% to-secondary-600 to-70% text-transparent bg-clip-text"
+          variants={itemVariants}
         >
           Igor Babic
         </motion.h1>
 
         <motion.p
           className="text-xl md:text-2xl mb-8"
-          variants={itemVariants} // Apply the child variant
+          variants={itemVariants}
         >
           Fullstack Web3 Developer
         </motion.p>
 
         <motion.div
           className="flex gap-4 justify-center"
-          variants={itemVariants} // Apply the child variant
+          variants={itemVariants}
         >
-          <Button asChild variant="outline" size="lg" className="button-hover">
+          <Button asChild size="lg" className="button-hover">
             <a href="mailto:igor@danet.one" className="inline-flex items-center">
               <Mail className="w-5 h-5" />
               Email Me
             </a>
           </Button>
 
-          <Button asChild variant="outline" size="lg" className="button-hover">
+          <Button asChild variant="outline" size="lg" className="button-hover-secondary">
             <a
               href="https://www.linkedin.com/in/igorbabic-99"
               target="_blank"
@@ -125,7 +125,7 @@ const Intro = () => {
             </a>
           </Button>
 
-          <Button asChild variant="outline" size="lg" className="button-hover">
+          <Button asChild variant="outline" size="lg" className="button-hover-secondary">
             <a
               href="https://github.com/BigWess57"
               target="_blank"
@@ -147,6 +147,17 @@ const Intro = () => {
               GitHub
             </a>
           </Button>
+        </motion.div>
+
+        {/* scroll down indicator */}
+        <motion.div
+          className="absolute bottom-10 left-1/2 -translate-x-1/2"
+          variants={itemVariants} 
+          initial="hidden"
+          animate={isVisible ? 'visible' : 'hidden'}
+        >
+          {/* Using a larger, colored bouncing arrow */}
+          <ArrowDown className="w-10 h-10 text-primary-400 animate-bounce" />
         </motion.div>
       </motion.div>
     </section>

@@ -71,7 +71,7 @@ const Education = () => {
   }, []);
 
   return (
-    <section id="education" className="">
+    <section id="education" className="section-to-left">
       <div
         ref={divRef} 
         className={`flex flex-col gap-5 container max-w-4xl transition-all duration-600 ease-out ${

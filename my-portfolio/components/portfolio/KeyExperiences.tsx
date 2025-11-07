@@ -88,7 +88,7 @@ const KeyExperiences = () => {
   }, []);
 
   return (
-    <section id="key-experiences" className="">
+    <section id="key-experiences" className="section-to-right">
       <div 
         ref={divRef} 
         className={`flex flex-col gap-5 container max-w-4xl transition-all duration-600 ease-out ${
