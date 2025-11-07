@@ -64,7 +64,7 @@ const About = () => {
             */}
             
             {/* Placeholder until you add your image: */}
-            <div className="grow max-w-[500px] right-0 aspect-square bg-neutral-800 rounded-lg border-2 border-secondary-800/50 shadow-lg flex-center text-muted-foreground ">
+            <div className="grow max-w-[500px] right-0 aspect-square bg-neutral-800 rounded-lg border-2 border-secondary-800/50 shadow-lg flex-center text-muted-foreground">
               Your Photo Here
             </div>
           </div>
@@ -77,10 +77,10 @@ const About = () => {
             <Card className="p-8 card-hover border-accent-800/50">
               <div className="space-y-4 text-xl leading-relaxed">
                 <p>
-                  Hi, I’m a full-stack Web3 developer. My background isn't just in web; it's forged in <strong className="text-secondary-300">embedded systems and software engineering</strong>. This taught me to value precision, reliability, and robust, systems-level thinking.
+                  Hi, I&apos;m a full-stack Web3 developer. My background isn&apos;t just in web; it&apos;s forged in <strong className="text-secondary-300">embedded systems and software engineering</strong>. This taught me to value precision, reliability, and robust, systems-level thinking.
                 </p>
                 <p>
-                  I'm passionate about applying that engineering discipline to the blockchain. I see Web3 as a new frontier for building systems based on transparency and user ownership. My goal is to create decentralized applications that are not just innovative, but <strong className="text-secondary-300">precise, purposeful, and impactful</strong>.
+                  I&apos;m passionate about applying that engineering discipline to the blockchain. I see Web3 as a new frontier for building systems based on transparency and user ownership. My goal is to create decentralized applications that are not just innovative, but <strong className="text-secondary-300">precise, purposeful, and impactful</strong>.
                 </p>
               </div>
             </Card>
