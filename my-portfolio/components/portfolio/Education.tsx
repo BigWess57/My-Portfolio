@@ -7,7 +7,7 @@ import Image from "next/image";
 
 import AlyraLogo from "@/public/icons/alyra-logo.jpg";
 import PolytechLogo from "@/public/icons/polytech-logo.png";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 
 const education = [
   {
@@ -85,7 +85,8 @@ const Education = () => {
         </h2>
 
         {education.map((edu, index) => (
-          <Card key={index} className="p-8 card-hover">
+          <Card key={index} className="p-8 card-hover group gap-0">
+            {/* --- "Always visible" content (Child 1) --- */}
             <div className="">
               <h3 className="text-3xl font-semibold mb-8">{edu.title}</h3>
               <div className="text-xl text-neutral-200 font-semibold flex items-center gap-2 text-muted-foreground">
@@ -95,21 +96,47 @@ const Education = () => {
                   className={`${edu.logoSize} object-contain`}
                 />
                 <p>
-                  <span className="text-primary-300">{edu.company}</span> | <span className="text-neutral-400">{edu.period}</span>
+                  <span className="text-primary-300 font-serif">{edu.company}</span> | <span className="text-neutral-400">{edu.period}</span>
                 </p>
               </div>
             </div>
-            <p className="text-lg text-neutral-200 leading-relaxed">{edu.summary}</p>
-            <ul className="text-lg text-neutral-200 leading-relaxed list-inside space-y-2 mt-2">
-              {Object.entries(edu.points).map(([header, description], i) => (
-                <li key={i} className="flex">
-                  <ArrowRight className="text-secondary-400 w-4 h-4 mr-2 mt-1 shrink-0" />
-                  <div>
-                    <strong className="text-secondary-400">{header}:</strong> {description}
-                  </div>
-                </li>
-              ))}
-            </ul>
+
+            {/* --- "See More" Indicator (Child 2) --- */}
+            <div className="
+              flex justify-center gap-1 text-secondary-500
+              transition-all duration-300 ease-in-out motion-safe:animate-bounce
+              group-hover:opacity-0 group-hover:max-h-0 group-hover:invisible mt-6
+              max-h-20 visible 
+            ">
+              <ChevronDown className="w-5 h-5 transition-transform duration-300 group-hover:-rotate-180" />
+              <span className="text-sm font-semibold tracking-wider">See Experience</span>
+              {/* This icon flips on hover as it fades out */}
+              <ChevronDown className="w-5 h-5 transition-transform duration-300 group-hover:-rotate-180" />
+            </div>
+
+            {/* --- "Hidden" content wrapper (Child 3) --- */}
+            <div 
+              className="
+                overflow-hidden max-h-0 opacity-0 
+                group-hover:max-h-[1000px] group-hover:opacity-100 
+                transition-all duration-500 ease-in-out
+              "
+            >
+              {/* This inner div uses the Card's 'gap-6' for spacing */}
+              <div className="flex flex-col gap-6">
+                <p className="text-lg text-neutral-200 leading-relaxed">{edu.summary}</p>
+                <ul className="text-lg text-neutral-200 leading-relaxed list-inside space-y-2">
+                  {Object.entries(edu.points).map(([header, description], i) => (
+                    <li key={i} className="flex">
+                      <ArrowRight className="text-secondary-400 w-4 h-4 mr-2 mt-1 shrink-0" />
+                      <div>
+                        <strong className="text-secondary-400">{header}:</strong> {description}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </Card>
         ))}
       </div>

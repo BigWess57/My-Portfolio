@@ -3,6 +3,29 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useEffect, useRef, useState } from "react";
+import { motion, Variants } from "framer-motion";
+import { containerVariants, itemVariants } from "./Intro";
+
+
+const itemVariantsLeft: Variants = {
+  hidden: { opacity: 0, x: 30 }, // Start hidden and 20px down
+  visible: {
+    opacity: 1,
+    x: 0, // Animate to visible and original position
+    transition: { type: 'spring', stiffness: 100 },
+  },
+};
+
+const itemVariantsRight: Variants = {
+  hidden: { opacity: 0, x: -30 }, // Start hidden and 20px down
+  visible: {
+    opacity: 1,
+    x: 0, // Animate to visible and original position
+    transition: { type: 'spring', stiffness: 100 },
+  },
+};
+
+
 
 const skillCategories = [
   {
@@ -54,35 +77,31 @@ const Skills = () => {
 
   return (
     <section id="skills" className="flex justify-center"> 
-      <div className="container max-w-8xl ">
-        <h2
-          ref={divRef}
-          className={`transition-all duration-600 ease-out ${
-            isVisible 
-              ? "opacity-100" 
-              : "opacity-0"
-          }`}
-        >My Skills</h2>
+
+      <motion.div
+        ref={divRef}
+        className="container max-w-8xl" // 👈 IMPROVEMENT #2: Changed to max-w-4xl
+        variants={containerVariants}
+        initial="hidden"
+        animate={isVisible ? 'visible' : 'hidden'}
+      >
+        <motion.h2
+          variants={itemVariants}
+        >
+          My Skills
+        </motion.h2>
         <div className="grid md:grid-cols-2 gap-6">
           {skillCategories.map((category, index) => (
-            <div 
+            <motion.div 
               key={index}
-              ref={divRef} 
-              className={`transition-all duration-600 ease-out ${
-                isVisible 
-                  ? "opacity-100 translate-x-0" 
-                  
-                  : (index%2) ? "opacity-0 translate-x-32"
-                    : "opacity-0 -translate-x-32"
-                }`}
+              variants={(index%2) ? itemVariantsLeft : itemVariantsRight}
             >
               <Card className="p-8 card-hover">
-                <h3 className="text-xl font-semibold mb-4">{category.title}</h3>
+                <h3 className="text-2xl font-semibold mb-4 text-left">{category.title}</h3>
                 <div className="flex flex-wrap gap-2 min-w-0">
                   {category.skills.map((skill, skillIndex) => (
                     <Badge 
                       key={skillIndex} 
-                      variant="secondary"
                       title={skill} 
                       className="badge-skills"
                     >
@@ -93,10 +112,10 @@ const Skills = () => {
                   ))}
                 </div>
               </Card>
-            </div>
+            </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

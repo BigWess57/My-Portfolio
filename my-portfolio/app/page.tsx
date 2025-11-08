@@ -1,5 +1,5 @@
 import Intro from "@/components/portfolio/Intro";
-import BeginningSection from "@/components/portfolio/BeginningSection";
+import AnimatedBackground from "@/components/portfolio/AnimatedBackground";
 import KeyExperiences from "@/components/portfolio/KeyExperiences";
 import Skills from "@/components/portfolio/Skills";
 import Projects from "@/components/portfolio/Projects";
@@ -15,7 +15,7 @@ export default function Home() {
         <DarkModeToggle />
       </div>
       <Intro />
-      <BeginningSection/>
+      <AnimatedBackground/>
       <Projects />
       <Skills />
       <KeyExperiences />

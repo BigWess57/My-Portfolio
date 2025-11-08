@@ -21,7 +21,7 @@ import backgroundImg from "@/public/images/blockchain-background.jpg";
 
 
 // Define your animation "variants"
-const containerVariants: Variants = {
+export const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -31,8 +31,8 @@ const containerVariants: Variants = {
   },
 };
 
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 20 }, // Start hidden and 20px down
+export const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 30 }, // Start hidden and 20px down
   visible: {
     opacity: 1,
     y: 0, // Animate to visible and original position

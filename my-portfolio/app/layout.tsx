@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 // import { Geist, Geist_Mono } from "next/font/google";
-import { inter, merriweather, roboto, playfairDisplay } from "@/utils/fonts";
+import { inter, /*merriweather, roboto, playfairDisplay,*/ jetbrainsMono } from "@/utils/fonts";
 import "./globals.css";
 
 // const geistSans = Geist({
@@ -24,7 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${roboto.variable} ${playfairDisplay.variable} antialiased`}>
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} antialiased`}>
       <body>
         {children}
       </body>

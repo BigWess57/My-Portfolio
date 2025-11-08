@@ -2,7 +2,7 @@ import React from 'react'
 import WorkExperience from './WorkExperience'
 import About from './About'
 
-const BeginningSection = () => {
+const AnimatedBackground = () => {
   return (
     <div className="relative bg-neutral-950 overflow-hidden">
         <div 
@@ -52,4 +52,4 @@ const BeginningSection = () => {
   )
 }
 
-export default BeginningSection
+export default AnimatedBackground

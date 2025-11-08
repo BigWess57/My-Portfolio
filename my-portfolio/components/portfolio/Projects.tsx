@@ -1,15 +1,8 @@
 'use client'
 
-import Image from "next/image";
+import { StaticImageData } from "next/image";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import * as ScrollAreaRadix from '@radix-ui/react-scroll-area';
-
-import { ArrowRight, ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 
 import DareWinThumbnail from "@/public/images/DareWin-thumbnail.png";
 import DashboardThumbnail from "@/public/images/Dashboard.png";
@@ -18,8 +11,22 @@ import SRPIThumbnail from "@/public/images/LPR.jpg";
 
 import DareWinLogo from "@/public/icons/DareWin-Logo-bleu.png";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Separator } from "../ui/separator";
-import { Badge } from "../ui/badge";
+
+import ProjectCard from "../miscelaneous/ProjectCard";
+
+export type ProjectType = {
+  title: string;
+  shortDescription: string;
+  description: string;
+  technologies: string[];
+  keyHighlights: Object;
+  highlights: Object;
+  learned: string;
+  image: StaticImageData;
+  logo?: StaticImageData;
+  link?: string;
+  demoLink?: string;
+}
 
 export const projects = [
   {
@@ -220,196 +227,7 @@ const Projects = () => {
               className="flex w-max space-x-16 ml-20 p-15"
             >
               {projects.map((project, index) => (
-              <Card key={index} className="card-hover max-w-xl mx-auto">
-                <div className="px-5">
-                  {project.image && 
-                  <div>
-                    <Image src={project.image} alt={project.title + " screenshot"} className="w-full h-70 object-cover rounded-md mb-4"/>
-                  </div>}
-                  <h3 className="flex-center gap-2 mb-2">
-                    {project.logo && <Image src={project.logo} alt={project.title + " logo"} className="w-10 h-10"/>}
-                    <span className="text-accent-400">{project.title}</span>
-                  </h3>
-                  <div className="text-neutral-200">{project.shortDescription}</div>
-                </div>
-                <CardContent>
-                  <div className="flex flex-wrap gap-2 mb-7">
-                    {project.technologies?.slice(0, 4).map((tech, i) => ( // Show only first 4 technologies
-                      <Badge 
-                        key={i} 
-                        variant="secondary"
-                        title={tech} 
-                        className="badge-skills"
-                      >
-                        <span className="block truncate whitespace-nowrap text-left text-sm">
-                          {tech}
-                        </span>
-                      </Badge>
-                    ))}
-                    {project.technologies?.length > 4 && (
-                      <Badge 
-                        variant="secondary"
-                        title="more" 
-                        className="badge-skills opacity-70"
-                      >
-                        <span className="block truncate whitespace-nowrap text-left text-sm">
-                          +{project.technologies.length - 4} more...
-                        </span>
-                      </Badge>
-                    )}
-                  </div>
-                  {/* <p className="text-muted-foreground mb-4">{project.details}</p> */}
-                  <ul className="space-y-2 mb-5 list-inside mt-2">
-                    {project.keyHighlights && Object.entries(project.keyHighlights).map(([header, description], i) => (
-                      <li key={i} className="flex">
-                        <ArrowRight className="text-secondary-400 w-4 h-4 mr-2 mt-1 shrink-0" />
-                        <div className="text-neutral-200">
-                          <strong className="text-secondary-400">{header}:</strong> {description}
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-
-
-                  {/* Dialog for more details */}
-                  <Dialog open={openDialogId === index} onOpenChange={(isOpen) => setOpenDialogId(isOpen ? index : null)}>
-                    <DialogTrigger asChild>
-                      {
-                        <div className="flex-center">
-                          <Button 
-                            variant="ghost" 
-                            className="text-secondary-300 border border-secondary-500 hover:bg-secondary-800 hover:text-secondary-100 mb-2"
-                          >
-                            <ChevronRight className="w-4 h-4" />
-                              More Details
-                            <ChevronLeft className="w-4 h-4" />
-                          </Button>
-                        </div>
-                      }
-                    </DialogTrigger>
-                    <DialogContent 
-                      className="max-w-[calc(100%-16px)] sm:max-w-[calc(100%-32px)] md:max-w-[calc(100%-48px)] lg:max-w-[976px] mx-auto h-[90vh] bg-neutral-900/90 border-0 rounded-2xl flex flex-col"
-                    >
-                      
-                      <DialogHeader className="flex-center shrink-0">
-                        <DialogTitle className="text-2xl mb-4">{project.title}</DialogTitle>
-                        <DialogDescription>{project.description}</DialogDescription>
-                      </DialogHeader>
-                      
-                      <Separator className="bg-neutral-500 shrink-0"/>
-                      
-                      <div className="flex-1 min-h-0">
-                        <ScrollArea className="h-full w-full pr-8">
-                          <div className="space-y-4 p-1">
-                            {project.image && (
-                              <Image
-                                src={project.image}
-                                alt={project.title + " screenshot"}
-                                className="flex-center w-full h-70 object-contain rounded-md"
-                              />
-                            )}
-
-                            <div>
-                              <h4 className="font-semibold mb-2">Technologies Used:</h4>
-                              <div className="flex flex-wrap gap-2">
-                                {project.technologies?.map((tech, i) => (
-                                  <Badge 
-                                    key={i} 
-                                    variant="secondary"
-                                    title={tech} 
-                                    className="badge-skills"
-                                  >
-                                    <span className="block truncate whitespace-nowrap text-left text-sm">
-                                      {tech}
-                                    </span>
-                                  </Badge>
-                                ))}
-                              </div>
-                            </div>
-
-                            <div>
-                              <h4 className="font-semibold mb-2">Key Achievements:</h4>
-                              <ul className="space-y-3 list-inside">
-                                {Object.entries(project.highlights).map(([header, description], i) => (
-                                  <li key={i} className="flex">
-                                    <ArrowRight className="w-4 h-4 mr-2 mt-1 shrink-0" />
-                                    <div>
-                                      <strong>{header}:</strong> {description}
-                                    </div>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-
-                            {project.learned && (
-                              <div>
-                                <h4 className="font-semibold mb-2">What I Learned:</h4>
-                                <p className="italic">{project.learned}</p>
-                              </div>
-                            )}
-                          </div>
-
-                        </ScrollArea>
-                      </div>
-
-                      <Separator className="bg-neutral-500 shrink-0"/>
-
-                      <DialogFooter>
-                        {/* Project links in dialog */}
-                        {(project.link || project.demoLink) &&
-                          <div className="w-full flex gap-4 shrink-0">
-                            {project.demoLink && (
-                              <a href={project.demoLink} target="_blank" rel="noopener noreferrer" className="flex-1">
-                                <Button className="button-hover-accent w-full">
-                                  Live Demo
-                                  <ExternalLink className="w-4 h-4" />
-                                </Button>
-                              </a>
-                            )}
-                            {project.link && (
-                              <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex-1">
-                                <Button className="button-hover-accent w-full">
-                                  View Code
-                                  <ExternalLink className="w-4 h-4" />
-                                </Button>
-                              </a>
-                            )}
-                          </div>}
-                      </DialogFooter>                    
-                    </DialogContent>
-                  </Dialog>
-
-
-
-                  <div className="flex-center gap-2">
-                    {project.demoLink && 
-                      <a 
-                        href={project.demoLink}
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="w-full"
-                      >
-                        <Button variant="outline" className="gap-2 w-full button-hover-accent">
-                          Live Demo
-                          <ExternalLink className="w-4 h-4" />
-                        </Button>
-                      </a>}
-                    {project.link && 
-                      <a 
-                        href={project.link}
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="w-full"
-                      >
-                        <Button variant="outline" className="gap-2 w-full button-hover-accent">
-                          View Code
-                          <ExternalLink className="w-4 h-4" />
-                        </Button>
-                      </a>}
-                  </div>
-                  
-                </CardContent>
-              </Card>
+                <ProjectCard key={index} project={project} index={index} openDialogId={openDialogId} setOpenDialogId={setOpenDialogId}/>
               ))}
             </div>
             </ScrollAreaRadix.Viewport>

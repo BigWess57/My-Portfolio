@@ -3,6 +3,44 @@
 import { useEffect, useRef, useState } from "react";
 
 import { Card } from "@/components/ui/card";
+import { motion } from "framer-motion";
+import { containerVariants, itemVariants } from "./Intro";
+
+
+const GridPattern = () => {
+  return (
+    <svg
+      aria-hidden="true"
+      className="absolute inset-0 -z-10 h-full w-full text-neutral-500 opacity-50 dark:opacity-50 [mask-image:radial-gradient(ellipse_at_center,white_20%,transparent_70%)]"
+    >
+      <defs>
+        <pattern
+          id="grid-pattern"
+          width="20"
+          height="20"
+          patternUnits="userSpaceOnUse"
+          x="50%"
+          y="50%"
+        >
+          {/* This is the dot in the grid */}
+          <circle cx="10" cy="10" r="1" fill="currentColor" />
+        </pattern>
+      </defs>
+      {/* The rectangle that tiles the pattern */}
+      <rect width="100%" height="100%" fill="url(#grid-pattern)" />
+      
+      {/* This SVG animation slowly scrolls the grid for a subtle, "live" effect */}
+      <animateTransform
+        attributeName="transform"
+        type="translate"
+        from="0 0"
+        to="20 0"
+        dur="10s"
+        repeatCount="indefinite"
+      />
+    </svg>
+  );
+};
 
 
 const Vision = () => {
@@ -34,22 +72,39 @@ const Vision = () => {
   }, []);
 
   return (
-    <section id="vision" className="section-to-right">
-      <div 
+    <section id="vision" className="relative overflow-hidden flex justify-center">
+      {/* Add the animated background */}
+      <GridPattern />
+
+      <motion.div 
         ref={divRef} 
-        className={`container max-w-4xl transition-all duration-600 ease-out ${
-          isVisible 
-            ? "opacity-100 translate-x-0" 
-            : "opacity-0 translate-x-32"
-          }`}
+        // We removed the Card, so we center the text container
+        className={`container max-w-4xl text-center`}
+        variants={containerVariants}
+        initial="hidden"
+        animate={isVisible ? 'visible' : 'hidden'}
       >
-        <h2 className="">My Vision</h2>
-        <Card className="p-8 card-hover">
-          <p className="text-lg text-neutral-200 leading-relaxed text-muted-foreground">
-            I imagine a future where blockchain helps people interact and build together without barriers — where trust, ownership, and creativity are embedded in the technology itself. As a developer, I want to contribute to that change by creating decentralized applications that are reliable, transparent, and genuinely useful to everyday users.
-          </p>
-        </Card>
-      </div>
+        <motion.h2 variants={itemVariants} className="mb-10">
+          My Vision
+        </motion.h2>
+        
+        {/* We've removed the card and restyled the text for more impact */}
+        <motion.p 
+          variants={itemVariants}
+          // This is the "hero" part of your vision
+          className="text-3xl font-medium text-neutral-100"
+        >
+          I imagine a future where blockchain helps people interact and build together without barriers — where trust, ownership, and creativity are embedded in the technology itself.
+        </motion.p>
+        
+        <motion.p 
+          variants={itemVariants}
+          // This is the "mission" part, styled as supporting text
+          className="mt-6 text-xl text-neutral-400"
+        >
+          As a developer, I want to contribute to that change by creating decentralized applications that are reliable, transparent, and genuinely useful to everyday users.
+        </motion.p>
+      </motion.div>
     </section>
   );
 };

@@ -51,10 +51,12 @@
   --color-accent-900: var(--accent-900);
   --color-accent-950: var(--accent-950);
 
-  --font-sans: var(--font-roboto);
-  --font-serif: var(--font-playfair-display);
+  /* --font-sans: var(--font-roboto);
+  --font-serif: var(--font-playfair-display); */
   /* --font-sans: var(--font-inter);
   --font-serif: var(--font-merriweather); */
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-mono-tech);
 }
 
 :root {
@@ -175,10 +177,11 @@ html, body {
   max-width: 100%;
   overflow-x: hidden;
   font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 17px;
 }
 
 h1, h2, h3 { 
-  font-family: var(--font-serif), serif;
+  font-family: var(--font-mono-tech), serif;
 }
 
 
@@ -190,7 +193,7 @@ h1, h2, h3 {
   }
 
   section {
-    @apply pt-40 pb-60 px-25;
+    @apply pt-40 pb-40 px-25;
   }
   /* section:nth-child(odd) {
     @apply flex justify-end;
@@ -237,7 +240,7 @@ h1, h2, h3 {
   }
 
   .badge-skills {
-    @apply max-w-56 overflow-hidden bg-accent-900 text-accent-100;
+    @apply max-w-64 overflow-hidden bg-accent-900 text-accent-100;
   }
 
 

@@ -7,7 +7,7 @@ import Image from "next/image";
 import IMDSLogo from "@/public/icons/IMDS-6-300x163.jpg";
 import DOGALogo from "@/public/icons/doga.jpg";
 import BabylissLogo from "@/public/icons/babyliss-logo.png";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 
 
 const experiences = [
@@ -102,7 +102,7 @@ const KeyExperiences = () => {
         </h2>
 
         {experiences.map((exp, index) => (
-          <Card key={index} className="p-8 card-hover">
+          <Card key={index} className="p-8 card-hover group gap-0">
             <div className="">
               <h3 className="text-3xl font-semibold mb-8">{exp.title}</h3>
               <div className="flex text-xl text-neutral-200 font-semibold items-center gap-2 text-muted-foreground">
@@ -112,21 +112,45 @@ const KeyExperiences = () => {
                   className={`${exp.logoSize} object-contain`}
                 />
                 <p>
-                  <span className="text-primary-300">{exp.company}</span> | <span className="text-neutral-400">{exp.period}</span>
+                  <span className="text-primary-300 font-serif">{exp.company}</span> | <span className="text-neutral-400">{exp.period}</span>
                 </p>
               </div>
             </div>
-            <p className="text-lg text-neutral-200 leading-relaxed">{exp.summary}</p>
-            <ul className="text-lg text-neutral-200 leading-relaxed list-inside space-y-2 mt-2">
-              {Object.entries(exp.points).map(([header, description], i) => (
-                <li key={i} className="flex">
-                  <ArrowRight className="text-secondary-400 w-4 h-4 mr-2 mt-1 shrink-0" />
-                  <div>
-                    <strong className="text-secondary-400">{header}:</strong> {description}
-                  </div>
-                </li>
-              ))}
-            </ul>
+            
+            <div className="
+              flex justify-center gap-1 text-secondary-500
+              transition-all duration-300 ease-in-out motion-safe:animate-bounce
+              group-hover:opacity-0 group-hover:max-h-0 group-hover:invisible mt-6
+              max-h-20 visible 
+            ">
+              <ChevronDown className="w-5 h-5 transition-transform duration-300 group-hover:-rotate-180" />
+              <span className="text-sm font-semibold tracking-wider">See Experience</span>
+              {/* This icon flips on hover as it fades out */}
+              <ChevronDown className="w-5 h-5 transition-transform duration-300 group-hover:-rotate-180" />
+            </div>
+
+            <div 
+              className="
+                overflow-hidden max-h-0 opacity-0 
+                group-hover:max-h-[1000px] group-hover:opacity-100 
+                transition-all duration-500 ease-out
+              "
+            >
+              {/* This inner div maintains the spacing between the summary and the points list */}
+              <div className="flex flex-col gap-6">
+                <p className="text-lg text-neutral-200 leading-relaxed">{exp.summary}</p>
+                <ul className="text-lg text-neutral-200 leading-relaxed list-inside space-y-2">
+                  {Object.entries(exp.points).map(([header, description], i) => (
+                    <li key={i} className="flex">
+                      <ArrowRight className="text-secondary-400 w-4 h-4 mr-2 mt-1 shrink-0" />
+                      <div>
+                        <strong className="text-secondary-400">{header}:</strong> {description}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </Card>
         ))}
       </div>
