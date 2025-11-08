@@ -19,8 +19,8 @@ export type ProjectType = {
   shortDescription: string;
   description: string;
   technologies: string[];
-  keyHighlights: Object;
-  highlights: Object;
+  keyHighlights: object;
+  highlights: object;
   learned: string;
   image: StaticImageData;
   logo?: StaticImageData;

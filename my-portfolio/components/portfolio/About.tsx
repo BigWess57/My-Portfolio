@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/card";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
+import ProfileImage from "@/public/images/ib9.jpg"
 
 const About = () => {
 
@@ -54,16 +55,15 @@ const About = () => {
             {/* ** Add your Image component here **
               - 'aspect-square' or 'aspect-[3/4]' are recommended.
               - 'rounded-lg' and 'shadow-lg' add a professional touch.
+            */}
             
+            <div className="grow max-w-[400px] lg:min-w-[300px] lg:max-w-[500px] right-0 aspect-square bg-neutral-800 rounded-lg border-2 border-secondary-800/50 shadow-lg flex-center text-muted-foreground">
               <Image 
                 src={ProfileImage}
                 alt="Igor Babic, Fullstack Web3 Developer"
                 className="rounded-lg shadow-lg object-cover aspect-square w-full"
                 priority
               />
-            */}
-            <div className="grow max-w-[400px] lg:min-w-[300px] lg:max-w-[500px] right-0 aspect-square bg-neutral-800 rounded-lg border-2 border-secondary-800/50 shadow-lg flex-center text-muted-foreground">
-              Your Photo Here
             </div>
           </div>
 
@@ -73,7 +73,7 @@ const About = () => {
             <Card className="p-8 card-hover border-accent-800/50">
               <div className="space-y-4 text-xl leading-relaxed">
                 <p>
-                  Hi, I&apos;m a full-stack Web3 developer. My background isn&apos;t just in web; it&apos;s forged in <strong className="text-secondary-300">embedded systems and software engineering</strong>. This taught me to value precision, reliability, and robust, systems-level thinking.
+                  Hi I&apos;m <strong className="text-primary-300">Igor</strong>, a full-stack Web3 developer. My background isn&apos;t just in web; it&apos;s forged in <strong className="text-secondary-300">embedded systems and software engineering</strong>. This taught me to value precision, reliability, and robust, systems-level thinking.
                 </p>
                 <p>
                   I&apos;m passionate about applying that engineering discipline to the blockchain. I see Web3 as a new frontier for building systems based on transparency and user ownership. My goal is to create decentralized applications that are not just innovative, but <strong className="text-secondary-300">precise, purposeful, and impactful</strong>.
