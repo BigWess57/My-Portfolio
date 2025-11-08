@@ -17,7 +17,7 @@ const ProjectDialogDetails = ({ project, index, openDialogId, setOpenDialogId }:
           <div className="flex-center">
             <Button 
               variant="ghost" 
-              className="text-secondary-300 border border-secondary-500 hover:bg-secondary-800 hover:text-secondary-100 mb-2"
+              className="text-secondary-300 border border-secondary-500 hover:bg-secondary-800 hover:text-secondary-100 mb-5"
             >
               <ChevronRight className="w-4 h-4" />
                 More Details
