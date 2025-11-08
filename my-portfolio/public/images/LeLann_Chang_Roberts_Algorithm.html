@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualiseur : Algorithme LCR</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chosen Palette: Calme et Éducatif (Fond beige/gris clair, bleu/gris/jaune/rouge pour les états) -->
+    <!-- Application Structure Plan: SPA de simulation d'algorithme. Structure similaire au visualiseur HS : 1. Règles (intro statique), 2. Visualiseur Interactif (visualisation de l'anneau + jetons + panneau de log + boutons de contrôle), 3. Conclusion (comparaison). L'interaction est basée sur des "étapes" (rounds de communication) plutôt que des "phases" (distances). L'utilisateur clique sur "Étape suivante" pour voir tous les jetons actifs avancer d'un nœud et être traités (absorbés, retransmis, ou élection). C'est plus intuitif que de suivre un jeton à la fois, car cela montre l'état parallèle de l'algorithme. -->
+    <!-- Visualization & Content Choices: 
+    - Info: Règles LCR -> Goal: Informer -> Viz: Liste HTML stylisée (divs Tailwind) -> Interaction: Aucune -> Justification: Contexte essentiel.
+    - Info: État de l'anneau (nœuds, ID, état) -> Goal: Montrer le changement d'état -> Viz: Diagramme de nœuds (5 divs HTML/Tailwind en cercle) -> Interaction: Couleurs/texte mis à jour par JS (via `updateRingUI()`) à chaque étape. -> Justification: Représentation visuelle de l'état du système.
+    - Info: État des jetons (ID, position) -> Goal: Montrer le passage de messages -> Viz: 5 divs HTML/Tailwind (`.token`) positionnés sur les liens -> Interaction: Position et visibilité (`hidden`) mis à jour par JS (via `updateTokensUI()`) à chaque étape. -> Justification: Rend le flux de messages tangible.
+    - Info: Étapes de l'algo (1, 2...) -> Goal: Contrôler le processus -> Viz: Boutons HTML ("Étape Suivante", "Réinitialiser") -> Interaction: Clic (`addEventListener`) déclenche `nextStep()`. -> Justification: Contrôle utilisateur.
+    - Info: Log des actions/réceptions -> Goal: Expliquer le changement -> Viz: Bloc de texte HTML (`<div id="log-panel">`) -> Interaction: `innerHTML` remplacé par JS à chaque étape. -> Justification: Contexte textuel pour le changement visuel.
+    - Info: LCR vs HS -> Goal: Comparer -> Viz: Texte HTML statique. -> Justification: Conclusion du rapport source.
+    - Pas de Chart.js/Plotly : non pertinent pour ce processus.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .node {
+            transition: background-color 0.5s ease-in-out, border-color 0.5s ease-in-out, transform 0.3s ease;
+            z-index: 10;
+        }
+        .status-actif {
+            background-color: #bfdbfe; /* blue-200 */
+            border-color: #3b82f6; /* blue-500 */
+        }
+        .status-passif {
+            background-color: #d1d5db; /* gray-300 */
+            border-color: #6b7280; /* gray-500 */
+            color: #4b5563; /* gray-600 */
+        }
+        .status-leader {
+            background-color: #fde047; /* yellow-300 */
+            border-color: #eab308; /* yellow-500 */
+            color: #a16207; /* yellow-700 */
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(253, 224, 71, 0.7);
+        }
+        .node-ring-container {
+            height: 320px; 
+        }
+        @media (min-width: 768px) {
+            .node-ring-container {
+                height: 384px;
+            }
+        }
+        .token {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-color: #fca5a5; /* red-300 */
+            border: 2px solid #dc2626; /* red-600 */
+            color: #991b1b; /* red-800 */
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            z-index: 5;
+            transition: all 0.5s ease-in-out;
+        }
+        
+        /* Positions des jetons SUR LE LIEN ENTRANT vers le nœud */
+        .pos-A { top: 20%; left: 20%; } /* Venant de E */
+        .pos-B { top: 20%; right: 20%; } /* Venant de A */
+        .pos-C { bottom: 20%; right: 30%; } /* Venant de B */
+        .pos-D { bottom: 0%; left: 40%; } /* Venant de C */
+        .pos-E { bottom: 20%; left: 30%; } /* Venant de D */
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800 min-h-screen p-4 md:p-8">
+    <div class="max-w-6xl mx-auto">
+
+        <header class="text-center mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-stone-900">Visualiseur : Algorithme LCR</h1>
+            <p class="text-lg text-stone-600 mt-2">Simulation de l'élection d'un leader par envoi de jetons.</p>
+        </header>
+
+        <main class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+            <div class="lg:col-span-1 bg-white p-6 rounded-xl shadow-lg border border-stone-200">
+                <h2 class="text-2xl font-semibold mb-4 text-stone-900">Règles du jeu</h2>
+                <p class="mb-4 text-stone-700">Chaque nœud envoie son ID. Quand un nœud reçoit un jeton :</p>
+                <ul class="space-y-3">
+                    <li class="p-3 bg-red-50 border-l-4 border-red-400 rounded-r-lg">
+                        <strong class="text-red-700">Règle 1 (Relais)</strong>
+                        <p class="text-sm text-red-600">ID Reçu > Son ID : Il est "capturé" (passif) et **retransmet** le jeton.</p>
+                    </li>
+                    <li class="p-3 bg-blue-50 border-l-4 border-blue-400 rounded-r-lg">
+                        <strong class="text-blue-700">Règle 2 (Absorbé)</strong>
+                        <p class="text-sm text-blue-600">ID Reçu < Son ID : Il "l'absorbe" (détruit) et reste "actif" (candidat).</p>
+                    </li>
+                    <li class="p-3 bg-yellow-50 border-l-4 border-yellow-400 rounded-r-lg">
+                        <strong class="text-yellow-700">Règle 3 (Élu)</strong>
+                        <p class="text-sm text-yellow-600">ID Reçu == Son ID : Il reçoit son propre jeton. Il est **LEADER**.</p>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="lg:col-span-2 bg-white p-6 rounded-xl shadow-lg border border-stone-200">
+                <h2 class="text-2xl font-semibold mb-2 text-stone-900">Simulation Interactive</h2>
+                <p class="mb-4 text-stone-700">Tous les nœuds envoient leur ID (jeton rouge). Cliquez sur 'Étape Suivante' pour voir les jetons avancer et être traités.</p>
+
+                <div class="flex justify-center items-center space-x-4 mb-6 p-4 bg-stone-100 rounded-lg">
+                    <button id="next-step-btn" class="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-all">
+                        Démarrer (Étape 1)
+                    </button>
+                    <button id="reset-btn" class="px-6 py-3 bg-stone-500 text-white font-semibold rounded-lg shadow-md hover:bg-stone-600 focus:outline-none focus:ring-2 focus:ring-stone-500 focus:ring-opacity-50 transition-all">
+                        Réinitialiser
+                    </button>
+                </div>
+
+                <div class="relative w-full node-ring-container flex items-center justify-center mb-6">
+                    <!-- Nœuds -->
+                    <div class="absolute w-full h-full">
+                        <div id="node-A" class="node absolute top-0 left-1/2 -translate-x-1/2 w-24 h-24 md:w-28 md:h-28 rounded-full border-4 flex flex-col items-center justify-center shadow-md">
+                            <span class="font-bold text-xl">A</span>
+                            <span class="text-lg">(ID=5)</span>
+                            <span class="status-text text-sm font-medium mt-1"></span>
+                        </div>
+                        <div id="node-B" class="node absolute top-[calc(50%-2.5rem)] md:top-[calc(50%-3rem)] right-0 md:right-8 w-24 h-24 md:w-28 md:h-28 rounded-full border-4 flex flex-col items-center justify-center shadow-md">
+                            <span class="font-bold text-xl">B</span>
+                            <span class="text-lg">(ID=2)</span>
+                            <span class="status-text text-sm font-medium mt-1"></span>
+                        </div>
+                        <div id="node-C" class="node absolute bottom-0 md:bottom-4 right-1/4 md:right-1/3 w-24 h-24 md:w-28 md:h-28 rounded-full border-4 flex flex-col items-center justify-center shadow-md">
+                            <span class="font-bold text-xl">C</span>
+                            <span class="text-lg">(ID=8)</span>
+                            <span class="status-text text-sm font-medium mt-1"></span>
+                        </div>
+                        <div id="node-D" class="node absolute bottom-0 md:bottom-4 left-1/4 md:left-1/3 w-24 h-24 md:w-28 md:h-28 rounded-full border-4 flex flex-col items-center justify-center shadow-md">
+                            <span class="font-bold text-xl">D</span>
+                            <span class="text-lg">(ID=1)</span>
+                            <span class="status-text text-sm font-medium mt-1"></span>
+                        </div>
+                        <div id="node-E" class="node absolute top-[calc(50%-2.5rem)] md:top-[calc(50%-3rem)] left-0 md:left-8 w-24 h-24 md:w-28 md:h-28 rounded-full border-4 flex flex-col items-center justify-center shadow-md">
+                            <span class="font-bold text-xl">E</span>
+                            <span class="text-lg">(ID=6)</span>
+                            <span class="status-text text-sm font-medium mt-1"></span>
+                        </div>
+                        
+                        <!-- Jetons -->
+                        <div id="token-5" class="token">5</div>
+                        <div id="token-2" class="token">2</div>
+                        <div id="token-8" class="token">8</div>
+                        <div id="token-1" class="token">1</div>
+                        <div id="token-6" class="token">6</div>
+                    </div>
+                </div>
+
+                <div id="log-container" class="mt-8 pt-6 border-t border-stone-200">
+                    <h3 class="text-xl font-semibold mb-3 text-stone-900">Journal des Événements</h3>
+                    <div id="log-panel" class="p-4 bg-stone-100 rounded-lg min-h-[150px] text-stone-700 shadow-inner">
+                        <p>L'anneau est prêt. Tous les nœuds sont "actifs". Cliquez sur "Démarrer" pour que chaque nœud envoie son jeton à son voisin.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-3 bg-white p-6 rounded-xl shadow-lg border border-stone-200">
+                <h2 class="text-2xl font-semibold mb-4 text-stone-900">LCR vs Hirschberg–Sinclair</h2>
+                <div id="conclusion-panel" class="space-y-2 text-stone-700">
+                    <p><strong>Simplicité :</strong> LCR est plus simple. Il n'y a pas de "phases". On envoie juste son ID et on attend.</p>
+                    <p><strong>Nombre de messages :</strong> LCR est moins efficace en termes de messages. Dans le pire des cas (si les ID sont triés par ordre croissant sur l'anneau), il peut utiliser $O(N^2)$ messages. Hirschberg–Sinclair est optimisé pour ne jamais dépasser $O(N \log N)$ messages.</p>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        const initialNodes = [
+            { id: 'A', uid: 5, status: 'actif' },
+            { id: 'B', uid: 2, status: 'actif' },
+            { id: 'C', uid: 8, status: 'actif' },
+            { id: 'D', uid: 1, status: 'actif' },
+            { id: 'E', uid: 6, status: 'actif' }
+        ];
+
+        const initialTokens = [
+            { uid: 5, sender: 'A', location: 'A', active: true },
+            { uid: 2, sender: 'B', location: 'B', active: true },
+            { uid: 8, sender: 'C', location: 'C', active: true },
+            { uid: 1, sender: 'D', location: 'D', active: true },
+            { uid: 6, sender: 'E', location: 'E', active: true }
+        ];
+
+        let nodes = JSON.parse(JSON.stringify(initialNodes));
+        let tokens = JSON.parse(JSON.stringify(initialTokens));
+        let step = -1;
+
+        const nextStepBtn = document.getElementById('next-step-btn');
+        const resetBtn = document.getElementById('reset-btn');
+        const logPanel = document.getElementById('log-panel');
+        
+        const nodeElements = {
+            'A': document.getElementById('node-A'),
+            'B': document.getElementById('node-B'),
+            'C': document.getElementById('node-C'),
+            'D': document.getElementById('node-D'),
+            'E': document.getElementById('node-E')
+        };
+
+        const tokenElements = {
+            5: document.getElementById('token-5'),
+            2: document.getElementById('token-2'),
+            8: document.getElementById('token-8'),
+            1: document.getElementById('token-1'),
+            6: document.getElementById('token-6')
+        };
+        
+        const nodeMap = { 'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4 };
+        const nodeRing = ['A', 'B', 'C', 'D', 'E'];
+        
+        const stepLogs = [
+            {
+                title: 'Étape 1 : Premières Réceptions',
+                buttonText: 'Étape Suivante (2)',
+                log: [
+                    "<code>B(2)</code> reçoit <code>[5]</code> de A. $5 > 2$. <strong>B est capturé (passif)</strong>. Le jeton [5] est retransmis.",
+                    "<code>C(8)</code> reçoit <code>[2]</code> de B. $2 < 8$. <strong>Le jeton [2] est absorbé.</strong>",
+                    "<code>D(1)</code> reçoit <code>[8]</code> de C. $8 > 1$. <strong>D est capturé (passif)</strong>. Le jeton [8] est retransmis.",
+                    "<code>E(6)</code> reçoit <code>[1]</code> de D. $1 < 6$. <strong>Le jeton [1] est absorbé.</strong>",
+                    "<code>A(5)</code> reçoit <code>[6]</code> de E. $6 > 5$. <strong>A est capturé (passif)</strong>. Le jeton [6] est retransmis."
+                ],
+                stateChange: () => {
+                    nodes[nodeMap['B']].status = 'passif';
+                    nodes[nodeMap['D']].status = 'passif';
+                    nodes[nodeMap['A']].status = 'passif';
+                    
+                    tokens.find(t => t.uid === 2).active = false;
+                    tokens.find(t => t.uid === 1).active = false;
+                    
+                    tokens.find(t => t.uid === 5).location = 'C';
+                    tokens.find(t => t.uid === 8).location = 'E';
+                    tokens.find(t => t.uid === 6).location = 'B';
+                }
+            },
+            {
+                title: 'Étape 2 : Second Round',
+                buttonText: 'Étape Suivante (3)',
+                log: [
+                    "<code>C(8)</code> reçoit <code>[5]</code> (de B). $5 < 8$. <strong>Le jeton [5] est absorbé.</strong>",
+                    "<code>E(6)</code> reçoit <code>[8]</code> (de D). $8 > 6$. <strong>E est capturé (passif)</strong>. Le jeton [8] est retransmis.",
+                    "<code>B(2)</code> (passif) reçoit <code>[6]</code> (de A). Il retransmet le jeton [6]."
+                ],
+                stateChange: () => {
+                    nodes[nodeMap['E']].status = 'passif';
+                    
+                    tokens.find(t => t.uid === 5).active = false;
+
+                    tokens.find(t => t.uid === 8).location = 'A';
+                    tokens.find(t => t.uid === 6).location = 'C';
+                }
+            },
+            {
+                title: 'Étape 3 : Troisième Round',
+                buttonText: 'Étape Suivante (4)',
+                log: [
+                    "<code>A(5)</code> (passif) reçoit <code>[8]</code> (de E). Il retransmet le jeton [8].",
+                    "<code>C(8)</code> reçoit <code>[6]</code> (de B). $6 < 8$. <strong>Le jeton [6] est absorbé.</strong>",
+                    "Seul le jeton [8] survit."
+                ],
+                stateChange: () => {
+                    tokens.find(t => t.uid === 6).active = false;
+                    tokens.find(t => t.uid === 8).location = 'B';
+                }
+            },
+            {
+                title: 'Étape 4 : Quatrième Round',
+                buttonText: 'Étape Suivante (5)',
+                log: [
+                    "<code>B(2)</code> (passif) reçoit <code>[8]</code> (de A). Il retransmet le jeton [8]."
+                ],
+                stateChange: () => {
+                    tokens.find(t => t.uid === 8).location = 'C';
+                }
+            },
+            {
+                title: 'Étape 5 : ÉLECTION',
+                buttonText: 'Annonce Finale',
+                log: [
+                    "<code>C(8)</code> reçoit <code>[8]</code> (de B).",
+                    "L'ID reçu (8) est **égal** à son propre ID (8).",
+                    "<strong class='text-lg text-yellow-700'>C se déclare LEADER !</strong>",
+                    "Le dernier jeton est absorbé."
+                ],
+                stateChange: () => {
+                    nodes[nodeMap['C']].status = 'leader';
+                    tokens.find(t => t.uid === 8).active = false;
+                }
+            },
+            {
+                title: 'Étape 6 : Annonce du Leader',
+                buttonText: 'Terminé (Réinitialiser)',
+                log: [
+                    "<code>C(8)</code>, maintenant leader, envoie un message <code>[LEADER: C(8)]</code> qui fait un tour complet de l'anneau.",
+                    "Tous les autres nœuds reçoivent ce message et notent que C est le leader.",
+                    "<strong>L'algorithme est terminé.</strong>"
+                ],
+                stateChange: () => {}
+            }
+        ];
+
+        function updateRingUI() {
+            nodes.forEach(node => {
+                const el = nodeElements[node.id];
+                const statusTextEl = el.querySelector('.status-text');
+                
+                el.classList.remove('status-actif', 'status-passif', 'status-leader');
+                
+                if (node.status === 'actif') {
+                    el.classList.add('status-actif');
+                    statusTextEl.textContent = 'Actif';
+                } else if (node.status === 'passif') {
+                    el.classList.add('status-passif');
+                    statusTextEl.textContent = 'Passif';
+                } else if (node.status === 'leader') {
+                    el.classList.add('status-leader');
+                    statusTextEl.textContent = 'LEADER';
+                }
+            });
+        }
+
+        function updateTokensUI() {
+            tokens.forEach(token => {
+                const el = tokenElements[token.uid];
+                
+                el.classList.remove('pos-A', 'pos-B', 'pos-C', 'pos-D', 'pos-E', 'hidden');
+                
+                if (token.active) {
+                    el.classList.add('pos-' + token.location);
+                } else {
+                    el.classList.add('hidden');
+                }
+            });
+        }
+
+        function updateLog(phaseData) {
+            logPanel.innerHTML = `
+                <h4 class="font-semibold text-lg mb-2 text-stone-800">${phaseData.title}</h4>
+                <ul class="list-disc list-inside space-y-1">
+                    ${phaseData.log.map(item => `<li>${item}</li>`).join('')}
+                </ul>
+            `;
+        }
+
+        function nextStep() {
+            step++;
+            if (step >= stepLogs.length) {
+                reset();
+                return;
+            }
+
+            const currentStepData = stepLogs[step];
+            
+            currentStepData.stateChange();
+            updateRingUI();
+            updateTokensUI();
+            updateLog(currentStepData);
+            
+            nextStepBtn.textContent = currentStepData.buttonText;
+
+            if (step === stepLogs.length - 1) {
+                nextStepBtn.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+                nextStepBtn.classList.add('bg-yellow-500', 'hover:bg-yellow-600');
+            }
+        }
+
+        function reset() {
+            nodes = JSON.parse(JSON.stringify(initialNodes));
+            tokens = JSON.parse(JSON.stringify(initialTokens));
+            step = -1;
+            
+            updateRingUI();
+            
+            /* Position initiale des jetons (sur leur nœud de départ) */
+            tokens.forEach(token => {
+                const el = tokenElements[token.uid];
+                el.classList.remove('pos-A', 'pos-B', 'pos-C', 'pos-D', 'pos-E', 'hidden');
+                el.classList.add('pos-' + nodeRing[(nodeMap[token.sender] + 1) % 5]);
+            });
+
+            logPanel.innerHTML = '<p>L\'anneau a été réinitialisé. Tous les nœuds sont "actifs". Cliquez sur "Démarrer" pour l\'Étape 1.</p>';
+            nextStepBtn.textContent = 'Démarrer (Étape 1)';
+            nextStepBtn.classList.remove('bg-yellow-500', 'hover:bg-yellow-600');
+            nextStepBtn.classList.add('bg-blue-600', 'hover:bg-blue-700');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            reset();
+            nextStepBtn.addEventListener('click', nextStep);
+            resetBtn.addEventListener('click', reset);
+        });
+
+    </script>
+</body>
+</html>

@@ -89,36 +89,6 @@
   --primary-900: oklch(92.71% 0.140 43.49);
   --primary-950: oklch(98% 0.120 43.49); 
 
-  /* * SECONDARY (Teal)
-   * Use for: Secondary buttons, tags, info-boxes.
-  */
-  /* --secondary-50:  oklch(14.00% 0.1 178.05);
-  --secondary-100: oklch(19.53% 0.1 178.05);
-  --secondary-200: oklch(28.74% 0.1 178.05);
-  --secondary-300: oklch(38.65% 0.1 178.05);
-  --secondary-400: oklch(50.06% 0.1 178.05);
-  --secondary-500: oklch(61.54% 0.1 178.05); 
-  --secondary-600: oklch(70.93% 0.1 178.05);
-  --secondary-700: oklch(78.22% 0.1 178.05);
-  --secondary-800: oklch(84.34% 0.1 178.05);
-  --secondary-900: oklch(92.27% 0.1 178.05);
-  --secondary-950: oklch(98.01% 0.1 178.05); */
-
-  /* * ACCENT (Violet)
-   * Use for: Badges, highlights, unread notifications.
-  */
-  /* --accent-50:  oklch(15.15% 0.15 265);
-  --accent-100: oklch(22.18% 0.15 265);
-  --accent-200: oklch(28.74% 0.15 265);
-  --accent-300: oklch(38.65% 0.15 265);
-  --accent-400: oklch(50.06% 0.15 265);
-  --accent-500: oklch(61.54% 0.15 265);
-  --accent-600: oklch(70.93% 0.15 265);
-  --accent-700: oklch(78.22% 0.15 265);
-  --accent-800: oklch(84.34% 0.15 265);
-  --accent-900: oklch(92.27% 0.15 265);
-  --accent-950: oklch(98.01% 0.15 265); */
-
   /* SECONDARY (yellow/gold) */
   --secondary-50:  oklch(14.00% 0.2 315);
   --secondary-100: oklch(19.53% 0.2 315);
@@ -174,32 +144,6 @@
   --primary-900: oklch(35.11% 0.124 34.64);
   --primary-950: oklch(17.13% 0.070 29.22);
 
-  /* SECONDARY (Teal) */
-  /* --secondary-50:  oklch(98.01% 0.1 178.05);
-  --secondary-100: oklch(92.27% 0.1 178.05);
-  --secondary-200: oklch(84.34% 0.1 178.05);
-  --secondary-300: oklch(78.22% 0.1 178.05);
-  --secondary-400: oklch(70.93% 0.1 178.05);
-  --secondary-500: oklch(61.54% 0.1 178.05);
-  --secondary-600: oklch(50.06% 0.1 178.05);
-  --secondary-700: oklch(38.65% 0.1 178.05);
-  --secondary-800: oklch(28.74% 0.1 178.05);
-  --secondary-900: oklch(19.53% 0.1 178.05);
-  --secondary-950: oklch(14.00% 0.1 178.05); */
-
-  /* ACCENT (Violet) */
-  /* --accent-50:  oklch(98.01% 0.15 265);
-  --accent-100: oklch(92.27% 0.15 265);
-  --accent-200: oklch(84.34% 0.15 265);
-  --accent-300: oklch(78.22% 0.15 265);
-  --accent-400: oklch(70.93% 0.15 265);
-  --accent-500: oklch(61.54% 0.15 265);
-  --accent-600: oklch(50.06% 0.15 265);
-  --accent-700: oklch(38.65% 0.15 265);
-  --accent-800: oklch(28.74% 0.15 265);
-  --accent-900: oklch(22.18% 0.15 265);
-  --accent-950: oklch(15.15% 0.15 265); */
-
   /* SECONDARY (yellow/gold) */
   --secondary-50:  oklch(98.01% 0.2 315);
   --secondary-100: oklch(92.27% 0.2 315);
@@ -232,18 +176,21 @@ html, body {
   overflow-x: hidden;
   font-family: var(--font-sans), system-ui, sans-serif;
 }
+
 h1, h2, h3 { 
   font-family: var(--font-serif), serif;
 }
 
+
+
 @layer base {
 
   body {
-    @apply text-neutral-100 bg-neutral-950;
+    @apply text-neutral-100 bg-neutral-950 ;
   }
 
   section {
-    @apply pb-60 px-15;
+    @apply pt-40 pb-60 px-25;
   }
   /* section:nth-child(odd) {
     @apply flex justify-end;
@@ -276,7 +223,7 @@ h1, h2, h3 {
   }
 
   .button-hover-secondary {
-    @apply px-3 py-1.5 text-sm sm:px-7 sm:py-4 bg-transparent text-secondary-500 border-2 border-secondary-500;
+    @apply px-3 py-1.5 text-sm sm:px-7 sm:py-4 bg-transparent text-secondary-300 border-2 border-secondary-400;
   }
   .button-hover-secondary:hover {
     @apply shadow-lg bg-secondary-950;
@@ -296,5 +243,25 @@ h1, h2, h3 {
 
   .flex-center {
     @apply flex justify-center items-center;
+  }
+}
+
+
+@keyframes aurora {
+  0%, 100% {
+    transform: translateX(20%) translateY(10%) scale(1);
+    opacity: 0.5;
+  }
+  25% {
+    transform: translateX(-15%) translateY(40%) scale(0.7);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateX(25%) translateY(-30%) scale(1.2);
+    opacity: 0.5;
+  }
+  75% {
+    transform: translateX(10%) translateY(-20%) scale(0.8);
+    opacity: 0.7;
   }
 }

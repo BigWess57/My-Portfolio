@@ -1,13 +1,11 @@
 import Intro from "@/components/portfolio/Intro";
-import About from "@/components/portfolio/About";
-import WorkExperience from "@/components/portfolio/WorkExperience";
+import BeginningSection from "@/components/portfolio/BeginningSection";
 import KeyExperiences from "@/components/portfolio/KeyExperiences";
 import Skills from "@/components/portfolio/Skills";
 import Projects from "@/components/portfolio/Projects";
 import Vision from "@/components/portfolio/Vision";
 import DarkModeToggle from "@/components/miscelaneous/DarkModeToggle";
 import Education from "@/components/portfolio/Education";
-
 
   
 export default function Home() {
@@ -17,8 +15,7 @@ export default function Home() {
         <DarkModeToggle />
       </div>
       <Intro />
-      <About />
-      <WorkExperience />
+      <BeginningSection/>
       <Projects />
       <Skills />
       <KeyExperiences />
