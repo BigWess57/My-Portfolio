@@ -89,7 +89,7 @@
   --primary-900: oklch(92.71% 0.140 43.49);
   --primary-950: oklch(98% 0.120 43.49); 
 
-  /* SECONDARY (yellow/gold) */
+  /* SECONDARY */
   --secondary-50:  oklch(14.00% 0.2 315);
   --secondary-100: oklch(19.53% 0.2 315);
   --secondary-200: oklch(28.74% 0.2 315);
@@ -102,7 +102,7 @@
   --secondary-900: oklch(92.27% 0.2 315);
   --secondary-950: oklch(98.01% 0.2 315);
 
-  /* ACCENT (Blue) */
+  /* ACCENT */
   --accent-50:  oklch(15.15% 0.2 225);
   --accent-100: oklch(22.18% 0.2 225);
   --accent-200: oklch(28.74% 0.2 225);
@@ -144,7 +144,7 @@
   --primary-900: oklch(35.11% 0.124 34.64);
   --primary-950: oklch(17.13% 0.070 29.22);
 
-  /* SECONDARY (yellow/gold) */
+  /* SECONDARY */
   --secondary-50:  oklch(98.01% 0.2 315);
   --secondary-100: oklch(92.27% 0.2 315);
   --secondary-200: oklch(84.34% 0.2 315);
@@ -157,7 +157,7 @@
   --secondary-900: oklch(19.53% 0.2 315);
   --secondary-950: oklch(14.00% 0.2 315);
 
-  /* ACCENT (Blue) */
+  /* ACCENT */
   --accent-50:  oklch(98.01% 0.2 225);
   --accent-100: oklch(92.27% 0.2 225);
   --accent-200: oklch(84.34% 0.2 225);
@@ -209,7 +209,7 @@ h1, h2, h3 {
 
 @layer utilities {
   .card-hover {
-    @apply bg-neutral-800 transition-transform duration-300 ease-in-out transform border border-accent-800/30 shadow-md;
+    @apply bg-neutral-800 transition-transform duration-300 ease-in-out transform border-0 dark:border dark:border-accent-800/30 shadow-md;
   }
   .card-hover:hover {
     @apply scale-[1.04] shadow-xl;
@@ -227,6 +227,13 @@ h1, h2, h3 {
   }
   .button-hover-secondary:hover {
     @apply shadow-lg bg-secondary-950;
+  }
+
+  .button-hover-accent {
+    @apply px-3 py-1.5 text-sm sm:px-7 sm:py-4 bg-accent-500 text-accent-950 border-2 border-accent-500;
+  }
+  .button-hover-accent:hover {
+    @apply shadow-lg bg-transparent text-accent-500;
   }
 
   .badge-skills {

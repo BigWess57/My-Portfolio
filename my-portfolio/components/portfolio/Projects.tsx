@@ -217,7 +217,7 @@ const Projects = () => {
           <ScrollAreaRadix.Root onWheel={onWheel} className="overflow-x-hidden">
             <ScrollAreaRadix.Viewport ref={viewportRef} className="overflow-x-hidden">
             <div 
-              className="flex w-max space-x-16 ml-20 p-8"
+              className="flex w-max space-x-16 ml-20 p-15"
             >
               {projects.map((project, index) => (
               <Card key={index} className="card-hover max-w-xl mx-auto">
@@ -360,7 +360,7 @@ const Projects = () => {
                           <div className="w-full flex gap-4 shrink-0">
                             {project.demoLink && (
                               <a href={project.demoLink} target="_blank" rel="noopener noreferrer" className="flex-1">
-                                <Button variant="outline" className="button-hover w-full">
+                                <Button className="button-hover-accent w-full">
                                   Live Demo
                                   <ExternalLink className="w-4 h-4" />
                                 </Button>
@@ -368,7 +368,7 @@ const Projects = () => {
                             )}
                             {project.link && (
                               <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex-1">
-                                <Button variant="outline" className="button-hover w-full">
+                                <Button className="button-hover-accent w-full">
                                   View Code
                                   <ExternalLink className="w-4 h-4" />
                                 </Button>
@@ -389,8 +389,8 @@ const Projects = () => {
                         rel="noopener noreferrer" 
                         className="w-full"
                       >
-                        <Button variant="outline" className="gap-2 w-full button-hover">
-                          View Project
+                        <Button variant="outline" className="gap-2 w-full button-hover-accent">
+                          Live Demo
                           <ExternalLink className="w-4 h-4" />
                         </Button>
                       </a>}
@@ -401,7 +401,7 @@ const Projects = () => {
                         rel="noopener noreferrer" 
                         className="w-full"
                       >
-                        <Button variant="outline" className="gap-2 w-full button-hover">
+                        <Button variant="outline" className="gap-2 w-full button-hover-accent">
                           View Code
                           <ExternalLink className="w-4 h-4" />
                         </Button>

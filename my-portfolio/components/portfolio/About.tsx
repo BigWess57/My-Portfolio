@@ -48,9 +48,9 @@ const About = () => {
           }`}
       >
         
-        <div className="flex flex-col md:flex-row gap-12 md:gap-20 items-center justify-end">
+        <div className="flex flex-col lg:flex-row gap-12 md:gap-20 items-center justify-end">
           
-          <div className="w-full flex justify-end">
+          <div className="w-full flex lg:justify-end">
             {/* ** Add your Image component here **
               - 'aspect-square' or 'aspect-[3/4]' are recommended.
               - 'rounded-lg' and 'shadow-lg' add a professional touch.
@@ -62,7 +62,7 @@ const About = () => {
                 priority
               />
             */}
-            <div className="grow min-w-[300px] max-w-[500px] right-0 aspect-square bg-neutral-800 rounded-lg border-2 border-secondary-800/50 shadow-lg flex-center text-muted-foreground">
+            <div className="grow max-w-[400px] lg:min-w-[300px] lg:max-w-[500px] right-0 aspect-square bg-neutral-800 rounded-lg border-2 border-secondary-800/50 shadow-lg flex-center text-muted-foreground">
               Your Photo Here
             </div>
           </div>
