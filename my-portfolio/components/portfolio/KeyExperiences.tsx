@@ -2,15 +2,27 @@
 import { useEffect, useRef, useState } from "react";
 import { Card } from "@/components/ui/card";
 
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 
 import IMDSLogo from "@/public/icons/IMDS-6-300x163.jpg";
 import DOGALogo from "@/public/icons/doga.jpg";
 import BabylissLogo from "@/public/icons/babyliss-logo.png";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import SnapScrollCarousel from "../miscelaneous/SnapScrollCarousel";
 
-const experiences = [
+
+export interface Experience {
+  title: string;
+  company: string;
+  period: string;
+  logo: StaticImageData;
+  logoSize: string;
+  summary: string;
+  points: Record<string, string>; // or use a more specific type
+}
+
+
+const experiences: Experience[] = [
   {
     title: "Programmer Analyst",
     company: "IMDS Software",
@@ -58,7 +70,20 @@ const experiences = [
   },
 ];
 
-const renderExperience = (exp: any, index: number) => (
+
+// Render function for navigation buttons
+const renderNavigationButton = (exp: Experience, index: number, isCurrent: boolean) => (
+  <div className={`px-4 py-3 rounded-lg transition-all duration-300 ${
+    isCurrent 
+      ? 'bg-primary-400 text-white shadow-lg scale-[1.04]' 
+      : 'bg-neutral-700 text-neutral-300 hover:bg-neutral-600'
+  }`}>
+    <div className="font-medium text-sm">{exp.company}</div>
+    <div className="text-xs opacity-80 mt-1">{exp.period}</div>
+  </div>
+);
+
+const renderExperience = (exp: Experience, index: number) => (
   <Card key={index} className="p-8 card-carousel gap-0 ">
     <div className="">
       <h3 className="text-3xl font-semibold mb-8">{exp.title}</h3>
@@ -137,7 +162,7 @@ const KeyExperiences = () => {
         <SnapScrollCarousel
           items={experiences}
           renderItem={renderExperience}
-          // Optional: Customize classes if needed
+          renderNavigationButton={renderNavigationButton}
           containerClassName="h-[1000px] overflow-y-scroll snap-y snap-mandatory max-w-6xl scrollbar-hide px-10"
           itemClassName="flex h-[1000px] items-center justify-center snap-center"
           navigationClassName="flex flex-row lg:flex-col items-center justify-center gap-10 p-6 rounded-lg h-fit sticky top-4 min-w-[200px]"

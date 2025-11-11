@@ -3,17 +3,29 @@
 import { useEffect, useRef, useState } from "react";
 
 import { Card } from "@/components/ui/card";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 
 import AlyraLogo from "@/public/icons/alyra-logo.jpg";
 import PolytechLogo from "@/public/icons/polytech-logo.png";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import SnapScrollCarousel from "../miscelaneous/SnapScrollCarousel";
 
-const education = [
+
+export interface Education {
+  title: string;
+  school: string;
+  period: string;
+  logo: StaticImageData;
+  logoSize: string;
+  summary: string;
+  points: Record<string, string>; // or use a more specific type
+}
+
+
+const education: Education[] = [
   {
     title: "Blockchain Developer Program",
-    company: "Alyra Blockchain School",
+    school: "Alyra Blockchain School",
     period: "April 2025 - July 2025",
     logo: AlyraLogo,
     logoSize: "w-12 h-12",
@@ -28,7 +40,7 @@ const education = [
   },
   {
     title: "Electronics and Robotic Systems Engineering",
-    company: "Polytech Paris-Saclay",
+    school: "Polytech Paris-Saclay",
     period: "September 2017 - May 2022",
     logo: PolytechLogo,
     logoSize: "w-27 h-12",
@@ -43,18 +55,30 @@ const education = [
   },
 ];
 
-const renderExperience = (edu: any, index: number) => (
+// Render function for navigation buttons
+const renderNavigationButton = (edu: Education, index: number, isCurrent: boolean) => (
+  <div className={`px-4 py-3 rounded-lg transition-all duration-300 ${
+    isCurrent 
+      ? 'bg-primary-400 text-white shadow-lg scale-[1.04]' 
+      : 'bg-neutral-700 text-neutral-300 hover:bg-neutral-600'
+  }`}>
+    <div className="font-medium text-sm">{edu.school}</div>
+    <div className="text-xs opacity-80 mt-1">{edu.period}</div>
+  </div>
+);
+
+const renderExperience = (edu: Education, index: number) => (
   <Card key={index} className="p-8 card-carousel gap-0">
     <div className="">
       <h3 className="text-3xl font-semibold mb-8">{edu.title}</h3>
       <div className="text-xl text-neutral-200 font-semibold flex items-center gap-2 text-muted-foreground">
         <Image
           src={edu.logo}
-          alt={`${edu.company} logo`}
+          alt={`${edu.school} logo`}
           className={`${edu.logoSize} object-contain`}
         />
         <p>
-          <span className="text-primary-300 font-serif">{edu.company}</span> | <span className="text-neutral-400">{edu.period}</span>
+          <span className="text-primary-300 font-serif">{edu.school}</span> | <span className="text-neutral-400">{edu.period}</span>
         </p>
       </div>
     </div>
@@ -120,7 +144,7 @@ const Education = () => {
         <SnapScrollCarousel
           items={education}
           renderItem={renderExperience}
-          // Optional: Customize classes if needed
+          renderNavigationButton={renderNavigationButton}
           containerClassName="h-[1000px] overflow-y-scroll snap-y snap-mandatory max-w-6xl scrollbar-hide px-10"
           itemClassName="flex h-[1000px] items-center justify-center snap-center"
           navigationClassName="flex flex-row lg:flex-col items-center justify-center gap-10 p-6 rounded-lg h-fit sticky top-4 min-w-[200px]"
@@ -128,38 +152,7 @@ const Education = () => {
           // scrollDuration={3000}
           menuLeft={false}
         />
-        
-        {/* {education.map((edu, index) => (
-          <Card key={index} className="p-8 card-hover group gap-0">
-            <div className="">
-              <h3 className="text-3xl font-semibold mb-8">{edu.title}</h3>
-              <div className="text-xl text-neutral-200 font-semibold flex items-center gap-2 text-muted-foreground">
-                <Image
-                  src={edu.logo}
-                  alt={`${edu.company} logo`}
-                  className={`${edu.logoSize} object-contain`}
-                />
-                <p>
-                  <span className="text-primary-300 font-serif">{edu.company}</span> | <span className="text-neutral-400">{edu.period}</span>
-                </p>
-              </div>
-            </div>
 
-            <div className="flex flex-col gap-6">
-              <p className="text-lg text-neutral-200 leading-relaxed">{edu.summary}</p>
-              <ul className="text-lg text-neutral-200 leading-relaxed list-inside space-y-2">
-                {Object.entries(edu.points).map(([header, description], i) => (
-                  <li key={i} className="flex">
-                    <ArrowRight className="text-secondary-400 w-4 h-4 mr-2 mt-1 shrink-0" />
-                    <div>
-                      <strong className="text-secondary-400">{header}:</strong> {description}
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Card>
-        ))} */}
       </div>
     </section>
   );
