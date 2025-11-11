@@ -49,7 +49,7 @@ const ProjectDialogDetails = ({ project, index, openDialogId, setOpenDialogId }:
               )}
 
               <div>
-                <h4 className="font-semibold mb-2">Technologies Used:</h4>
+                <h4 className="font-semibold text-lg text-secondary-400 mb-2">Technologies Used:</h4>
                 <div className="flex flex-wrap gap-2">
                   {project.technologies?.map((tech, i) => (
                     <Badge 
@@ -67,13 +67,13 @@ const ProjectDialogDetails = ({ project, index, openDialogId, setOpenDialogId }:
               </div>
 
               <div>
-                <h4 className="font-semibold mb-2">Key Achievements:</h4>
+                <h4 className="font-semibold text-lg text-secondary-400 mb-2">Key Achievements:</h4>
                 <ul className="space-y-3 list-inside">
                   {Object.entries(project.highlights).map(([header, description], i) => (
                     <li key={i} className="flex">
                       <ArrowRight className="w-4 h-4 mr-2 mt-1 shrink-0" />
                       <div>
-                        <strong>{header}:</strong> {description}
+                        <strong className='text-secondary-200'>{header}:</strong> {description}
                       </div>
                     </li>
                   ))}
@@ -82,7 +82,7 @@ const ProjectDialogDetails = ({ project, index, openDialogId, setOpenDialogId }:
 
               {project.learned && (
                 <div>
-                  <h4 className="font-semibold mb-2">What I Learned:</h4>
+                  <h4 className="font-semibold text-lg text-secondary-400 mb-2">What I Learned:</h4>
                   <p className="italic">{project.learned}</p>
                 </div>
               )}

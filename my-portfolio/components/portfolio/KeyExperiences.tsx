@@ -8,7 +8,7 @@ import IMDSLogo from "@/public/icons/IMDS-6-300x163.jpg";
 import DOGALogo from "@/public/icons/doga.jpg";
 import BabylissLogo from "@/public/icons/babyliss-logo.png";
 import { ArrowRight, ChevronDown } from "lucide-react";
-
+import SnapScrollCarousel from "../miscelaneous/SnapScrollCarousel";
 
 const experiences = [
   {
@@ -18,11 +18,11 @@ const experiences = [
     logo: IMDSLogo,
     logoSize: "w-15 h-10",
     summary:
-      "My time at IMDS Software was a period of intense professional growth, where I contributed to high-value software solutions and solidified my foundational skills as a developer. I thrived in both maintaining critical systems and building customer-oriented products",
+      "My time at IMDS Software was a period of intense professional growth. I worked on high-impact projects that strengthened my technical foundation and taught me how to balance precision with practicality.",
     points: {
       "Full-Stack Proficiency & Adaptability": "I successfully worked across the entire technology stack, from back-end bug fixing and logic on the SRPI project to front-end feature development and user interface design on the Ad'doc Dashboard. This has made me a versatile and adaptable developer.",
-      "Thriving Under Pressure in Production Environments": "Maintaining the government-used SRPI system taught me how to diagnose, prioritize, and resolve issues in a live environment where stability is paramount. I learned to remain structured and calm under tight deadlines.",
-      "From Code to Customer: The Importance of Communication": "While developing the Ad'doc Dashboard, I learned that technical skill must be paired with clear communication. Direct interaction with end-users taught me to listen actively and translate business needs into technical specifications, ensuring the final product truly delivered value.",
+      "Thriving Under Pressure in Production Environments": "Maintaining the government-used SRPI system taught me to stay calm under pressure and solve problems quickly in live environments.",
+      "From Code to Customer: The Importance of Communication": "Working directly with end-users on Ad'doc showed me that great code isn't enough — clear communication and understanding real needs are what make a product truly valuable",
       "End-to-End Product Understanding": "I have experience across the entire software lifecycle—from maintaining and improving a mature product (SRPI) to developing and launching a new tool for internal use (Ad'doc Dashboard). This gives me a practical understanding of what it takes for a product to succeed.",
     },
   },
@@ -48,9 +48,9 @@ const experiences = [
     logo: BabylissLogo,
     logoSize: "w-25 h-10",
     summary:
-      "Developed image-processing tools to automate product testing, enhancing efficiency and precision in the test lab:",
+      "Developed image-processing tools — still in use by engineers — to automate product testing, enhancing efficiency and precision in the test lab:",
     points: {
-      "Automated Electric Clipper Quality Assessment": "Created a system to evaluate electric clipper cutting quality — still in use by engineers.",
+      "Automated Electric Clipper Quality Assessment": "Created a system to evaluate electric clipper cutting quality",
       "Hair Curler Performance Analysis System": "Developed a tool to assess hair curler performance using image processing.",
       "Infrared Thermal Distribution Evaluation": "Built a solution to evaluate hair straightener temperature distribution from infrared images.",
       "End-to-End Tool Packaging & Deployment": "Packaged each tool as a MATLAB interface (EXE), strengthening skills in automation and experimental design.",
@@ -58,12 +58,44 @@ const experiences = [
   },
 ];
 
+const renderExperience = (exp: any, index: number) => (
+  <Card key={index} className="p-8 card-carousel gap-0 ">
+    <div className="">
+      <h3 className="text-3xl font-semibold mb-8">{exp.title}</h3>
+      <div className="flex text-xl text-neutral-200 font-semibold items-center gap-2 text-muted-foreground mb-3">
+        <Image
+          src={exp.logo}
+          alt={`${exp.company} logo`}
+          className={`${exp.logoSize} object-contain`}
+        />
+        <p>
+          <span className="text-primary-300 font-serif">{exp.company}</span> | <span className="text-neutral-400">{exp.period}</span>
+        </p>
+      </div>
+    </div>
+    <div className="flex flex-col gap-6">
+      <p className="text-lg text-neutral-200 leading-relaxed">{exp.summary}</p>
+      <ul className="text-lg text-neutral-200 leading-relaxed list-inside space-y-2">
+        {Object.entries(exp.points).map(([header, description], i) => (
+          <li key={i} className="flex">
+            <ArrowRight className="text-secondary-400 w-4 h-4 mr-2 mt-1 shrink-0" />
+            <div>
+              <strong className="text-secondary-400">{header}:</strong> {description as string}
+            </div>
+          </li>
+        ))}
+      </ul> 
+    </div>
+  </Card> 
+)
+
 
 const KeyExperiences = () => {
-
+  
   const divRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
+  // Set up Intersection Observer to manage entry on view range
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -87,11 +119,12 @@ const KeyExperiences = () => {
     };
   }, []);
 
+
   return (
     <section id="key-experiences" className="section-to-right">
       <div 
         ref={divRef} 
-        className={`flex flex-col gap-5 container max-w-4xl transition-all duration-600 ease-out ${
+        className={`flex flex-col gap-5 container max-w-6xl transition-all duration-600 ease-out ${
           isVisible 
             ? "opacity-100 translate-x-0" 
             : "opacity-0 translate-x-32"
@@ -101,61 +134,23 @@ const KeyExperiences = () => {
           My Key Experiences
         </h2>
 
-        {experiences.map((exp, index) => (
-          <Card key={index} className="p-8 card-hover group gap-0">
-            <div className="">
-              <h3 className="text-3xl font-semibold mb-8">{exp.title}</h3>
-              <div className="flex text-xl text-neutral-200 font-semibold items-center gap-2 text-muted-foreground">
-                <Image
-                  src={exp.logo}
-                  alt={`${exp.company} logo`}
-                  className={`${exp.logoSize} object-contain`}
-                />
-                <p>
-                  <span className="text-primary-300 font-serif">{exp.company}</span> | <span className="text-neutral-400">{exp.period}</span>
-                </p>
-              </div>
-            </div>
-            
-            <div className="
-              flex justify-center gap-1 text-secondary-500
-              transition-all duration-300 ease-in-out motion-safe:animate-bounce
-              group-hover:opacity-0 group-hover:max-h-0 group-hover:invisible mt-6
-              max-h-20 visible 
-            ">
-              <ChevronDown className="w-5 h-5 transition-transform duration-300 group-hover:-rotate-180" />
-              <span className="text-sm font-semibold tracking-wider">See Experience</span>
-              {/* This icon flips on hover as it fades out */}
-              <ChevronDown className="w-5 h-5 transition-transform duration-300 group-hover:-rotate-180" />
-            </div>
+        <SnapScrollCarousel
+          items={experiences}
+          renderItem={renderExperience}
+          // Optional: Customize classes if needed
+          containerClassName="h-[1000px] overflow-y-scroll snap-y snap-mandatory max-w-6xl scrollbar-hide px-10"
+          itemClassName="flex h-[1000px] items-center justify-center snap-center"
+          navigationClassName="flex flex-row lg:flex-col items-center justify-center gap-10 p-6 rounded-lg h-fit sticky top-4 min-w-[200px]"
+          scaleFactor={1.1} // 8% bigger for current item
+          // scrollDuration={3000}
+          menuLeft={true}
+        />
 
-            <div 
-              className="
-                overflow-hidden max-h-0 opacity-0 
-                group-hover:max-h-[1000px] group-hover:opacity-100 
-                transition-all duration-500 ease-out
-              "
-            >
-              {/* This inner div maintains the spacing between the summary and the points list */}
-              <div className="flex flex-col gap-6">
-                <p className="text-lg text-neutral-200 leading-relaxed">{exp.summary}</p>
-                <ul className="text-lg text-neutral-200 leading-relaxed list-inside space-y-2">
-                  {Object.entries(exp.points).map(([header, description], i) => (
-                    <li key={i} className="flex">
-                      <ArrowRight className="text-secondary-400 w-4 h-4 mr-2 mt-1 shrink-0" />
-                      <div>
-                        <strong className="text-secondary-400">{header}:</strong> {description}
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </Card>
-        ))}
       </div>
     </section>
   );
 };
 
 export default KeyExperiences;
+
+

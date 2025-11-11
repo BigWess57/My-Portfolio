@@ -52,11 +52,11 @@ const WorkExperience = () => {
             </p>
             
             {/* Scannable List */}
-            <ul className="text-lg text-neutral-200 leading-relaxed list-inside space-y-3">
+            <ul className="text-lg text-neutral-300 leading-relaxed list-inside space-y-3">
               <li className="flex">
                 <ArrowRight className="text-secondary-400 w-4 h-4 mr-2 mt-1.5 shrink-0" />
                 <div>
-                  At <strong className="text-secondary-300">IMDS Software</strong> in Montreal, I developed software for license plate recognition, production monitoring, and document management.
+                  At IMDS Software in Montreal, I developed software for <strong className="text-secondary-300">license plate recognition, production monitoring, and document management</strong>.
                 </div>
               </li>
               <li className="flex">
@@ -68,7 +68,7 @@ const WorkExperience = () => {
               <li className="flex">
                 <ArrowRight className="text-secondary-400 w-4 h-4 mr-2 mt-1.5 shrink-0" />
                 <div>
-                  Today, I’m applying that experience to <strong className="text-secondary-300">Web3 development</strong> — creating decentralized applications that combine solid engineering with innovative blockchain technologies.
+                  Today, I’m applying that experience to <strong className="text-secondary-300">Web3 development</strong> — creating decentralized applications that combine <strong className="text-secondary-300">solid engineering with innovative blockchain technologies</strong>.
                 </div>
               </li>
             </ul>

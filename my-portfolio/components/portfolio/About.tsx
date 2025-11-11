@@ -73,10 +73,10 @@ const About = () => {
             <Card className="p-8 card-hover border-accent-800/50">
               <div className="space-y-4 text-xl leading-relaxed">
                 <p>
-                  Hi I&apos;m <strong className="text-primary-300">Igor</strong>, a full-stack Web3 developer. My background isn&apos;t just in web; it&apos;s forged in <strong className="text-secondary-300">embedded systems and software engineering</strong>. This taught me to value precision, reliability, and robust, systems-level thinking.
+                  Hi I&apos;m <strong className="text-primary-300">Igor</strong> — a Full-stack Web3 developer with roots in <strong className="text-secondary-300">embedded systems and software engineering</strong>. Working close to the hardware taught me to care about every detail and build things that are reliable from the inside out.
                 </p>
                 <p>
-                  I&apos;m passionate about applying that engineering discipline to the blockchain. I see Web3 as a new frontier for building systems based on transparency and user ownership. My goal is to create decentralized applications that are not just innovative, but <strong className="text-secondary-300">precise, purposeful, and impactful</strong>.
+                  I&apos;m passionate about bringing that same rigor into blockchain development. I see Web3 as a space where transparency and true digital ownership can reshape how we build online — and I want to be part of that change by creating applications that are <strong className="text-secondary-300">precise, purposeful, and built to last</strong>.
                 </p>
               </div>
             </Card>

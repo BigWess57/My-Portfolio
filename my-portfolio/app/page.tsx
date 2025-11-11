@@ -7,6 +7,7 @@ import Vision from "@/components/portfolio/Vision";
 import DarkModeToggle from "@/components/miscelaneous/DarkModeToggle";
 import Education from "@/components/portfolio/Education";
 
+
   
 export default function Home() {
   return (

@@ -8,7 +8,7 @@ import { containerVariants, itemVariants } from "./Intro";
 
 
 const itemVariantsLeft: Variants = {
-  hidden: { opacity: 0, x: 30 }, // Start hidden and 20px down
+  hidden: { opacity: 0, x: 30 },
   visible: {
     opacity: 1,
     x: 0, // Animate to visible and original position
@@ -17,7 +17,7 @@ const itemVariantsLeft: Variants = {
 };
 
 const itemVariantsRight: Variants = {
-  hidden: { opacity: 0, x: -30 }, // Start hidden and 20px down
+  hidden: { opacity: 0, x: -30 },
   visible: {
     opacity: 1,
     x: 0, // Animate to visible and original position
@@ -80,7 +80,7 @@ const Skills = () => {
 
       <motion.div
         ref={divRef}
-        className="container max-w-8xl" // 👈 IMPROVEMENT #2: Changed to max-w-4xl
+        className="container max-w-8xl"
         variants={containerVariants}
         initial="hidden"
         animate={isVisible ? 'visible' : 'hidden'}

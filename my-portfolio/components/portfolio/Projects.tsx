@@ -86,7 +86,7 @@ export const projects = [
       "Legacy Code Maintenance & Complex Problem-Solving": "Learned to navigate and improve a large, complex codebase under pressure.",
       "Structured Work Under Pressure": "Successfully managed tight deadlines and high-stress situations, developing a structured and methodical approach to problem-solving to prioritize and resolve issues effectively.",
     },
-    learned: "This project was a masterclass in production software maintenance. I learned the critical importance of clean, maintainable code, comprehensive logging for traceability, and performing effectively under pressure in mission-critical environments.",
+    learned: "This project was a real masterclass in maintaining production-grade software. I learned how essential clean, maintainable code and thorough logging are for traceability — and how to stay effective under pressure in mission-critical environments.",
     image: SRPIThumbnail,
   },
   {
