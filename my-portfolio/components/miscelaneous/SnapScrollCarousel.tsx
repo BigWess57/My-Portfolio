@@ -22,9 +22,9 @@ function SnapScrollCarousel<T>({
   items,
   renderItem,
   renderNavigationButton,
-  containerClassName = "overflow-y-scroll snap-y snap-mandatory max-w-5xl scrollbar-hide",
-  itemClassName = "w-full flex items-center justify-center snap-center py-12",
-  navigationClassName = "flex flex-col gap-4 p-6 bg-neutral-800 rounded-lg h-fit sticky top-4 min-w-[200px]",
+  containerClassName = "h-[1100px] overflow-y-scroll snap-y snap-mandatory max-w-6xl scrollbar-hide px-10",
+  itemClassName = "flex h-[1100px] items-center justify-center snap-center",
+  navigationClassName = "flex flex-row lg:flex-col items-center justify-center gap-10 p-6 rounded-lg h-fit sticky top-4 min-w-[200px]",
   scaleFactor = 1.05, // Default 5% bigger
   scrollDuration = 1000, // Default 1 second scroll
   menuLeft = true
@@ -184,7 +184,7 @@ function SnapScrollCarousel<T>({
               {renderItem(item, index)}
             
               {index !== items.length-1 && (
-                <div className="absolute -bottom-22 h-20 left-0 right-0 transform z-20">
+                <div className="absolute -bottom-22 h-20 left-0 right-0 transform z-30">
                   <div className="flex flex-col justify-center items-center text-primary-500 bg-radial from-primary-800/80 from-0% to-transparent to-50%">
                     <span className="text-sm">Scroll or click timeline</span>
                     <div className='w-30 h-15'> 

@@ -145,9 +145,6 @@ const Education = () => {
           items={education}
           renderItem={renderExperience}
           renderNavigationButton={renderNavigationButton}
-          containerClassName="h-[1000px] overflow-y-scroll snap-y snap-mandatory max-w-6xl scrollbar-hide px-10"
-          itemClassName="flex h-[1000px] items-center justify-center snap-center"
-          navigationClassName="flex flex-row lg:flex-col items-center justify-center gap-10 p-6 rounded-lg h-fit sticky top-4 min-w-[200px]"
           scaleFactor={1.1} // 8% bigger for current item
           // scrollDuration={3000}
           menuLeft={false}
