@@ -195,12 +195,6 @@ h1, h2, h3 {
   section {
     @apply pt-40 pb-40 px-10 lg:px-25;
   }
-  /* section:nth-child(odd) {
-    @apply flex justify-end;
-  } */
-  /* section:nth-child(even) {
-    @apply flex justify-items-start;
-  } */
 
   h2 {
     @apply text-4xl font-bold text-center mb-8 text-neutral-50;
