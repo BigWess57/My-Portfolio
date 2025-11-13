@@ -1,13 +1,16 @@
 "use client";
 
-import { Card } from "@/components/ui/card";
+import { Card } from "@/src/components/ui/card";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 import ProfileImage from "@/public/images/ib9.jpg"
+import { useTranslations } from "next-intl";
 
 const About = () => {
 
+  const t = useTranslations('about');
+  
   const divRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -52,11 +55,6 @@ const About = () => {
         <div className="flex flex-col lg:flex-row gap-12 md:gap-20 items-center justify-end">
           
           <div className="w-full flex lg:justify-end">
-            {/* ** Add your Image component here **
-              - 'aspect-square' or 'aspect-[3/4]' are recommended.
-              - 'rounded-lg' and 'shadow-lg' add a professional touch.
-            */}
-            
             <div className="grow max-w-[400px] lg:min-w-[300px] lg:max-w-[500px] right-0 aspect-square bg-neutral-800 rounded-lg border-2 border-secondary-800/50 shadow-lg flex-center text-muted-foreground">
               <Image 
                 src={ProfileImage}
@@ -68,15 +66,20 @@ const About = () => {
           </div>
 
           <div>
-            <h2 className="text-4xl font-bold text-left ml-20">About Me</h2>
+            <h2 className="text-4xl font-bold text-left ml-20">{t('title')}</h2>
             
             <Card className="p-8 card-hover border-accent-800/50">
               <div className="space-y-4 text-xl leading-relaxed">
                 <p>
-                  Hi I&apos;m <strong className="text-primary-300">Igor</strong> — a Full-stack Web3 developer with roots in <strong className="text-secondary-300">embedded systems and software engineering</strong>. Working close to the hardware taught me to care about every detail and build things that are reliable from the inside out.
+                  {t.rich('paragraph1', {
+                    name: (chunks) => <strong className="text-primary-300">{chunks}</strong>,
+                    expertise: (chunks) => <strong className="text-secondary-300">{chunks}</strong>
+                  })}
                 </p>
                 <p>
-                  I&apos;m passionate about bringing that same rigor into blockchain development. I see Web3 as a space where transparency and true digital ownership can reshape how we build online — and I want to be part of that change by creating applications that are <strong className="text-secondary-300">precise, purposeful, and built to last</strong>.
+                  {t.rich('paragraph2', {
+                    adjectives: (chunks) => <strong className="text-secondary-300">{chunks}</strong>
+                  })}
                 </p>
               </div>
             </Card>

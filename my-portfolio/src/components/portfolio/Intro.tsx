@@ -6,7 +6,7 @@ import { animate, motion, Variants } from 'framer-motion';
 import Image from 'next/image';
 
 import { ArrowDown, Mail } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/src/components/ui/button";
 
 
 //Images
@@ -17,6 +17,7 @@ import LinkedInLogoWhite from "@/public/icons/linkedin-white.svg";
 import LinkedInLogoDark from "@/public/icons/linkedin.svg";
 
 import backgroundImg from "@/public/images/blockchain-background.jpg";
+import { useTranslations } from "next-intl";
 
 
 
@@ -42,6 +43,8 @@ export const itemVariants: Variants = {
 
 const Intro = () => {
 
+  const t = useTranslations('intro');
+  
   const divRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -133,18 +136,18 @@ const Intro = () => {
           className="text-2xl md:text-3xl mb-8"
           variants={itemVariants}
         >
-          Fullstack Web3 Developer
+          {t('title')}
         </motion.h2>
 
         <motion.div
           variants={itemVariants}
         >
           <div className="flex gap-4 items-center justify-center pt-20">
-            <h3 className="font-sans">Reach me here :</h3>
+            <h3 className="font-sans">{t('contactMe')}</h3>
             <Button asChild size="lg" className="button-hover">
               <a href="mailto:igor@danet.one" className="inline-flex items-center">
                 <Mail className="w-5 h-5" />
-                Email Me
+                {t('email')}
               </a>
             </Button>
 

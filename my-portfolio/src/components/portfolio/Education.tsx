@@ -2,13 +2,14 @@
 
 import { useEffect, useRef, useState } from "react";
 
-import { Card } from "@/components/ui/card";
+import { Card } from "@/src/components/ui/card";
 import Image, { StaticImageData } from "next/image";
 
 import AlyraLogo from "@/public/icons/alyra-logo.jpg";
 import PolytechLogo from "@/public/icons/polytech-logo.png";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import SnapScrollCarousel from "../miscelaneous/SnapScrollCarousel";
+import { useTranslations } from "next-intl";
 
 
 export interface Education {
@@ -21,39 +22,6 @@ export interface Education {
   points: Record<string, string>; // or use a more specific type
 }
 
-
-const education: Education[] = [
-  {
-    title: "Blockchain Developer Program",
-    school: "Alyra Blockchain School",
-    period: "April 2025 - July 2025",
-    logo: AlyraLogo,
-    logoSize: "w-12 h-12",
-    summary:
-      "Intensive 120-hour remote program focused on developing decentralized applications on the Ethereum Virtual Machine (EVM) from scratch, building comprehensive Web3 development skills.",
-    points: {
-      "Smart Contract Development & Security": "Mastered Solidity programming, smart contract architecture, and security best practices using OpenZeppelin libraries and ERC standards.",
-      "Full-Stack DApp Development": "Built complete decentralized applications with React, TypeScript, Next.js, and modern Web3 libraries including Viem/Wagmi and RainbowKit for seamless blockchain integration.",
-      "Blockchain Infrastructure & Tools": "Gained expertise in development frameworks (Hardhat, Foundry), decentralized storage (IPFS), and advanced concepts like Merkle proofs for efficient verification systems.",
-      "Production-Ready Deployment": "Learned comprehensive deployment workflows including DApp deployment on Vercel and Test-Driven Development (TDD) methodologies for robust smart contract development.",
-    },
-  },
-  {
-    title: "Electronics and Robotic Systems Engineering",
-    school: "Polytech Paris-Saclay",
-    period: "September 2017 - May 2022",
-    logo: PolytechLogo,
-    logoSize: "w-27 h-12",
-    summary:
-      "Five-year engineering program specializing in embedded systems, electronics, and robotics, building strong foundations in low-level programming and hardware-software integration.",
-    points: {
-      "Embedded Systems Programming": "Developed proficiency in Embedded C programming for microcontrollers and C++ for complex robotic systems and applications.",
-      "Hardware Communication Protocols": "Mastered various communication buses including SPI, I2C, UART, and industrial protocols like Modbus for system integration.",
-      "Processor Architecture & Digital Design": "Gained deep understanding of RISC processor architectures (Nios II) and digital circuit design using VHDL for FPGA implementation.",
-      "Engineering Methodology & Collaboration": "Strengthened problem-solving abilities, technical documentation skills, and effective teamwork through numerous engineering projects and group assignments.",
-    },
-  },
-];
 
 // Render function for navigation buttons
 const renderNavigationButton = (edu: Education, index: number, isCurrent: boolean) => (
@@ -101,6 +69,8 @@ const renderExperience = (edu: Education, index: number) => (
 
 const Education = () => {  
   
+  const t = useTranslations('education');
+  
   const divRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -127,6 +97,30 @@ const Education = () => {
     };
   }, []);
 
+
+  const educationData = t.raw('list') as Array<{
+    id: string;
+    title: string;
+    school: string;
+    period: string;
+    summary: string;
+    points: Record<string, string>;
+  }>;
+
+  // Helper function to get logo details
+  const getLogoDetails = (id: string) => {
+    const logos = {
+      alyra: { logo: AlyraLogo, logoSize: "w-12 h-12" },
+      polytech: { logo: PolytechLogo, logoSize: "w-27 h-12" },
+    };
+    return logos[id as keyof typeof logos];
+  };
+
+  const education: Education[] = educationData.map(edu => ({
+    ...edu,
+    ...getLogoDetails(edu.id)
+  }));
+  
   return (
     <section id="education" className="section-to-left">
       <div
@@ -137,8 +131,8 @@ const Education = () => {
             : "opacity-0 -translate-x-32"
           }`}
       >
-        <h2 className="">
-          Education & Specialized Training
+        <h2 className="mb-0">
+          {t('title')}
         </h2>
 
         <SnapScrollCarousel

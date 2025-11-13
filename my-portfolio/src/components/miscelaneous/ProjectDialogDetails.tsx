@@ -1,15 +1,19 @@
 import React from 'react'
 import Image from 'next/image';
 
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Button } from '../ui/button';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/src/components/ui/dialog";
+import { Button } from '@/src/components/ui/button';
 import { ArrowRight, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
 import { ProjectCardProps } from './ProjectCard';
-import { Separator } from '../ui/separator';
-import { ScrollArea } from '../ui/scroll-area';
-import { Badge } from '../ui/badge';
+import { Separator } from '@/src/components/ui/separator';
+import { ScrollArea } from '@/src/components/ui/scroll-area';
+import { Badge } from '@/src/components/ui/badge';
+import { useTranslations } from 'next-intl';
 
 const ProjectDialogDetails = ({ project, index, openDialogId, setOpenDialogId }: ProjectCardProps) => {
+
+  const t = useTranslations('projects.additionnal');
+
   return (
     <Dialog open={openDialogId === index} onOpenChange={(isOpen) => setOpenDialogId(isOpen ? index : null)}>
       <DialogTrigger asChild>
@@ -20,7 +24,7 @@ const ProjectDialogDetails = ({ project, index, openDialogId, setOpenDialogId }:
               className="text-secondary-300 border border-secondary-500 hover:bg-secondary-800 hover:text-secondary-100 mb-5"
             >
               <ChevronRight className="w-4 h-4" />
-                More Details
+                {t(`moreDetails`)}
               <ChevronLeft className="w-4 h-4" />
             </Button>
           </div>
@@ -32,7 +36,7 @@ const ProjectDialogDetails = ({ project, index, openDialogId, setOpenDialogId }:
         
         <DialogHeader className="flex-center shrink-0">
           <DialogTitle className="text-2xl mb-4">{project.title}</DialogTitle>
-          <DialogDescription>{project.description}</DialogDescription>
+          <DialogDescription className="text-md">{project.description}</DialogDescription>
         </DialogHeader>
         
         <Separator className="bg-neutral-500 shrink-0"/>
@@ -49,7 +53,7 @@ const ProjectDialogDetails = ({ project, index, openDialogId, setOpenDialogId }:
               )}
 
               <div>
-                <h4 className="font-semibold text-lg text-secondary-400 mb-2">Technologies Used:</h4>
+                <h4 className="font-semibold text-lg text-secondary-400 mb-2">{t(`technologies`)}</h4>
                 <div className="flex flex-wrap gap-2">
                   {project.technologies?.map((tech, i) => (
                     <Badge 
@@ -67,7 +71,7 @@ const ProjectDialogDetails = ({ project, index, openDialogId, setOpenDialogId }:
               </div>
 
               <div>
-                <h4 className="font-semibold text-lg text-secondary-400 mb-2">Key Achievements:</h4>
+                <h4 className="font-semibold text-lg text-secondary-400 mb-2">{t(`achievements`)}</h4>
                 <ul className="space-y-3 list-inside">
                   {Object.entries(project.highlights).map(([header, description], i) => (
                     <li key={i} className="flex">
@@ -82,7 +86,7 @@ const ProjectDialogDetails = ({ project, index, openDialogId, setOpenDialogId }:
 
               {project.learned && (
                 <div>
-                  <h4 className="font-semibold text-lg text-secondary-400 mb-2">What I Learned:</h4>
+                  <h4 className="font-semibold text-lg text-secondary-400 mb-2">{t(`learned`)}</h4>
                   <p className="italic">{project.learned}</p>
                 </div>
               )}
@@ -108,7 +112,7 @@ const ProjectDialogDetails = ({ project, index, openDialogId, setOpenDialogId }:
               {project.link && (
                 <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex-1">
                   <Button className="button-hover-accent w-full">
-                    View Code
+                    {t(`viewCode`)}
                     <ExternalLink className="w-4 h-4" />
                   </Button>
                 </a>

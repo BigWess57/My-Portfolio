@@ -1,0 +1,207 @@
+{
+  "metadata": {
+    "title": "Igor Babic"
+  },
+  "intro": {
+    "title": "Web3 Fullstack Developer",
+    "contactMe": "Reach me here :",
+    "email": "Email Me"
+  },
+  "about": {
+    "title": "About Me",
+    "paragraph1": "Hi I'm <name>Igor</name> — a Full-stack Web3 developer with roots in <expertise>embedded systems and software engineering</expertise>. Working close to the hardware taught me to care about every detail and build things that are reliable from the inside out.",
+    "paragraph2": "I'm passionate about bringing that same rigor into blockchain development. I see Web3 as a space where transparency and true digital ownership can reshape how we build online — and I want to be part of that change by creating applications that are <adjectives>precise, purposeful, and built to last</adjectives>."
+  },
+  "workExperience": {
+    "title": "Work Experience",
+    "intro": "I've worked on a wide range of projects, from <embedded>embedded systems</embedded> and computer vision to <web>full-stack web development</web>.",
+    "imds": "At IMDS Software, in Montreal, I developed software for <projects>license plate recognition, production monitoring, and document management</projects>.",
+    "doga": "Before that, I built a <positioning>3D positioning solution</positioning> on embedded Linux during my engineering internship.",
+    "web3Now": "Today, I'm applying that experience to <web3Dev>Web3 development</web3Dev> — creating decentralized applications that combine <innovative>solid engineering with innovative blockchain technologies</innovative>."
+  },
+  "projects": {
+    "title": "My Projects",
+    "darewin": {
+      "title": "DareWin — Decentralized Challenge Platform",
+      "shortDescription": "Decentralized challenge platform on Base where friends create challenges, bid DARE tokens, and vote to determine winners who receive the full prize pool.",
+      "description": "A fully decentralized Web3 application that enables friends to create and join challenges on Base. Players bid DARE Tokens, and after time elapses, the community-voted winner receives the entire prize pool via smart contracts.",
+      "technologies": ["React", "Next.js", "Solidity", "Hardhat", "Wagmi", "RainbowKit", "GraphQL", "IPFS", "Merkle Proofs", "ERC Standards"],
+      "keyHighlights": {
+        "Full-Stack dApp": "Solidity smart contracts with custom ERC20 token + React frontend",
+        "Secure Blockchain System": "Merkle proof whitelisting, voting mechanism & automated prize distribution",
+        "Optimized Web3 UX": "Wallet integration & GraphQL event indexing",
+        "End-to-end delivery": "Development, testing & deployment"
+      },
+      "highlights": {
+        "End-to-End Web3 Architecture": "Designed and implemented the complete dApp architecture from smart contracts to frontend, showcasing full-stack blockchain development capabilities.",
+        "Utility Token": "Created the DARE ERC20 token, used for participating to challenges, and get discounts on usage fees",
+        "Secure Smart Contract Development": "Built secure Solidity smart contracts that handle DARE deposits, voting mechanisms, and automated prize distribution with secure withdrawal patterns.",
+        "Decentralized Access Control": "Implemented Merkle proof whitelisting with IPFS storage for player verification, demonstrating advanced Web3 identity and access management solutions.",
+        "Optimized Frontend Integration": "Leveraged Wagmi and RainbowKit for seamless Ethereum wallet connectivity and interactions, creating smooth user experience for blockchain operations.",
+        "Decentralized Event Indexing": "Utilized GraphQL for efficient blockchain event indexing and querying, ensuring fast and reliable data retrieval from Ethereum.",
+        "Solo Full-Stack Delivery": "Successfully architected, developed, tested, and deployed the entire application independently, demonstrating strong project ownership and technical versatility."
+      },
+      "learned": "Building DareWin from scratch provided deep hands-on experience in the entire Web3 development stack. I mastered smart contract security patterns, decentralized frontend integration, and the importance of gas optimization and user experience in blockchain applications. This project solidified my passion for building decentralized solutions that combine technical innovation with practical user value.",
+      "link": "https://github.com/BigWess57/Projet-DareWin",
+      "demoLink": "https://projet-dare-win.vercel.app/"
+    },
+    "addoc": {
+      "title": "AD'DOC Dashboard - Production Monitoring System (IMDS Software)",
+      "shortDescription": "Dashboard designed to provide real-time monitoring and analytics for document production flows from the company's flagship product, AD'DOC Capture Pro",
+      "description": "Dashboard designed to provide real-time monitoring and analytics for document production flows from the company's flagship product, AD'DOC Capture Pro",
+      "technologies": ["React", "Java", "Spring + Maven", "SQL Server"],
+      "keyHighlights": {
+        "Full-Stack Development": "Led dashboard from pre-production towards internal deployment with new features and improvements",
+        "User-Centric Approach": "Collaborated with users to translate needs into functional, intuitive features"
+      },
+      "highlights": {
+        "Full-Stack Development & Product Maturation": "Led the full-stack development of new features and significant improvements, taking the dashboard from a pre-production state to a viable tool ready for internal deployment.",
+        "User-Centric Development & Communication": "Collaborated closely with future users to gather requirements, translating their specific needs into functional and intuitive software features."
+      },
+      "learned": "This project underscored a crucial lesson: great software isn't just about code, it's about solving the right problems. By actively listening to users, I ensured the features I built directly addressed their workflow challenges, highlighting the vital link between development and user-centric design."
+    },
+    "srpi": {
+      "title": "SRPI - License Plate Recognition System (IMDS Software)",
+      "shortDescription": "A critical license plate recognition system deployed and in active use by the Canadian government. I was responsible for maintaining and improving the system in a high-stakes production environment.",
+      "description": "A critical license plate recognition system deployed and in active use by the Canadian government. I was responsible for maintaining and improving the system in a high-stakes production environment.",
+      "technologies": ["C#", ".NET Framework", "Windows Services & Automation", "SQL Server"],
+      "keyHighlights": {
+        "Production System Stability": "Resolved critical bugs in live government system, ensuring reliability",
+        "Legacy Code Expertise": "Navigated and improved complex codebase under pressure",
+        "Structured Problem-Solving": "Managed tight deadlines with methodical issue resolution"
+      },
+      "highlights": {
+        "Production System Stability & Reliability": "Addressed and resolved critical bugs in a live production system, contributing directly to its stability and reliability for a government client.",
+        "Legacy Code Maintenance & Complex Problem-Solving": "Learned to navigate and improve a large, complex codebase under pressure.",
+        "Structured Work Under Pressure": "Successfully managed tight deadlines and high-stress situations, developing a structured and methodical approach to problem-solving to prioritize and resolve issues effectively."
+      },
+      "learned": "This project was a real masterclass in maintaining production-grade software. I learned how essential clean, maintainable code and thorough logging are for traceability — and how to stay effective under pressure in mission-critical environments."
+    },
+    "doga": {
+      "title": "3D Tool Positioning System (DOGA)",
+      "shortDescription": "A vision-based industrial system that estimates the 3D position and orientation of tools in real-time, providing visual guidance to technicians during assembly operations.",
+      "description": "A vision-based industrial system that estimates the 3D position and orientation of tools in real-time, providing visual guidance to technicians during assembly operations.",
+      "technologies": ["C++", "Embedded Linux", "Computer Vision", "Html/CSS", "Javascript", "Real-time Systems"],
+      "keyHighlights": {
+        "Embedded Vision System": "Developed Linux-based 3D positioning system from prototype to production",
+        "Full-Stack Integration": "Built web interface with live streaming to guide technicians in real time"
+      },
+      "highlights": {
+        "Embedded Computer Vision Solution": "Developed and deployed a vision-based system on embedded Linux that accurately estimates 3D position and orientation of industrial tools, advancing from prototype towards production-ready performance.",
+        "Full-Stack System Integration": "Built a web interface with live video streaming to visualize tool positions, creating a complete hardware-software solution providing immediate visual feedback to guide technicians in real time during complex assembly tasks."
+      },
+      "learned": "This internship taught me how to bridge the gap between theoretical algorithms and practical industrial applications. I learned to develop complete systems that integrate embedded hardware, computer vision, and user interfaces to solve real-world manufacturing challenges."
+    },
+    "additionnal":{
+      "moreDetails": "More Details",
+      "viewCode": "View Code",
+      "technologies": "Technologies Used",
+      "achievements": "Key Achievements",
+      "learned": "What I learned"
+    }
+  },
+  "skills": {
+    "title": "My Skills",
+    "web3": {
+      "title": "Web3 development",
+      "contractsArchitecture": "Smart Contract Architecture",
+      "ERCstandards": "ERC Standards",
+      "merkleProofs": "Merkle Proofs"
+    },
+    "frontend": {
+      "title": "Front-End & Integration",
+      "deployment": "DApp deployment (Vercel)"
+    },
+    "developmentPractices": {
+      "title": "Development practices",
+      "tdd": "Test-Driven Development (TDD)",
+      "uiux": "UI/UX for DApps"
+    },
+    "additionnal": {
+      "title": "Additionnal skills",
+      "embeddedLinux": "Embedded Linux",
+      "problemSolving": "Problem Solving",
+      "teamwork": "Teamwork"
+    }
+  },
+  "keyExperiences": {
+    "title": "My Key Experiences",
+    "list": [
+      {
+        "id": "imds",
+        "title": "Programmer Analyst",
+        "company": "IMDS Software",
+        "period": "Feb 2023 - June 2024",
+        "summary": "My time at IMDS Software was a period of intense professional growth. I worked on high-impact projects that strengthened my technical foundation and taught me how to balance precision with practicality.",
+        "points": {
+          "Full-Stack Proficiency & Adaptability": "I successfully worked across the entire technology stack, from back-end bug fixing and logic on the SRPI project to front-end feature development and user interface design on the Ad'doc Dashboard. This has made me a versatile and adaptable developer.",
+          "Thriving Under Pressure in Production Environments": "Maintaining the government-used SRPI system taught me to stay calm under pressure and solve problems quickly in live environments.",
+          "From Code to Customer: The Importance of Communication": "Working directly with end-users on Ad'doc showed me that great code isn't enough — clear communication and understanding real needs are what make a product truly valuable",
+          "End-to-End Product Understanding": "I have experience across the entire software lifecycle—from maintaining and improving a mature product (SRPI) to developing and launching a new tool for internal use (Ad'doc Dashboard). This gives me a practical understanding of what it takes for a product to succeed."
+        }
+      },
+      {
+        "id": "doga",
+        "title": "C++ Developer",
+        "company": "DOGA",
+        "period": "April 2022 - Sept 2022",
+        "summary": "Completed a 6-month internship developing an industrial tool positioning system, growing my expertise in embedded systems, computer vision, and full-stack integration:",
+        "points": {
+          "Computer Vision & Embedded Systems Development": "Developed a vision-based solution on embedded Linux to estimate the 3D position and orientation of industrial tools, improving precision from prototype to production-ready performance.",
+          "Real-time Algorithm Implementation": "Implemented algorithms to detect tools accurately and calculate angles, enabling real-time guidance for technicians during assembly tasks.",
+          "Full-Stack Integration & User Interface": "Built a simple web interface to visualize tool positions (with video streaming) and guide operations, enhancing usability and bridging the gap between hardware, software, and end-users.",
+          "End-to-End Project Leadership": "Strengthened my skills in C++, embedded Linux development, computer vision, and full-stack integration while leading the project from prototype to practical deployment."
+        }
+      },
+      {
+        "id": "babyliss",
+        "title": "Test Engineer",
+        "company": "Babyliss",
+        "period": "May 2021 - Aug 2021",
+        "summary": "Developed image-processing tools — still in use by engineers to this day — to automate product testing, enhancing efficiency and precision in the test lab:",
+        "points": {
+          "Automated Electric Clipper Quality Assessment": "Created a system to evaluate electric clipper cutting quality",
+          "Hair Curler Performance Analysis System": "Developed a tool to assess hair curler performance using image processing.",
+          "Infrared Thermal Distribution Evaluation": "Built a solution to evaluate hair straightener temperature distribution from infrared images.",
+          "End-to-End Tool Packaging & Deployment": "Packaged each tool as a MATLAB interface (EXE), strengthening skills in automation and experimental design."
+        }
+      }
+    ]
+  },
+  "education": {
+    "title": "Education & Specialized Training",
+    "list": [
+      {
+        "id": "alyra",
+        "title": "Blockchain Developer Program",
+        "school": "Alyra Blockchain School",
+        "period": "April 2025 - July 2025",
+        "summary": "Intensive 120-hour remote program focused on developing decentralized applications on the Ethereum Virtual Machine (EVM) from scratch, building comprehensive Web3 development skills.",
+        "points": {
+          "Smart Contract Development & Security": "Mastered Solidity programming, smart contract architecture, and security best practices using OpenZeppelin libraries and ERC standards.",
+          "Full-Stack DApp Development": "Built complete decentralized applications with React, TypeScript, Next.js, and modern Web3 libraries including Viem/Wagmi and RainbowKit for seamless blockchain integration.",
+          "Blockchain Infrastructure & Tools": "Gained expertise in development frameworks (Hardhat, Foundry), decentralized storage (IPFS), and advanced concepts like Merkle proofs for efficient verification systems.",
+          "Production-Ready Deployment": "Learned comprehensive deployment workflows including DApp deployment on Vercel and Test-Driven Development (TDD) methodologies for robust smart contract development."
+        }
+      },
+      {
+        "id": "polytech",
+        "title": "Electronics and Robotic Systems Engineering",
+        "school": "Polytech Paris-Saclay",
+        "period": "September 2017 - May 2022",
+        "summary": "Five-year engineering program specializing in embedded systems, electronics, and robotics, building strong foundations in low-level programming and hardware-software integration.",
+        "points": {
+          "Embedded Systems Programming": "Developed proficiency in Embedded C programming for microcontrollers and C++ for complex robotic systems and applications.",
+          "Hardware Communication Protocols": "Mastered various communication buses including SPI, I2C, UART, and industrial protocols like Modbus for system integration.",
+          "Processor Architecture & Digital Design": "Gained deep understanding of RISC processor architectures (Nios II) and digital circuit design using VHDL for FPGA implementation.",
+          "Engineering Methodology & Collaboration": "Strengthened problem-solving abilities, technical documentation skills, and effective teamwork through numerous engineering projects and group assignments."
+        }
+      }
+    ]
+  },
+  "vision": {
+    "title": "My Vision",
+    "p1":"I imagine a future where blockchain helps people interact and build together without barriers — where trust, ownership, and creativity are embedded in the technology itself.",
+    "p2": "As a developer, I want to contribute to that change by creating decentralized applications that are reliable, transparent, and genuinely useful to everyday uses."
+  }
+}

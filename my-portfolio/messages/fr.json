@@ -1,0 +1,208 @@
+{
+  "metadata": {
+    "title": "Igor Babic"
+  },
+  "intro": {
+    "title": "Développeur Web3 Full-Stack",
+    "contactMe": "Contactez moi :",
+    "email": "Email"
+  },
+  "about": {
+    "title": "À propos de moi",
+    "paragraph1": "Bonjour, je suis <name>Igor</name> — développeur Web3 full-stack avec une formation en <expertise>systèmes embarqués et génie logiciel</expertise>. Travailler proche du matériel m'a appris à prêter attention à chaque détail et à créer des produits fiables et solides.",
+    "paragraph2": "Je suis passionné par l'idée d'apporter cette même rigueur au développement blockchain. Je considère le Web3 comme un espace où la transparence et la propriété numérique peuvent remodeler la façon dont nous construisons le monde — et je veux participer à ce changement en créant des applications qui sont <adjectives>précises, utiles et conçues pour durer</adjectives>."
+  },
+  "workExperience": {
+    "title": "Expérience Professionnelle",
+    "intro": "J'ai travaillé sur une large gamme de projets, allant des <embedded>systèmes embarqués</embedded> et de la computer vision au <web>développement web full-stack</web>.",
+    "imds": "Chez IMDS Software, à Montréal, j'ai développé des logiciels pour <projects>la reconnaissance de plaques d'immatriculation, le suivi de production et la gestion documentaire</projects>.",
+    "doga": "Avant cela, j'ai conçu une <positioning>solution de positionnement 3D</positioning> sur Linux embarqué lors de mon stage de fin d'études.",
+    "web3Now": "Aujourd'hui, je mets cette expérience au service du <web3Dev>développement Web3</web3Dev> — en créant des applications décentralisées qui allient <innovative>une ingénierie solide à des technologies blockchain innovantes</innovative>."
+  },
+  "projects": {
+    "title": "Mes Projets",
+    "darewin": {
+      "title": "DareWin — Plateforme de Défis Décentralisée",
+      "shortDescription": "Plateforme de défis décentralisée sur Base où les joueurs créent des défis, misent des jetons DARE et votent pour désigner les gagnants qui remportent l'intégralité de la cagnotte.",
+      "description": "Application Web3 entièrement décentralisée permettant à un groupe d'amis de créer et de rejoindre des défis sur Base. Les joueurs misent des jetons DARE, et après expiration du délai, le gagnant désigné par vote communautaire reçoit l'intégralité de la cagnotte via des smart contracts.",
+      "technologies": ["React", "Next.js", "Solidity", "Hardhat", "Wagmi", "RainbowKit", "GraphQL", "IPFS", "Preuves de Merkle", "Standards ERC"],
+      "keyHighlights": {
+        "Full-Stack dApp": "Smart contracts Solidity avec jeton ERC20 personnalisé + frontend React",
+        "Système Blockchain Sécurisé": "whitelisting géré par preuves de Merkle, mécanisme de vote et distribution automatique des gains",
+        "UX Web3 Optimisée": "Intégration de wallet et indexation des events via GraphQL",
+        "Livraison complète": "Développement, tests et déploiement"
+      },
+      "highlights": {
+        "Architecture Web3 de bout en bout": "Conception et implémentation de l'architecture complète de la dApp, des smart contracts au frontend, démontrant des compétences solides en développement blockchain full-stack.",
+        "Jeton utilitaire": "Création du jeton DARE (ERC20), utilisé pour participer aux défis et bénéficier de réductions sur les frais d'utilisation",
+        "Développement sécurisé de smart contracts": "Smart contracts Solidity sécurisés gérant les dépôts DARE, les mécanismes de vote et la distribution automatique des gains avec des schémas de retrait sécurisés.",
+        "Contrôle d'accès décentralisé": "Mise en œuvre d'un whitelisting par preuves de Merkle avec stockage IPFS pour la vérification des joueurs, illustrant des solutions avancées d'identité et de gestion des accès en Web3.",
+        "Intégration frontend optimisée": "Utilisation de Wagmi et RainbowKit pour une connectivité fluide avec les portefeuilles Ethereum et des interactions simplifiées pour les opérations avec la blockchain.",
+        "Indexation décentralisée des événements": "Exploitation de GraphQL pour une indexation et une requête efficaces des events blockchain, garantissant une récupération rapide et fiable des données depuis Ethereum.",
+        "Livraison full-stack en solo": "Architecture, développement, tests et déploiement complets de l'application en autonomie, démontrant une forte appropriation du projet et une polyvalence technique."
+      },
+      "learned": "La construction de DareWin de zéro m'a permis d'acquérir une expérience pratique approfondie de toute la stack de développement Web3. J'ai maîtrisé les schémas de sécurité des smart contracts, l'intégration décentralisée du frontend et l'importance de l'optimisation des frais de gaz et de l'expérience utilisateur dans les applications blockchain. Ce projet a renforcé ma passion pour la création de solutions décentralisées alliant innovation technique et valeur pratique pour les utilisateurs.",
+      "link": "https://github.com/BigWess57/Projet-DareWin",
+      "demoLink": "https://projet-dare-win.vercel.app/"
+    },
+    "addoc": {
+      "title": "AD'DOC Dashboard — Système de Suivi de Production (IMDS Software)",
+      "shortDescription": "Tableau de bord conçu pour fournir un suivi et une analyse en temps réel des flux de production documentaire du produit phare de l'entreprise, AD'DOC Capture Pro.",
+      "description": "Tableau de bord conçu pour fournir un suivi et une analyse en temps réel des flux de production documentaire du produit phare de l'entreprise, AD'DOC Capture Pro.",
+      "technologies": ["React", "Java", "Spring + Maven", "SQL Server"],
+      "keyHighlights": {
+        "Développement Full-Stack": "Pilotage du tableau de bord de la pré-production vers le déploiement interne avec de nouvelles fonctionnalités et améliorations",
+        "Approche centrée utilisateur": "Collaboration avec les futurs utilisateurs pour traduire leurs besoins en fonctionnalités intuitives et opérationnelles"
+      },
+      "highlights": {
+        "Développement Full-Stack et maturation du produit": "Direction du développement full-stack de nouvelles fonctionnalités et améliorations significatives, faisant passer le tableau de bord d'un état de pré-production à un outil viable prêt pour le déploiement interne.",
+        "Développement et communication centrés utilisateur": "Collaboration étroite avec les futurs utilisateurs pour recueillir les exigences et traduire leurs besoins spécifiques en fonctionnalités logicielles intuitives et fonctionnelles."
+      },
+      "learned": "Ce projet a souligné une leçon cruciale : un excellent logiciel ne se résume pas au code, mais à la résolution des bons problèmes. En écoutant activement les utilisateurs, j'ai veillé à ce que les fonctionnalités développées répondent directement à leurs défis opérationnels, mettant en lumière le lien vital entre développement et conception centrée utilisateur."
+    },
+    "srpi": {
+      "title": "SRPI — Système de Reconnaissance de Plaques d'Immatriculation (IMDS Software)",
+      "shortDescription": "Système critique de reconnaissance de plaques d'immatriculation déployé et utilisé activement par le gouvernement canadien. J'étais responsable de la maintenance et de l'amélioration du système dans un environnement de production à enjeux élevés.",
+      "description": "Système critique de reconnaissance de plaques d'immatriculation déployé et utilisé activement par le gouvernement canadien. J'étais responsable de la maintenance et de l'amélioration du système dans un environnement de production à enjeux élevés.",
+      "technologies": ["C#", ".NET Framework", "Services Windows et automatisation", "SQL Server"],
+      "keyHighlights": {
+        "Stabilité du système de production": "Résolution de bugs critiques dans un système gouvernemental en production, garantissant sa fiabilité",
+        "Expertise en code legacy": "Navigation et amélioration d'une base de code complexe sous pression",
+        "Résolution de problèmes structurée": "Gestion de délais serrés avec une approche méthodique de résolution des problèmes"
+      },
+      "highlights": {
+        "Stabilité et fiabilité du système de production": "Traitement et résolution de bugs critiques dans un système en production, contribuant directement à sa stabilité et à sa fiabilité pour un client gouvernemental.",
+        "Maintenance de code legacy et résolution de problèmes complexes": "Apprentissage de la navigation et de l'amélioration d'une base de code volumineuse et complexe sous pression.",
+        "Travail structuré sous pression": "Gestion réussie de délais serrés et de situations à haute tension, développement d'une approche structurée et méthodique pour prioriser et résoudre efficacement les problèmes."
+      },
+      "learned": "Ce projet a été véritablement formateur pour moi. J'ai appris à quel point un code propre, maintenable et des logs exhaustifs sont essentiels pour la traçabilité, et aussi comment rester efficace sous pression dans des environnements critiques."
+    },
+    "doga": {
+      "title": "Système de Positionnement 3D d'Outil (DOGA)",
+      "shortDescription": "Système industriel basé sur la vision qui estime en temps réel la position et l'orientation 3D des outils, offrant un guidage visuel aux techniciens lors des opérations d'assemblage.",
+      "description": "Système industriel basé sur la vision qui estime en temps réel la position et l'orientation 3D des outils, offrant un guidage visuel aux techniciens lors des opérations d'assemblage.",
+      "technologies": ["C++", "Linux embarqué", "Vision par ordinateur", "Html/CSS", "Javascript", "Systèmes temps réel"],
+      "keyHighlights": {
+        "Système de vision embarqué": "Développement d'un système de positionnement 3D sous Linux embarqué, du prototype à la production",
+        "Intégration full-stack": "Création d'une interface web avec diffusion en direct pour permettre le guidage des techniciens en temps réel"
+      },
+      "highlights": {
+        "Solution de vision embarquée": "Développement et déploiement d'un système basé sur la vision sous Linux embarqué qui estime avec précision la position et l'orientation 3D des outils industriels, passant du prototype à un produit quasi prêt pour la production.",
+        "Intégration système full-stack": "Création d'une interface web avec diffusion vidéo en direct pour visualiser les positions des outils, offrant une solution complète permettant de guider les techniciens en temps réel lors de tâches d'assemblage complexes."
+      },
+      "learned": "Ce stage m'a appris à combler l'écart entre les algorithmes théoriques et les applications industrielles pratiques. J'ai appris à développer des systèmes complets intégrant matériel embarqué, vision par ordinateur et interfaces utilisateur pour répondre à des défis réels de fabrication."
+    },
+    "additionnal":{
+      "moreDetails": "Plus de Details",
+      "viewCode": "Voir le Code",
+      "technologies": "Technologies Utilisées",
+      "achievements": "Accomplissement Majeurs",
+      "learned": "Ce que j'ai appris"
+    }
+  },
+  "skills": {
+    "title": "Mes Compétences",
+    "web3": {
+      "title": "Développement Web3",
+      "contractsArchitecture": "Architecture des Smart Contracts",
+      "ERCstandards": "Standards ERC",
+      "merkleProofs": "Preuves de Merkle"
+    },
+    "frontend": {
+      "title": "Front-End & Intégration",
+      "deployment": "Déploiment de DApp (Vercel)"
+    },
+    "developmentPractices": {
+      "title": "Bonnes pratiques de développment",
+      "tdd": "Test-Driven Development (TDD)",
+      "uiux": "UI/UX pour DApps"
+    },
+    "additionnal": {
+      "title": "Additionnel",
+      "embeddedLinux": "Linux embarqué",
+      "problemSolving": "Résolution de problèmes",
+      "teamwork": "Travail d'équipe"
+    }
+  },
+  "keyExperiences": {
+    "title": "Mes Expériences Clés",
+    "list": [
+      {
+        "id": "imds",
+        "title": "Analyste Programmeur",
+        "company": "IMDS Software",
+        "period": "Févr. 2023 - Juin 2024",
+        "summary": "Mon passage chez IMDS Software a été une période de croissance professionnelle intense. J'ai travaillé sur des projets à fort impact qui ont renforcé mes bases techniques et m'ont appris à équilibrer précision et pragmatisme.",
+        "points": {
+          "Maîtrise Full-Stack et Adaptabilité": "J'ai travaillé avec succès sur toute la pile technologique, allant de la correction de bugs et de la logique back-end sur le projet SRPI au développement de fonctionnalités front-end et à la conception d'interfaces utilisateur sur le tableau de bord Ad'doc. Cela a fait de moi un développeur polyvalent et adaptable.",
+          "Efficacité sous Pression en Environnement de Production": "La maintenance du système SRPI, utilisé par le gouvernement, m'a appris à garder mon calme sous pression et à résoudre rapidement les problèmes en environnement de production.",
+          "Du Code au Client : L'Importance de la Communication": "Travailler directement avec les utilisateurs finaux sur Ad'doc Dashboard m'a montré que du bon code ne suffit pas — une communication claire et la compréhension des besoins réels sont ce qui rend un produit véritablement précieux.",
+          "Compréhension Globale du Produit": "J'ai une expérience couvrant l'ensemble du cycle de vie du logiciel — de la maintenance et de l'amélioration d'un produit mature (SRPI) au développement et au lancement d'un nouvel outil pour un usage interne (tableau de bord Ad'doc). Cela m'a donné une compréhension pratique de ce qu'il faut pour qu'un produit réussisse."
+        }
+      },
+      {
+        "id": "doga",
+        "title": "Développeur C++",
+        "company": "DOGA",
+        "period": "Avril 2022 - Sept. 2022",
+        "summary": "J'ai effectué un stage de 6 mois au cours duquel j'ai développé un système de positionnement d'outils industriels, renforçant mon expertise en systèmes embarqués, en vision par ordinateur et en intégration full-stack :",
+        "points": {
+          "Développement en Vision par Ordinateur et Systèmes Embarqués": "J'ai développé une solution basée sur la vision par ordinateur sous Linux embarqué pour estimer la position et l'orientation 3D d'outils industriels, améliorant la précision du prototype à une performance prête pour la production.",
+          "Implémentation d'Algorithmes en Temps Réel": "J'ai implémenté des algorithmes pour détecter les outils avec précision et calculer les angles, permettant un guidage en temps réel pour les techniciens lors des tâches d'assemblage.",
+          "Intégration Full-Stack et Interface Utilisateur": "J'ai construit une interface web simple pour visualiser les positions des outils (avec diffusion vidéo) et guider les opérations, améliorant ainsi l'utilisabilité et faisant le lien entre le matériel, le logiciel et les utilisateurs finaux.",
+          "Leadership de Projet de Bout en Bout": "J'ai renforcé mes compétences en C++, en développement sous Linux embarqué, en vision par ordinateur et en intégration full-stack tout en menant le projet du prototype au déploiement pratique."
+        }
+      },
+      {
+        "id": "babyliss",
+        "title": "Ingénieur de Test",
+        "company": "Babyliss",
+        "period": "Mai 2021 - Août 2021",
+        "summary": "J'ai développé des outils de traitement d'image — toujours utilisés actuellement par les ingénieurs — pour automatiser les tests de produits, améliorant ainsi l'efficacité et la précision en laboratoire :",
+        "points": {
+          "Évaluation Automatisée de la Qualité des Tondeuses Électriques": "J'ai créé un système pour évaluer la qualité de coupe des tondeuses électriques.",
+          "Système d'Analyse de la Performance des Fers à Friser": "J'ai développé un outil pour évaluer la performance des fers à friser à l'aide du traitement d'image.",
+          "Évaluation de la Distribution Thermique Infrarouge": "J'ai construit une solution pour évaluer la distribution de température des lisseurs à partir d'images infrarouges.",
+          "Conditionnement et Déploiement des Outils de Bout en Bout": "J'ai conditionné chaque outil sous forme d'interface MATLAB (EXE), renforçant mes compétences en automatisation et en conception expérimentale."
+        }
+      }
+    ]
+  },
+  "education": {
+    "title": "Ecole & Formation",
+    "list": [
+      {
+        "id": "alyra",
+        "title": "Développer une Application Web Décentralisée",
+        "school": "Alyra Blockchain School",
+        "period": "Avril 2025 - Juillet 2025",
+        "summary": "Programme intensif de 120 heures à distance axé sur le développement d'applications décentralisées sur l'Ethereum Virtual Machine (EVM) from scratch, construisant des compétences complètes en développement Web3.",
+        "points": {
+          "Développement et Sécurité des Smart Contracts": "Maîtrise de la programmation Solidity, de l'architecture des smart contracts et des bonnes pratiques de sécurité utilisant les bibliothèques OpenZeppelin et les standards ERC.",
+          "Développement Full-Stack DApp": "Construction d'applications décentralisées complètes avec React, TypeScript, Next.js et les bibliothèques Web3 modernes incluant Viem/Wagmi et RainbowKit pour une intégration blockchain transparente.",
+          "Infrastructure et Outils Blockchain": "Acquisition d'une expertise dans les frameworks de développement (Hardhat, Foundry), le stockage décentralisé (IPFS) et les concepts avancés comme les preuves Merkle pour des systèmes de vérification efficaces.",
+          "Déploiement Prêt pour la Production": "Apprentissage des workflows de déploiement complets incluant le déploiement DApp sur Vercel et les méthodologies Test-Driven Development (TDD) pour un développement robuste des smart contracts."
+        }
+      },
+      {
+        "id": "polytech",
+        "title": "Ingénieur en Électronique et Systèmes Robotisés",
+        "school": "Polytech Paris-Saclay",
+        "period": "Septembre 2017 - Mai 2022",
+        "summary": "Programme d'ingénieur de cinq ans spécialisé dans les systèmes embarqués, l'électronique et la robotique, construisant de solides bases en programmation bas niveau et intégration matériel-logiciel.",
+        "points": {
+          "Programmation des Systèmes Embarqués": "Développement d'une proficiency en programmation C embarqué pour microcontrôleurs et C++ pour les systèmes robotiques complexes et applications.",
+          "Protocoles de Communication Matérielle": "Maîtrise de divers bus de communication incluant SPI, I2C, UART et des protocoles industriels comme Modbus pour l'intégration système.",
+          "Architecture des Processeurs et Conception Numérique": "Acquisition d'une compréhension approfondie des architectures de processeurs RISC (Nios II) et de la conception de circuits numériques utilisant VHDL pour l'implémentation FPGA.",
+          "Méthodologie d'Ingénierie et Collaboration": "Renforcement des capacités de résolution de problèmes, des compétences en documentation technique et du travail d'équipe efficace à travers de nombreux projets d'ingénierie et travaux de groupe."
+        }
+      }
+    ]
+  },
+  "vision": {
+    "title": "Ma Vision",
+    "p1": "J'imagine un futur où la blockchain aide les gens à interagir et à construire ensemble, sans barrières — où la confiance, la propriété et la créativité sont intégrées dans la technologie elle-même.",
+    "p2": "En tant que développeur, je souhaite contribuer à ce changement en créant des applications décentralisées qui soient fiables, transparentes et véritablement utiles aux utilisations du quotidien."
+  }
+
+}

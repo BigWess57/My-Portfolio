@@ -1,10 +1,11 @@
 'use client'
 
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Card } from "@/src/components/ui/card";
+import { Badge } from "@/src/components/ui/badge";
 import { useEffect, useRef, useState } from "react";
 import { motion, Variants } from "framer-motion";
 import { containerVariants, itemVariants } from "./Intro";
+import { useTranslations } from "next-intl";
 
 
 const itemVariantsLeft: Variants = {
@@ -26,27 +27,60 @@ const itemVariantsRight: Variants = {
 };
 
 
-
-const skillCategories = [
-  {
-    title: "Web3 development",
-    skills: ["Solidity", "Smart Contract Architecture", "ERC Standards", "OpenZeppelin", "Uniswap SDK", "Hardhat", "Foundry", "GraphQL", "IPFS", "Merkle Proofs"],
-  },
-  {
-    title: "Front-End & Integration",
-    skills: ["React", "TypeScript", "TailwindCSS", "Next.js", "Viem / Wagmi", "RainbowKit", "DApp deployment (Vercel)"],
-  },
-  {
-    title: "Development practices",
-    skills: ["GitHub Actions", "CI/CD & Version Control", "Test-Driven Development (TDD)", "UI/UX for DApps"],
-  },
-  {
-    title: "Additionnal skills",
-    skills: ["C", "C++", "C#", "Embedded Linux", "Problem Solving", "Documentation", "Teamwork"],
-  },
-];
-
 const Skills = () => {
+
+  const t = useTranslations('skills');
+
+  const skillCategories = [
+  {
+    title: t('web3.title'), 
+    skills: [
+      "Solidity",
+      t('web3.contractsArchitecture'),
+      t('web3.ERCstandards'),
+      "OpenZeppelin",
+      "Uniswap SDK", 
+      "Hardhat",
+      "Foundry",
+      "GraphQL",
+      "IPFS",
+      t('web3.merkleProofs')
+    ],
+  },
+  {
+    title: t('frontend.title'),
+    skills: [
+      "React",
+      "TypeScript", 
+      "TailwindCSS",
+      "Next.js",
+      "Viem / Wagmi",
+      "RainbowKit",
+      t('frontend.deployment')
+    ],
+  },
+  {
+    title: t('developmentPractices.title'),
+    skills: [
+      "GitHub Actions",
+      "CI/CD & Version Control", 
+      t('developmentPractices.tdd'),
+      t('developmentPractices.uiux')
+    ],
+  },
+  {
+    title: t('additionnal.title'),
+    skills: [
+      "C",
+      "C++",
+      "C#",
+      t('additionnal.embeddedLinux'),
+      t('additionnal.problemSolving'),
+      "Documentation",
+      t('additionnal.teamwork')
+    ],
+  },
+  ];
 
   const divRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -88,7 +122,7 @@ const Skills = () => {
         <motion.h2
           variants={itemVariants}
         >
-          My Skills
+          {t('title')}
         </motion.h2>
         <div className="grid md:grid-cols-2 gap-6">
           {skillCategories.map((category, index) => (

@@ -2,16 +2,17 @@
 
 import { useEffect, useRef, useState } from "react";
 
-import { Card } from "@/components/ui/card";
+import { Card } from "@/src/components/ui/card";
 import { motion } from "framer-motion";
 import { containerVariants, itemVariants } from "./Intro";
+import { useTranslations } from "next-intl";
 
 
 const GridPattern = () => {
   return (
     <svg
       aria-hidden="true"
-      className="absolute inset-0 -z-10 h-full w-full text-neutral-500 opacity-50 dark:opacity-50 [mask-image:radial-gradient(ellipse_at_center,white_20%,transparent_70%)]"
+      className="absolute inset-0 -z-10 h-full w-full text-neutral-500 opacity-50 dark:opacity-50 mask-[radial-gradient(ellipse_at_center,white_20%,transparent_70%)]"
     >
       <defs>
         <pattern
@@ -44,6 +45,8 @@ const GridPattern = () => {
 
 
 const Vision = () => {
+
+  const t = useTranslations('vision');
 
   const divRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -85,7 +88,7 @@ const Vision = () => {
         animate={isVisible ? 'visible' : 'hidden'}
       >
         <motion.h2 variants={itemVariants} className="mb-10">
-          My Vision
+          {t('title')}
         </motion.h2>
         
         {/* We've removed the card and restyled the text for more impact */}
@@ -94,7 +97,7 @@ const Vision = () => {
           // This is the "hero" part of your vision
           className="text-3xl font-medium text-neutral-100"
         >
-          I imagine a future where blockchain helps people interact and build together without barriers — where trust, ownership, and creativity are embedded in the technology itself.
+          {t('p1')}
         </motion.p>
         
         <motion.p 
@@ -102,7 +105,7 @@ const Vision = () => {
           // This is the "mission" part, styled as supporting text
           className="mt-6 text-xl text-neutral-400"
         >
-          As a developer, I want to contribute to that change by creating decentralized applications that are reliable, transparent, and genuinely useful to everyday users.
+          {t('p2')}
         </motion.p>
       </motion.div>
     </section>

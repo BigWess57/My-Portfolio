@@ -1,12 +1,16 @@
 "use client";
 
-import { Card } from "@/components/ui/card";
+// import { Card } from "@/src/components/ui/card";
 import { ArrowRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
+import { Card } from "../ui/card";
 
 
 const WorkExperience = () => {
 
+  const t = useTranslations('workExperience');
+  
   const divRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -43,12 +47,15 @@ const WorkExperience = () => {
             : "opacity-0 -translate-x-32"
           }`}
       >
-        <h2 className="">Work Experience</h2>
+        <h2 className="">{t('title')}</h2>
         <div>
           <Card className="p-8 card-hover">
             {/* Introductory Sentence */}
             <p className="text-xl leading-relaxed mb-4">
-              I’ve worked on a wide range of projects, from <strong className="text-primary-300">embedded systems</strong> and computer vision to <strong className="text-primary-300">full-stack web development</strong>.
+              {t.rich('intro', {
+                embedded: (chunks) => <strong className="text-primary-300">{chunks}</strong>,
+                web: (chunks) => <strong className="text-primary-300">{chunks}</strong>
+              })}
             </p>
             
             {/* Scannable List */}
@@ -56,19 +63,26 @@ const WorkExperience = () => {
               <li className="flex">
                 <ArrowRight className="text-secondary-400 w-4 h-4 mr-2 mt-1.5 shrink-0" />
                 <div>
-                  At IMDS Software in Montreal, I developed software for <strong className="text-secondary-300">license plate recognition, production monitoring, and document management</strong>.
+                  {t.rich('imds', {
+                    projects: (chunks) => <strong className="text-secondary-300">{chunks}</strong>
+                  })}
                 </div>
               </li>
               <li className="flex">
                 <ArrowRight className="text-secondary-400 w-4 h-4 mr-2 mt-1.5 shrink-0" />
                 <div>
-                  Before that, I built a <strong className="text-secondary-300">3D positioning solution</strong> on embedded Linux during my engineering internship.
+                  {t.rich('doga', {
+                    positioning: (chunks) => <strong className="text-secondary-300">{chunks}</strong>
+                  })}
                 </div>
               </li>
               <li className="flex">
                 <ArrowRight className="text-secondary-400 w-4 h-4 mr-2 mt-1.5 shrink-0" />
                 <div>
-                  Today, I’m applying that experience to <strong className="text-secondary-300">Web3 development</strong> — creating decentralized applications that combine <strong className="text-secondary-300">solid engineering with innovative blockchain technologies</strong>.
+                  {t.rich('web3Now', {
+                    web3Dev: (chunks) => <strong className="text-secondary-300">{chunks}</strong>,
+                    innovative: (chunks) => <strong className="text-secondary-300">{chunks}</strong>
+                  })}
                 </div>
               </li>
             </ul>

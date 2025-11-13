@@ -65,9 +65,6 @@ function SnapScrollCarousel<T>({
             // Stable navigation - debounced with higher threshold
             if (entry.isIntersecting && visibilityRatio > 0.7) {
               setCurrentIndex(index);
-              console.log(index)
-              console.log(currentIndex)
-              console.log(items.length)
             }
           }
         });

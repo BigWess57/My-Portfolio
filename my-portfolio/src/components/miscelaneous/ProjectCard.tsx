@@ -1,24 +1,28 @@
 import React from 'react'
 import Image from 'next/image';
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from '../ui/badge';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/src/components/ui/card";
+import { Button } from "@/src/components/ui/button";
+import { Badge } from '@/src/components/ui/badge';
 
 import { ArrowRight, ExternalLink } from 'lucide-react';
 
-import { ProjectType } from '../portfolio/Projects';
+import { Project } from '../portfolio/Projects';
 import ProjectDialogDetails from './ProjectDialogDetails';
+import { useTranslations } from 'next-intl';
 
 
 export type ProjectCardProps = {
-  project: ProjectType;
+  project: Project;
   index: number;
   openDialogId: number| null;
   setOpenDialogId: React.Dispatch<React.SetStateAction<number | null>>;
 };
 
 const ProjectCard = ({ project, index, openDialogId, setOpenDialogId }: ProjectCardProps) => {
+
+  const t = useTranslations('projects.additionnal');
+
   return (
     <Card className="card-hover max-w-xl mx-auto">
       <div className="px-5">
@@ -95,7 +99,7 @@ const ProjectCard = ({ project, index, openDialogId, setOpenDialogId }: ProjectC
               className="w-full"
             >
               <Button variant="outline" className="gap-2 w-full button-hover-accent">
-                View Code
+                {t(`viewCode`)}
                 <ExternalLink className="w-4 h-4" />
               </Button>
             </a>}
