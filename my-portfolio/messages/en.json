@@ -3,13 +3,13 @@
     "title": "Igor Babic"
   },
   "intro": {
-    "title": "Web3 Fullstack Developer",
+    "title": "Fullstack Developer",
     "contactMe": "Reach me here :",
     "email": "Email Me"
   },
   "about": {
     "title": "About Me",
-    "paragraph1": "Hi I'm <name>Igor</name> — a Full-stack Web3 developer with roots in <expertise>embedded systems and software engineering</expertise>. Working close to the hardware taught me to care about every detail and build things that are reliable from the inside out.",
+    "paragraph1": "Hi I'm <name>Igor</name> — a Full-stack developer with roots in <expertise>embedded systems and software engineering</expertise>. Working close to the hardware taught me to care about every detail and build things that are reliable from the inside out.",
     "paragraph2": "I'm passionate about bringing that same rigor into blockchain development. I see Web3 as a space where transparency and true digital ownership can reshape how we build online — and I want to be part of that change by creating applications that are <adjectives>precise, purposeful, and built to last</adjectives>."
   },
   "workExperience": {
@@ -122,6 +122,9 @@
       "embeddedLinux": "Embedded Linux",
       "problemSolving": "Problem Solving",
       "teamwork": "Teamwork"
+    },
+    "backend": {
+      "title": "Backend & DataBases"
     }
   },
   "keyExperiences": {

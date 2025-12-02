@@ -3,13 +3,13 @@
     "title": "Igor Babic"
   },
   "intro": {
-    "title": "Développeur Web3 Full-Stack",
+    "title": "Développeur Full-Stack",
     "contactMe": "Contactez moi :",
     "email": "Email"
   },
   "about": {
     "title": "À propos de moi",
-    "paragraph1": "Bonjour, je suis <name>Igor</name> — développeur Web3 full-stack avec une formation en <expertise>systèmes embarqués et génie logiciel</expertise>. Travailler proche du matériel m'a appris à prêter attention à chaque détail et à créer des produits fiables et solides.",
+    "paragraph1": "Bonjour, je suis <name>Igor</name> — développeur full-stack avec une formation en <expertise>systèmes embarqués et génie logiciel</expertise>. Travailler proche du matériel m'a appris à prêter attention à chaque détail et à créer des produits fiables et solides.",
     "paragraph2": "Je suis passionné par l'idée d'apporter cette même rigueur au développement blockchain. Je considère le Web3 comme un espace où la transparence et la propriété numérique peuvent remodeler la façon dont nous construisons le monde — et je veux participer à ce changement en créant des applications qui sont <adjectives>précises, utiles et conçues pour durer</adjectives>."
   },
   "workExperience": {
@@ -122,6 +122,9 @@
       "embeddedLinux": "Linux embarqué",
       "problemSolving": "Résolution de problèmes",
       "teamwork": "Travail d'équipe"
+    },
+    "backend": {
+      "title": "Backend & Base de données"
     }
   },
   "keyExperiences": {

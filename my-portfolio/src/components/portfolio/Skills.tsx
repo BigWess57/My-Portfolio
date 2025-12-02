@@ -33,6 +33,27 @@ const Skills = () => {
 
   const skillCategories = [
   {
+    title: t('frontend.title'),
+    skills: [
+      "React",
+      "TypeScript", 
+      "TailwindCSS",
+      "Next.js",
+      "Viem / Wagmi",
+      "RainbowKit",
+      t('frontend.deployment')
+    ],
+  },
+  {
+    title: t('backend.title'),
+    skills: [
+      "Java (Spring & Maven)",
+      "C#",
+      "SQL Server",
+      "MySQL"
+    ],
+  },
+  {
     title: t('web3.title'), 
     skills: [
       "Solidity",
@@ -48,36 +69,16 @@ const Skills = () => {
     ],
   },
   {
-    title: t('frontend.title'),
-    skills: [
-      "React",
-      "TypeScript", 
-      "TailwindCSS",
-      "Next.js",
-      "Viem / Wagmi",
-      "RainbowKit",
-      t('frontend.deployment')
-    ],
-  },
-  {
-    title: t('developmentPractices.title'),
-    skills: [
-      "GitHub Actions",
-      "CI/CD & Version Control", 
-      t('developmentPractices.tdd'),
-      t('developmentPractices.uiux')
-    ],
-  },
-  {
     title: t('additionnal.title'),
     skills: [
       "C",
       "C++",
-      "C#",
+      "Python",
       t('additionnal.embeddedLinux'),
-      t('additionnal.problemSolving'),
-      "Documentation",
-      t('additionnal.teamwork')
+      "GitHub Actions",
+      "CI/CD & Version Control", 
+      t('developmentPractices.tdd'),
+      t('developmentPractices.uiux')
     ],
   },
   ];

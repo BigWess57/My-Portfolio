@@ -35,9 +35,9 @@ export default function LanguageSwitcher() {
       <button
         onClick={() => onSelectChange('en')}
         className={`rounded-md text-sm font-medium transition-colors ${
-          params.locale === 'en'
-            ? 'bg-neutral-700 text-neutral-100'
-            : 'bg-neutral-500 text-neutral-200 hover:bg-neutral-300'
+          params.locale === 'en' ? 'bg-neutral-500 text-neutral-100'
+          : !isPending ? 'bg-neutral-700 text-neutral-200 hover:bg-neutral-300'
+          : 'bg-transparent text-neutral-200'
         }`}
         disabled={ isPending || params.locale === 'en'}
       >
@@ -57,9 +57,9 @@ export default function LanguageSwitcher() {
       <button
         onClick={() => onSelectChange('fr')}
         className={`rounded-md text-sm font-medium transition-colors ${
-          params.locale === 'fr'
-            ? 'bg-neutral-700 text-neutral-100'
-            : 'bg-neutral-500 text-neutral-200 hover:bg-neutral-300'
+          params.locale === 'fr' ? 'bg-neutral-500 text-neutral-100'
+          : !isPending ? 'bg-neutral-700 text-neutral-200 hover:bg-neutral-300'
+          : 'bg-transparent text-neutral-200'
         }`}
         disabled={ isPending || params.locale === 'fr'}
       >
