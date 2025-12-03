@@ -50,7 +50,8 @@ const Skills = () => {
       "Java (Spring & Maven)",
       "C#",
       "SQL Server",
-      "MySQL"
+      "MySQL",
+      "REST API"
     ],
   },
   {
